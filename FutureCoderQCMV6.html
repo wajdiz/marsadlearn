@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python MCQ Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .name-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            color: #28a745;
+        }
+        .feedback.incorrect {
+            color: #dc3545;
+        }
+        .explanation {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+            font-size: 0.9em;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            text-align: center;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Python MCQ Quiz</h1>
+    </header>
+    <main>
+        <div class="name-section" id="nameSection">
+            <input type="text" id="userName" placeholder="Enter your name">
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
+        <div id="quiz" style="display: none;">
+            <form id="quizForm">
+                <!-- Question 1: Variables and Data Types -->
+                <div class="question" id="q1">
+                    <h3>1. What is the data type of `42` in Python?</h3>
+                    <label><input type="radio" name="q1" value="a" onchange="checkAnswer(1, this.value)"> float</label>
+                    <label><input type="radio" name="q1" value="b" onchange="checkAnswer(1, this.value)"> int</label>
+                    <label><input type="radio" name="q1" value="c" onchange="checkAnswer(1, this.value)"> str</label>
+                    <label><input type="radio" name="q1" value="d" onchange="checkAnswer(1, this.value)"> bool</label>
+                    <label><input type="radio" name="q1" value="e" onchange="checkAnswer(1, this.value)"> error</label>
+                    <div class="feedback" id="feedback1"></div>
+                    <div class="explanation" id="exp1">
+                        <strong>Correct Answer: b) int</strong><br>
+                        The value `42` is a whole number, so its data type in Python is `int`. `float` is for decimals, `str` for strings, and `bool` for True/False.
+                    </div>
+                </div>
+                <!-- Question 2: Variables and Data Types -->
+                <div class="question" id="q2">
+                    <h3>2. What is the output of `type("Python")`?</h3>
+                    <label><input type="radio" name="q2" value="a" onchange="checkAnswer(2, this.value)"> int</label>
+                    <label><input type="radio" name="q2" value="b" onchange="checkAnswer(2, this.value)"> float</label>
+                    <label><input type="radio" name="q2" value="c" onchange="checkAnswer(2, this.value)"> str</label>
+                    <label><input type="radio" name="q2" value="d" onchange="checkAnswer(2, this.value)"> bool</label>
+                    <label><input type="radio" name="q2" value="e" onchange="checkAnswer(2, this.value)"> error</label>
+                    <div class="feedback" id="feedback2"></div>
+                    <div class="explanation" id="exp2">
+                        <strong>Correct Answer: c) str</strong><br>
+                        The `type()` function returns the data type. `"Python"` is a string, so its type is `str`. Other options represent different data types.
+                    </div>
+                </div>
+                <!-- Question 3: Variables and Data Types -->
+                <div class="question" id="q3">
+                    <h3>3. How do you create a variable named `score` with the value 100?</h3>
+                    <label><input type="radio" name="q3" value="a" onchange="checkAnswer(3, this.value)"> var score = 100</label>
+                    <label><input type="radio" name="q3" value="b" onchange="checkAnswer(3, this.value)"> score = 100</label>
+                    <label><input type="radio" name="q3" value="c" onchange="checkAnswer(3, this.value)"> int score = 100</label>
+                    <label><input type="radio" name="q3" value="d" onchange="checkAnswer(3, this.value)"> define score 100</label>
+                    <label><input type="radio" name="q3" value="e" onchange="checkAnswer(3, this.value)"> score := 100</label>
+                    <div class="feedback" id="feedback3"></div>
+                    <div class="explanation" id="exp3">
+                        <strong>Correct Answer: b) score = 100</strong><br>
+                        In Python, variables are created by assigning a value using `=`, e.g., `score = 100`. No keyword or type declaration is needed. Other options are syntax from languages like JavaScript, C, or Go.
+                    </div>
+                </div>
+                <!-- Question 4: Variables and Data Types -->
+                <div class="question" id="q4">
+                    <h3>4. What is the data type of `False` in Python?</h3>
+                    <label><input type="radio" name="q4" value="a" onchange="checkAnswer(4, this.value)"> int</label>
+                    <label><input type="radio" name="q4" value="b" onchange="checkAnswer(4, this.value)"> float</label>
+                    <label><input type="radio" name="q4" value="c" onchange="checkAnswer(4, this.value)"> str</label>
+                    <label><input type="radio" name="q4" value="d" onchange="checkAnswer(4, this.value)"> bool</label>
+                    <label><input type="radio" name="q4" value="e" onchange="checkAnswer(4, this.value)"> error</label>
+                    <div class="feedback" id="feedback4"></div>
+                    <div class="explanation" id="exp4">
+                        <strong>Correct Answer: d) bool</strong><br>
+                        `False` is a boolean value in Python, so its type is `bool`. It represents a logical value (True/False). Other options are incorrect for this value.
+                    </div>
+                </div>
+                <!-- Question 5: Variables and Data Types -->
+                <div class="question" id="q5">
+                    <h3>5. What is the output of `float(5)`?</h3>
+                    <label><input type="radio" name="q5" value="a" onchange="checkAnswer(5, this.value)"> 5</label>
+                    <label><input type="radio" name="q5" value="b" onchange="checkAnswer(5, this.value)"> 5.0</label>
+                    <label><input type="radio" name="q5" value="c" onchange="checkAnswer(5, this.value)"> "5"</label>
+                    <label><input type="radio" name="q5" value="d" onchange="checkAnswer(5, this.value)"> error</label>
+                    <label><input type="radio" name="q5" value="e" onchange="checkAnswer(5, this.value)"> None</label>
+                    <div class="feedback" id="feedback5"></div>
+                    <div class="explanation" id="exp5">
+                        <strong>Correct Answer: b) 5.0</strong><br>
+                        The `float()` function converts a number to a floating-point value. `float(5)` converts the integer `5` to the float `5.0`.
+                    </div>
+                </div>
+                <!-- Question 6: Basic Operators -->
+                <div class="question" id="q6">
+                    <h3>6. What is the output of `7 + 2 * 3`?</h3>
+                    <label><input type="radio" name="q6" value="a" onchange="checkAnswer(6, this.value)"> 27</label>
+                    <label><input type="radio" name="q6" value="b" onchange="checkAnswer(6, this.value)"> 13</label>
+                    <label><input type="radio" name="q6" value="c" onchange="checkAnswer(6, this.value)"> 11</label>
+                    <label><input type="radio" name="q6" value="d" onchange="checkAnswer(6, this.value)"> 9</label>
+                    <label><input type="radio" name="q6" value="e" onchange="checkAnswer(6, this.value)"> 15</label>
+                    <div class="feedback" id="feedback6"></div>
+                    <div class="explanation" id="exp6">
+                        <strong>Correct Answer: b) 13</strong><br>
+                        Python follows PEMDAS (order of operations). Multiplication (`2 * 3 = 6`) is evaluated first, then addition (`7 + 6 = 13`). Use parentheses for a different order, e.g., `(7 + 2) * 3`.
+                    </div>
+                </div>
+                <!-- Question 7: Basic Operators -->
+                <div class="question" id="q7">
+                    <h3>7. Which operator checks if two values are not equal?</h3>
+                    <label><input type="radio" name="q7" value="a" onchange="checkAnswer(7, this.value)"> ==</label>
+                    <label><input type="radio" name="q7" value="b" onchange="checkAnswer(7, this.value)"> !=</label>
+                    <label><input type="radio" name="q7" value="c" onchange="checkAnswer(7, this.value)"> =</label>
+                    <label><input type="radio" name="q7" value="d" onchange="checkAnswer(7, this.value)"> >=</label>
+                    <label><input type="radio" name="q7" value="e" onchange="checkAnswer(7, this.value)"> <=</label>
+                    <div class="feedback" id="feedback7"></div>
+                    <div class="explanation" id="exp7">
+                        <strong>Correct Answer: b) !=</strong><br>
+                        The `!=` operator checks if two values are not equal. `==` checks equality, `=` is for assignment, and `>=` and `<=` are for comparison.
+                    </div>
+                </div>
+                <!-- Question 8: Basic Operators -->
+                <div class="question" id="q8">
+                    <h3>8. What is the output of `10 - 6`?</h3>
+                    <label><input type="radio" name="q8" value="a" onchange="checkAnswer(8, this.value)"> 4</label>
+                    <label><input type="radio" name="q8" value="b" onchange="checkAnswer(8, this.value)"> 5</label>
+                    <label><input type="radio" name="q8" value="c" onchange="checkAnswer(8, this.value)"> 6</label>
+                    <label><input type="radio" name="q8" value="d" onchange="checkAnswer(8, this.value)"> 16</label>
+                    <label><input type="radio" name="q8" value="e" onchange="checkAnswer(8, this.value)"> 3</label>
+                    <div class="feedback" id="feedback8"></div>
+                    <div class="explanation" id="exp8">
+                        <strong>Correct Answer: a) 4</strong><br>
+                        The `-` operator subtracts the second number from the first. `10 - 6` equals `4`.
+                    </div>
+                </div>
+                <!-- Question 9: Strings -->
+                <div class="question" id="q9">
+                    <h3>9. What is the output of `"Hello"[0]`?</h3>
+                    <label><input type="radio" name="q9" value="a" onchange="checkAnswer(9, this.value)"> H</label>
+                    <label><input type="radio" name="q9" value="b" onchange="checkAnswer(9, this.value)"> e</label>
+                    <label><input type="radio" name="q9" value="c" onchange="checkAnswer(9, this.value)"> l</label>
+                    <label><input type="radio" name="q9" value="d" onchange="checkAnswer(9, this.value)"> o</label>
+                    <label><input type="radio" name="q9" value="e" onchange="checkAnswer(9, this.value)"> error</label>
+                    <div class="feedback" id="feedback9"></div>
+                    <div class="explanation" id="exp9">
+                        <strong>Correct Answer: a) H</strong><br>
+                        String indexing in Python starts at 0. `"Hello"[0]` accesses the first character, which is `H`.
+                    </div>
+                </div>
+                <!-- Question 10: Basic Operators -->
+                <div class="question" id="q10">
+                    <h3>10. What is the output of `9 * 3`?</h3>
+                    <label><input type="radio" name="q10" value="a" onchange="checkAnswer(10, this.value)"> 27</label>
+                    <label><input type="radio" name="q10" value="b" onchange="checkAnswer(10, this.value)"> 12</label>
+                    <label><input type="radio" name="q10" value="c" onchange="checkAnswer(10, this.value)"> 18</label>
+                    <label><input type="radio" name="q10" value="d" onchange="checkAnswer(10, this.value)"> 6</label>
+                    <label><input type="radio" name="q10" value="e" onchange="checkAnswer(10, this.value)"> 24</label>
+                    <div class="feedback" id="feedback10"></div>
+                    <div class="explanation" id="exp10">
+                        <strong>Correct Answer: a) 27</strong><br>
+                        The `*` operator multiplies two numbers. `9 * 3` equals `27`.
+                    </div>
+                </div>
+                <!-- Question 11: Strings -->
+                <div class="question" id="q11">
+                    <h3>11. What is the output of `"code"[2]`?</h3>
+                    <label><input type="radio" name="q11" value="a" onchange="checkAnswer(11, this.value)"> c</label>
+                    <label><input type="radio" name="q11" value="b" onchange="checkAnswer(11, this.value)"> o</label>
+                    <label><input type="radio" name="q11" value="c" onchange="checkAnswer(11, this.value)"> d</label>
+                    <label><input type="radio" name="q11" value="d" onchange="checkAnswer(11, this.value)"> e</label>
+                    <label><input type="radio" name="q11" value="e" onchange="checkAnswer(11, this.value)"> error</label>
+                    <div class="feedback" id="feedback11"></div>
+                    <div class="explanation" id="exp11">
+                        <strong>Correct Answer: c) d</strong><br>
+                        String indexing in Python starts at 0. For `"code"`, index 2 corresponds to the third character, which is `d` (c=0, o=1, d=2).
+                    </div>
+                </div>
+                <!-- Question 12: Strings -->
+                <div class="question" id="q12">
+                    <h3>12. What is the output of `"TEST".lower()`?</h3>
+                    <label><input type="radio" name="q12" value="a" onchange="checkAnswer(12, this.value)"> TEST</label>
+                    <label><input type="radio" name="q12" value="b" onchange="checkAnswer(12, this.value)"> test</label>
+                    <label><input type="radio" name="q12" value="c" onchange="checkAnswer(12, this.value)"> Test</label>
+                    <label><input type="radio" name="q12" value="d" onchange="checkAnswer(12, this.value)"> tEST</label>
+                    <label><input type="radio" name="q12" value="e" onchange="checkAnswer(12, this.value)"> error</label>
+                    <div class="feedback" id="feedback12"></div>
+                    <div class="explanation" id="exp12">
+                        <strong>Correct Answer: b) test</strong><br>
+                        The `lower()` method converts a string to lowercase. `"TEST"` becomes `"test"`.
+                    </div>
+                </div>
+                <!-- Question 13: Strings -->
+                <div class="question" id="q13">
+                    <h3>13. What is the output of `"py" + "thon"`?</h3>
+                    <label><input type="radio" name="q13" value="a" onchange="checkAnswer(13, this.value)"> py thon</label>
+                    <label><input type="radio" name="q13" value="b" onchange="checkAnswer(13, this.value)"> python</label>
+                    <label><input type="radio" name="q13" value="c" onchange="checkAnswer(13, this.value)"> py+thon</label>
+                    <label><input type="radio" name="q13" value="d" onchange="checkAnswer(13, this.value)"> error</label>
+                    <label><input type="radio" name="q13" value="e" onchange="checkAnswer(13, this.value)"> ["py", "thon"]</label>
+                    <div class="feedback" id="feedback13"></div>
+                    <div class="explanation" id="exp13">
+                        <strong>Correct Answer: b) python</strong><br>
+                        The `+` operator concatenates strings in Python. `"py" + "thon"` combines them into `"python"`. No spaces are added automatically.
+                    </div>
+                </div>
+                <!-- Question 14: Strings -->
+                <div class="question" id="q14">
+                    <h3>14. How many characters are in the string `"hello"`?</h3>
+                    <label><input type="radio" name="q14" value="a" onchange="checkAnswer(14, this.value)"> 4</label>
+                    <label><input type="radio" name="q14" value="b" onchange="checkAnswer(14, this.value)"> 5</label>
+                    <label><input type="radio" name="q14" value="c" onchange="checkAnswer(14, this.value)"> 6</label>
+                    <label><input type="radio" name="q14" value="d" onchange="checkAnswer(14, this.value)"> 3</label>
+                    <label><input type="radio" name="q14" value="e" onchange="checkAnswer(14, this.value)"> 7</label>
+                    <div class="feedback" id="feedback14"></div>
+                    <div class="explanation" id="exp14">
+                        <strong>Correct Answer: b) 5</strong><br>
+                        The `len()` function returns the number of characters in a string. For `"hello"`, there are 5 characters: h, e, l, l, o.
+                    </div>
+                </div>
+                <!-- Question 15: Variables and Data Types -->
+                <div class="question" id="q15">
+                    <h3>15. What is the output of `str(123)`?</h3>
+                    <label><input type="radio" name="q15" value="a" onchange="checkAnswer(15, this.value)"> 123</label>
+                    <label><input type="radio" name="q15" value="b" onchange="checkAnswer(15, this.value)"> "123"</label>
+                    <label><input type="radio" name="q15" value="c" onchange="checkAnswer(15, this.value)"> 123.0</label>
+                    <label><input type="radio" name="q15" value="d" onchange="checkAnswer(15, this.value)"> error</label>
+                    <label><input type="radio" name="q15" value="e" onchange="checkAnswer(15, this.value)"> None</label>
+                    <div class="feedback" id="feedback15"></div>
+                    <div class="explanation" id="exp15">
+                        <strong>Correct Answer: b) "123"</strong><br>
+                        The `str()` function converts a number to a string. `str(123)` converts the integer `123` to the string `"123"`.
+                    </div>
+                </div>
+                <!-- Question 16: Basic Operators -->
+                <div class="question" id="q16">
+                    <h3>16. What is the output of `15 % 4`?</h3>
+                    <label><input type="radio" name="q16" value="a" onchange="checkAnswer(16, this.value)"> 3</label>
+                    <label><input type="radio" name="q16" value="b" onchange="checkAnswer(16, this.value)"> 4</label>
+                    <label><input type="radio" name="q16" value="c" onchange="checkAnswer(16, this.value)"> 5</label>
+                    <label><input type="radio" name="q16" value="d" onchange="checkAnswer(16, this.value)"> 2</label>
+                    <label><input type="radio" name="q16" value="e" onchange="checkAnswer(16, this.value)"> error</label>
+                    <div class="feedback" id="feedback16"></div>
+                    <div class="explanation" id="exp16">
+                        <strong>Correct Answer: a) 3</strong><br>
+                        The `%` operator returns the remainder of division. `15 % 4` means 15 divided by 4 is 3 with a remainder of 3 (since 4 * 3 = 12, and 15 - 12 = 3).
+                    </div>
+                </div>
+                <!-- Question 17: Control Flow (For Loop - Replaced Q17) -->
+                <div class="question" id="q17">
+                    <h3>17. How many times does `for i in range(3):` loop?</h3>
+                    <label><input type="radio" name="q17" value="a" onchange="checkAnswer(17, this.value)"> 2</label>
+                    <label><input type="radio" name="q17" value="b" onchange="checkAnswer(17, this.value)"> 3</label>
+                    <label><input type="radio" name="q17" value="c" onchange="checkAnswer(17, this.value)"> 4</label>
+                    <label><input type="radio" name="q17" value="d" onchange="checkAnswer(17, this.value)"> 1</label>
+                    <label><input type="radio" name="q17" value="e" onchange="checkAnswer(17, this.value)"> 0</label>
+                    <div class="feedback" id="feedback17"></div>
+                    <div class="explanation" id="exp17">
+                        <strong>Correct Answer: b) 3</strong><br>
+                        The `range(3)` generates numbers from 0 to 2 (0, 1, 2), so the loop runs 3 times.
+                    </div>
+                </div>
+                <!-- Question 18: Strings -->
+                <div class="question" id="q18">
+                    <h3>18. What is the output of `"Fun"[1]`?</h3>
+                    <label><input type="radio" name="q18" value="a" onchange="checkAnswer(18, this.value)"> F</label>
+                    <label><input type="radio" name="q18" value="b" onchange="checkAnswer(18, this.value)"> u</label>
+                    <label><input type="radio" name="q18" value="c" onchange="checkAnswer(18, this.value)"> n</label>
+                    <label><input type="radio" name="q18" value="d" onchange="checkAnswer(18, this.value)"> error</label>
+                    <label><input type="radio" name="q18" value="e" onchange="checkAnswer(18, this.value)"> None</label>
+                    <div class="feedback" id="feedback18"></div>
+                    <div class="explanation" id="exp18">
+                        <strong>Correct Answer: b) u</strong><br>
+                        String indexing in Python starts at 0. For `"Fun"`, index 1 corresponds to the second character, which is `u` (F=0, u=1).
+                    </div>
+                </div>
+                <!-- Question 19: Basic Operators -->
+                <div class="question" id="q19">
+                    <h3>19. What is the output of `8 > 5`?</h3>
+                    <label><input type="radio" name="q19" value="a" onchange="checkAnswer(19, this.value)"> True</label>
+                    <label><input type="radio" name="q19" value="b" onchange="checkAnswer(19, this.value)"> False</label>
+                    <label><input type="radio" name="q19" value="c" onchange="checkAnswer(19, this.value)"> 8</label>
+                    <label><input type="radio" name="q19" value="d" onchange="checkAnswer(19, this.value)"> 5</label>
+                    <label><input type="radio" name="q19" value="e" onchange="checkAnswer(19, this.value)"> error</label>
+                    <div class="feedback" id="feedback19"></div>
+                    <div class="explanation" id="exp19">
+                        <strong>Correct Answer: a) True</strong><br>
+                        The `>` operator checks if the first value is greater than the second. Since `8` is greater than `5`, the result is `True`.
+                    </div>
+                </div>
+                <!-- Question 20: Control Flow -->
+                <div class="question" id="q20">
+                    <h3>20. What does `if x >= 10:` do?</h3>
+                    <label><input type="radio" name="q20" value="a" onchange="checkAnswer(20, this.value)"> Executes block if x is 10 or greater</label>
+                    <label><input type="radio" name="q20" value="b" onchange="checkAnswer(20, this.value)"> Executes block if x is less than 10</label>
+                    <label><input type="radio" name="q20" value="c" onchange="checkAnswer(20, this.value)"> Always executes</label>
+                    <label><input type="radio" name="q20" value="d" onchange="checkAnswer(20, this.value)"> Never executes</label>
+                    <label><input type="radio" name="q20" value="e" onchange="checkAnswer(20, this.value)"> Raises an error</label>
+                    <div class="feedback" id="feedback20"></div>
+                    <div class="explanation" id="exp20">
+                        <strong>Correct Answer: a) Executes block if x is 10 or greater</strong><br>
+                        The `if` statement with `>=` checks if `x` is greater than or equal to 10. If true, the block executes; otherwise, it skips the block.
+                    </div>
+                </div>
+                <!-- Question 21: Basic Operators -->
+                <div class="question" id="q21">
+                    <h3>21. What is the output of `True or False`?</h3>
+                    <label><input type="radio" name="q21" value="a" onchange="checkAnswer(21, this.value)"> True</label>
+                    <label><input type="radio" name="q21" value="b" onchange="checkAnswer(21, this.value)"> False</label>
+                    <label><input type="radio" name="q21" value="c" onchange="checkAnswer(21, this.value)"> 0</label>
+                    <label><input type="radio" name="q21" value="d" onchange="checkAnswer(21, this.value)"> 1</label>
+                    <label><input type="radio" name="q21" value="e" onchange="checkAnswer(21, this.value)"> error</label>
+                    <div class="feedback" id="feedback21"></div>
+                    <div class="explanation" id="exp21">
+                        <strong>Correct Answer: a) True</strong><br>
+                        The `or` operator returns `True` if at least one operand is `True`. Since the first operand is `True`, the result is `True`.
+                    </div>
+                </div>
+                <!-- Question 22: Control Flow -->
+                <div class="question" id="q22">
+                    <h3>22. What does `if not True:` do?</h3>
+                    <label><input type="radio" name="q22" value="a" onchange="checkAnswer(22, this.value)"> Executes block</label>
+                    <label><input type="radio" name="q22" value="b" onchange="checkAnswer(22, this.value)"> Skips block</label>
+                    <label><input type="radio" name="q22" value="c" onchange="checkAnswer(22, this.value)"> Always executes</label>
+                    <label><input type="radio" name="q22" value="d" onchange="checkAnswer(22, this.value)"> Never executes</label>
+                    <label><input type="radio" name="q22" value="e" onchange="checkAnswer(22, this.value)"> Raises an error</label>
+                    <div class="feedback" id="feedback22"></div>
+                    <div class="explanation" id="exp22">
+                        <strong>Correct Answer: b) Skips block</strong><br>
+                        The `not` operator inverts a boolean. `not True` is `False`, so the block under `if not True:` will not execute.
+                    </div>
+                </div>
+                <!-- Question 23: Strings -->
+                <div class="question" id="q23">
+                    <h3>23. What is the output of `"DATA".upper()`?</h3>
+                    <label><input type="radio" name="q23" value="a" onchange="checkAnswer(23, this.value)"> data</label>
+                    <label><input type="radio" name="q23" value="b" onchange="checkAnswer(23, this.value)"> DATA</label>
+                    <label><input type="radio" name="q23" value="c" onchange="checkAnswer(23, this.value)"> Data</label>
+                    <label><input type="radio" name="q23" value="d" onchange="checkAnswer(23, this.value)"> dATA</label>
+                    <label><input type="radio" name="q23" value="e" onchange="checkAnswer(23, this.value)"> error</label>
+                    <div class="feedback" id="feedback23"></div>
+                    <div class="explanation" id="exp23">
+                        <strong>Correct Answer: b) DATA</strong><br>
+                        The `upper()` method converts a string to uppercase. Since `"DATA"` is already uppercase, it remains `"DATA"`.
+                    </div>
+                </div>
+                <!-- Question 24: Control Flow -->
+                <div class="question" id="q24">
+                    <h3>24. What does `elif x == 5:` do in an if statement?</h3>
+                    <label><input type="radio" name="q24" value="a" onchange="checkAnswer(24, this.value)"> Checks x == 5 if the previous condition was false</label>
+                    <label><input type="radio" name="q24" value="b" onchange="checkAnswer(24, this.value)"> Always checks x == 5</label>
+                    <label><input type="radio" name="q24" value="c" onchange="checkAnswer(24, this.value)"> Skips the condition</label>
+                    <label><input type="radio" name="q24" value="d" onchange="checkAnswer(24, this.value)"> Raises an error</label>
+                    <label><input type="radio" name="q24" value="e" onchange="checkAnswer(24, this.value)"> Loops until x == 5</label>
+                    <div class="feedback" id="feedback24"></div>
+                    <div class="explanation" id="exp24">
+                        <strong>Correct Answer: a) Checks x == 5 if the previous condition was false</strong><br>
+                        The `elif` statement is used in an if-else structure. It checks its condition (`x == 5`) only if the previous `if` or `elif` condition was false.
+                    </div>
+                </div>
+                <!-- Question 25: Basic Operators -->
+                <div class="question" id="q25">
+                    <h3>25. What is the output of `3 < 7`?</h3>
+                    <label><input type="radio" name="q25" value="a" onchange="checkAnswer(25, this.value)"> True</label>
+                    <label><input type="radio" name="q25" value="b" onchange="checkAnswer(25, this.value)"> False</label>
+                    <label><input type="radio" name="q25" value="c" onchange="checkAnswer(25, this.value)"> 3</label>
+                    <label><input type="radio" name="q25" value="d" onchange="checkAnswer(25, this.value)"> 7</label>
+                    <label><input type="radio" name="q25" value="e" onchange="checkAnswer(25, this.value)"> error</label>
+                    <div class="feedback" id="feedback25"></div>
+                    <div class="explanation" id="exp25">
+                        <strong>Correct Answer: a) True</strong><br>
+                        The `<` operator checks if the first value is less than the second. Since `3` is less than `7`, the result is `True`.
+                    </div>
+                </div>
+                <!-- Question 26: Variables and Data Types -->
+                <div class="question" id="q26">
+                    <h3>26. What is the data type of `7.5` in Python?</h3>
+                    <label><input type="radio" name="q26" value="a" onchange="checkAnswer(26, this.value)"> int</label>
+                    <label><input type="radio" name="q26" value="b" onchange="checkAnswer(26, this.value)"> float</label>
+                    <label><input type="radio" name="q26" value="c" onchange="checkAnswer(26, this.value)"> str</label>
+                    <label><input type="radio" name="q26" value="d" onchange="checkAnswer(26, this.value)"> bool</label>
+                    <label><input type="radio" name="q26" value="e" onchange="checkAnswer(26, this.value)"> error</label>
+                    <div class="feedback" id="feedback26"></div>
+                    <div class="explanation" id="exp26">
+                        <strong>Correct Answer: b) float</strong><br>
+                        The value `7.5` is a decimal number, so its data type in Python is `float`. `int` is for whole numbers, `str` for strings, and `bool` for True/False.
+                    </div>
+                </div>
+                <!-- Question 27: Control Flow (For Loop - Replaced Q27) -->
+                <div class="question" id="q27">
+                    <h3>27. What does `for i in range(5):` do?</h3>
+                    <label><input type="radio" name="q27" value="a" onchange="checkAnswer(27, this.value)"> Loops 5 times, with i from 0 to 4</label>
+                    <label><input type="radio" name="q27" value="b" onchange="checkAnswer(27, this.value)"> Loops 5 times, with i from 1 to 5</label>
+                    <label><input type="radio" name="q27" value="c" onchange="checkAnswer(27, this.value)"> Loops infinitely</label>
+                    <label><input type="radio" name="q27" value="d" onchange="checkAnswer(27, this.value)"> Loops once</label>
+                    <label><input type="radio" name="q27" value="e" onchange="checkAnswer(27, this.value)"> Raises an error</label>
+                    <div class="feedback" id="feedback27"></div>
+                    <div class="explanation" id="exp27">
+                        <strong>Correct Answer: a) Loops 5 times, with i from 0 to 4</strong><br>
+                        The `range(5)` generates numbers from 0 to 4 (0, 1, 2, 3, 4), so the loop runs 5 times, with `i` taking each value in sequence.
+                    </div>
+                </div>
+                <!-- Question 28: Basic Operators -->
+                <div class="question" id="q28">
+                    <h3>28. What is the output of `12 / 3`?</h3>
+                    <label><input type="radio" name="q28" value="a" onchange="checkAnswer(28, this.value)"> 4.0</label>
+                    <label><input type="radio" name="q28" value="b" onchange="checkAnswer(28, this.value)"> 4</label>
+                    <label><input type="radio" name="q28" value="c" onchange="checkAnswer(28, this.value)"> 3</label>
+                    <label><input type="radio" name="q28" value="d" onchange="checkAnswer(28, this.value)"> 5</label>
+                    <label><input type="radio" name="q28" value="e" onchange="checkAnswer(28, this.value)"> error</label>
+                    <div class="feedback" id="feedback28"></div>
+                    <div class="explanation" id="exp28">
+                        <strong>Correct Answer: a) 4.0</strong><br>
+                        The `/` operator performs division and returns a float in Python 3. `12 / 3` equals `4.0`.
+                    </div>
+                </div>
+                <!-- Question 29: Control Flow (For Loop - Replaced Q29) -->
+                <div class="question" id="q29">
+                    <h3>29. What is the value of `i` in the first iteration of `for i in range(2):`?</h3>
+                    <label><input type="radio" name="q29" value="a" onchange="checkAnswer(29, this.value)"> 0</label>
+                    <label><input type="radio" name="q29" value="b" onchange="checkAnswer(29, this.value)"> 1</label>
+                    <label><input type="radio" name="q29" value="c" onchange="checkAnswer(29, this.value)"> 2</label>
+                    <label><input type="radio" name="q29" value="d" onchange="checkAnswer(29, this.value)"> error</label>
+                    <label><input type="radio" name="q29" value="e" onchange="checkAnswer(29, this.value)"> None</label>
+                    <div class="feedback" id="feedback29"></div>
+                    <div class="explanation" id="exp29">
+                        <strong>Correct Answer: a) 0</strong><br>
+                        The `range(2)` generates numbers from 0 to 1 (0, 1). In the first iteration, `i` takes the value `0`.
+                    </div>
+                </div>
+                <!-- Question 30: Variables and Data Types -->
+                <div class="question" id="q30">
+                    <h3>30. What is the output of `int("45")`?</h3>
+                    <label><input type="radio" name="q30" value="a" onchange="checkAnswer(30, this.value)"> 45</label>
+                    <label><input type="radio" name="q30" value="b" onchange="checkAnswer(30, this.value)"> "45"</label>
+                    <label><input type="radio" name="q30" value="c" onchange="checkAnswer(30, this.value)"> 45.0</label>
+                    <label><input type="radio" name="q30" value="d" onchange="checkAnswer(30, this.value)"> error</label>
+                    <label><input type="radio" name="q30" value="e" onchange="checkAnswer(30, this.value)"> None</label>
+                    <div class="feedback" id="feedback30"></div>
+                    <div class="explanation" id="exp30">
+                        <strong>Correct Answer: a) 45</strong><br>
+                        The `int()` function converts a string representing a number to an integer. `"45"` becomes the integer `45`.
+                    </div>
+                </div>
+                <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+            </form>
+        </div>
+        <div id="results"></div>
+    </main>
+    <footer>
+        <p>© 2025 Python MCQ Quiz | Created by Grok</p>
+    </footer>
+
+    <script>
+        let userName = '';
+        let userAnswers = {};
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'b', q4: 'd', q5: 'b', q6: 'b', q7: 'b', q8: 'a', q9: 'a', q10: 'a',
+            q11: 'c', q12: 'b', q13: 'b', q14: 'b', q15: 'b', q16: 'a', q17: 'b', q18: 'b', q19: 'a', q20: 'a',
+            q21: 'a', q22: 'b', q23: 'b', q24: 'a', q25: 'a', q26: 'b', q27: 'a', q28: 'a', q29: 'a', q30: 'a'
+        };
+
+        function startQuiz() {
+            userName = document.getElementById('userName').value.trim();
+            if (!userName) {
+                alert('Please enter your name.');
+                return;
+            }
+            document.getElementById('nameSection').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+        }
+
+        function checkAnswer(questionNum, selectedValue) {
+            const questionDiv = document.getElementById(`q${questionNum}`);
+            const feedbackDiv = document.getElementById(`feedback${questionNum}`);
+            const explanationDiv = document.getElementById(`exp${questionNum}`);
+            const correctAnswer = correctAnswers[`q${questionNum}`];
+            const radios = document.getElementsByName(`q${questionNum}`);
+
+            // Store the user's answer
+            userAnswers[`q${questionNum}`] = selectedValue;
+
+            // Provide feedback
+            if (selectedValue === correctAnswer) {
+                feedbackDiv.textContent = 'Correct!';
+                feedbackDiv.className = 'feedback correct';
+                questionDiv.style.backgroundColor = '#e9f7ef';
+            } else {
+                feedbackDiv.textContent = 'Incorrect';
+                feedbackDiv.className = 'feedback incorrect';
+                questionDiv.style.backgroundColor = '#f8d7da';
+            }
+            feedbackDiv.style.display = 'block';
+            explanationDiv.style.display = 'block';
+
+            // Disable radio buttons to prevent changing answers
+            for (let radio of radios) {
+                radio.disabled = true;
+            }
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            for (let i = 1; i <= 30; i++) {
+                const userAnswer = userAnswers[`q${i}`];
+                const correctAnswer = correctAnswers[`q${i}`];
+                if (userAnswer && userAnswer === correctAnswer) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<h3>Results for ${userName}</h3><p>Your score: ${score}/30 (${(score / 30 * 100).toFixed(2)}%)</p>`;
+            resultsDiv.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
