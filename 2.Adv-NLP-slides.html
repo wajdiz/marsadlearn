@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2: Foundations of NLP and How Machines Understand Language</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slide {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide h1, .slide h2, .slide h3 {
+            color: #4A00E0;
+            margin-bottom: 20px;
+        }
+        .slide h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .slide h2 {
+            font-size: 28px;
+            border-bottom: 2px solid #4A00E0;
+            padding-bottom: 10px;
+        }
+        .slide h3 {
+            font-size: 22px;
+            color: #8E2DE2;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .slide ul, .slide ol {
+            padding-left: 30px;
+        }
+        .example-box, .case-study-box {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-left: 5px solid #4A00E0;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .case-study-box {
+            background-color: #fff5e6;
+            border-left: 5px solid #FF8C00;
+        }
+        .highlight {
+            color: #ff4b5c;
+            font-weight: bold;
+        }
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+        .next-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4A00E0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .next-button:hover {
+            background-color: #8E2DE2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <h1>Week 2: Foundations of NLP</h1>
+            <p style="text-align: center; font-size: 20px;">How Machines Understand Language<br>Instructor: Wajdi Zaghouani</p>
+        </div>
+
+        <!-- Slide 2: Welcome -->
+        <div class="slide">
+            <h2>Welcome to Week 2!</h2>
+            <p>Last week, we learned about Natural Language Processing (NLP), which helps computers understand human language. Examples include chatbots and translation apps.</p>
+            <p>Today, we’ll explore how NLP works step-by-step, from cleaning text to understanding meaning. We’ll cover simple techniques like breaking words apart and advanced methods like how machines “think” like humans.</p>
+            <p class="note">Note: We’ll keep things simple and use examples to make it clear!</p>
+        </div>
+
+        <!-- Slide 3: Learning Objectives -->
+        <div class="slide">
+            <h2>Learning Objectives</h2>
+            <p>By the end, you’ll understand:</p>
+            <ul>
+                <li>How NLP cleans and processes text (e.g., removing extra words).</li>
+                <li>How machines turn words into numbers to “read” them.</li>
+                <li>How machines figure out what words mean in different situations.</li>
+                <li>How advanced tools like BERT help machines understand context.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: Part 1 - Foundations of NLP -->
+        <div class="slide">
+            <h2>Part 1: Foundations of NLP</h2>
+            <p>NLP starts with preparing text so machines can understand it. This involves cleaning text, breaking it into pieces, and organizing it.</p>
+            <p>Think of it like preparing ingredients before cooking—you need to wash and chop them first!</p>
+        </div>
+
+        <!-- Slide 5: The NLP Pipeline -->
+        <div class="slide">
+            <h3>The NLP Pipeline</h3>
+            <p>NLP processes text in steps, like an assembly line:</p>
+            <ul>
+                <li><strong>Cleaning:</strong> Remove punctuation and extra words (e.g., “the”).</li>
+                <li><strong>Tokenization:</strong> Split text into words (e.g., “I love cats” → “I”, “love”, “cats”).</li>
+                <li><strong>Grammar Analysis:</strong> Understand sentence structure (e.g., “cats” is a noun).</li>
+                <li><strong>Meaning Analysis:</strong> Figure out what words mean (e.g., “love” shows a feeling).</li>
+                <li><strong>Intent Analysis:</strong> Guess what the user wants (e.g., asking a question).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> For “I love cats!”, NLP cleans it to “i love cats”, splits into words, tags “cats” as a noun, and understands “love” as positive.
+            </p>
+        </div>
+
+        <!-- Slide 6: Text Preprocessing -->
+        <div class="slide">
+            <h3>Text Preprocessing</h3>
+            <p>Preprocessing cleans text to make it easier for machines to read.</p>
+            <ul>
+                <li><strong>Lowercasing:</strong> Change “CAT” to “cat” so it’s the same as “cat”.</li>
+                <li><strong>Remove Punctuation:</strong> Strip “!” or “?” (e.g., “Hello!” → “Hello”).</li>
+                <li><strong>Stop Words:</strong> Remove common words like “the” or “is” that don’t add much meaning.</li>
+                <li><strong>Noise Removal:</strong> Delete typos or web tags (e.g., “<p>Hi</p>” → “Hi”).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “I LOVE cats!!” becomes “i love cats” after lowercasing and removing punctuation. Removing “i” (a stop word) leaves “love cats”.
+            </p>
+        </div>
+
+        <!-- Slide 7: Stemming and Lemmatization -->
+        <div class="slide">
+            <h3>Stemming and Lemmatization</h3>
+            <p>These techniques simplify words to their base form to group similar words.</p>
+            <ul>
+                <li><strong>Stemming:</strong> Chops off endings (e.g., “running” → “run”). Fast but can be messy (e.g., “studies” → “studi”).</li>
+                <li><strong>Lemmatization:</strong> Finds the correct base word (e.g., “running” → “run”, “better” → “good”). Slower but more accurate.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “Cats are running” → Stemming: “cat run”; Lemmatization: “cat run”. Lemmatization knows “are” becomes “be”.
+                <br><strong>Use:</strong> Search engines use these to match “run” with “running” for better results.
+            </p>
+        </div>
+
+        <!-- Slide 8: Part-of-Speech (POS) Tagging -->
+        <div class="slide">
+            <h3>Part-of-Speech (POS) Tagging</h3>
+            <p>POS tagging labels words by their grammar role (e.g., noun, verb).</p>
+            <ul>
+                <li>“The cat runs” → The (determiner), cat (noun), runs (verb).</li>
+                <li>Helps machines understand sentence structure, like knowing “cat” is the subject.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “She loves books” → She (pronoun), loves (verb), books (noun).
+                <br><strong>Use:</strong> Helps chatbots understand “Buy books” means “books” is what to buy.
+            </p>
+        </div>
+
+        <!-- Slide 9: Syntactic Parsing -->
+        <div class="slide">
+            <h3>Syntactic Parsing</h3>
+            <p>Parsing maps how words connect in a sentence, like a grammar tree.</p>
+            <ul>
+                <li><strong>Dependency Parsing:</strong> Links words (e.g., “cat” → subject of “runs”).</li>
+                <li>Helps understand sentence structure for translation or questions.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “The cat sleeps on the mat” → “sleeps” is the main action, “cat” is the doer, “mat” is the place.
+                <br><strong>Use:</strong> Helps answer “Where does the cat sleep?” with “on the mat”.
+            </p>
+        </div>
+
+        <!-- Slide 10: Named Entity Recognition (NER) -->
+        <div class="slide">
+            <h3>Named Entity Recognition (NER)</h3>
+            <p>NER finds names in text, like people or places.</p>
+            <ul>
+                <li>“Elon Musk visited Tokyo” → Elon Musk (Person), Tokyo (Location).</li>
+                <li>Used in news apps to tag articles or chatbots to understand places.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “Apple released an iPhone” → Apple (Organization), iPhone (Product).
+                <br><strong>Case Study:</strong> Reuters uses NER to tag news (e.g., “Tesla” as a company), making articles easier to search.
+            </p>
+        </div>
+
+        <!-- Slide 11: N-Grams and Bag of Words -->
+        <div class="slide">
+            <h3>N-Grams and Bag of Words</h3>
+            <p>These help machines understand word patterns.</p>
+            <ul>
+                <li><strong>N-Grams:</strong> Groups of words (e.g., “the cat” is a bigram). Used in autocomplete to predict next words.</li>
+                <li><strong>Bag of Words (BoW):</strong> Counts words, ignoring order (e.g., “I love cats” → {“I”:1, “love”:1, “cats”:1}). Used for spam detection.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “I love cats” → Bigrams: “I love”, “love cats”; BoW: {“I”:1, “love”:1, “cats”:1}.
+                <br><strong>Use:</strong> Gmail uses BoW to spot spam words like “free”.
+            </p>
+        </div>
+
+        <!-- Slide 12: TF-IDF -->
+        <div class="slide">
+            <h3>TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+            <p>TF-IDF finds important words in a document.</p>
+            <ul>
+                <li>Words common in one document but rare elsewhere get high scores.</li>
+                <li>“Cat” in a pet article is important, but “the” isn’t.</li>
+            </ul>
+            <p class="case-study-box">
+                <strong>Case Study:</strong> Google uses TF-IDF to rank web pages. For “best AI tools”, pages with “AI” and “tools” rank higher than those with just “best”.
+            </p>
+        </div>
+
+        <!-- Slide 13: Part 2 - How Machines Understand Language -->
+        <div class="slide">
+            <h2>Part 2: How Machines Understand Language</h2>
+            <p>Machines turn words into numbers to “read” them, then figure out their meaning and user intent.</p>
+            <p>It’s like translating a foreign language into math, then guessing what someone wants!</p>
+        </div>
+
+        <!-- Slide 14: Turning Text to Numbers -->
+        <div class="slide">
+            <h3>Turning Text to Numbers</h3>
+            <p>Machines need numbers, not words, to process text.</p>
+            <ul>
+                <li><strong>One-Hot Encoding:</strong> Gives each word a unique code (e.g., “cat” → [1,0,0]). Simple but doesn’t show meaning.</li>
+                <li><strong>Word Embeddings:</strong> Uses numbers to show word meanings (e.g., “cat” and “dog” are similar).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “cat” → [0.2, -0.4] and “dog” → [0.3, -0.5] are close in embeddings, showing they’re related.
+            </p>
+        </div>
+
+        <!-- Slide 15: Word Embeddings (Word2Vec, GloVe, FastText) -->
+        <div class="slide">
+            <h3>Word Embeddings</h3>
+            <p>Embeddings make words numbers that show their meaning.</p>
+            <ul>
+                <li><strong>Word2Vec:</strong> Learns from word neighbors (e.g., “cat” near “pet”).</li>
+                <li><strong>GloVe:</strong> Uses word patterns across texts.</li>
+                <li><strong>FastText:</strong> Handles rare words by breaking them into parts (e.g., “unhappy” → “un” + “happy”).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> Word2Vec knows “king” - “man” + “woman” ≈ “queen”.
+                <br><strong>Use:</strong> Helps search engines match “car” with “automobile”.
+            </p>
+        </div>
+
+        <!-- Slide 16: Contextual Embeddings (BERT) -->
+        <div class="slide">
+            <h3>Contextual Embeddings (BERT)</h3>
+            <p>BERT understands words based on the sentence they’re in.</p>
+            <ul>
+                <li>“Bank” in “river bank” vs. “bank account” gets different numbers.</li>
+                <li>Uses Transformers to read the whole sentence at once.</li>
+            </ul>
+            <p class="case-study-box">
+                <strong>Case Study:</strong> Yelp uses BERT to understand reviews like “Food is great, service is bad”, catching both positive and negative parts.
+            </p>
+        </div>
+
+        <!-- Slide 17: Semantic Analysis -->
+        <div class="slide">
+            <h3>Semantic Analysis</h3>
+            <p>This finds the meaning of words and sentences.</p>
+            <ul>
+                <li><strong>Word Sense Disambiguation:</strong> Picks the right meaning (e.g., “bat” as animal or sports gear).</li>
+                <li><strong>Semantic Role Labeling:</strong> Finds who did what (e.g., “Alice gave Bob a book” → Alice is the giver).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “The bat flew” → “bat” means animal, not baseball bat.
+                <br><strong>Use:</strong> Helps translate “bank” correctly in different languages.
+            </p>
+        </div>
+
+        <!-- Slide 18: Coreference Resolution -->
+        <div class="slide">
+            <h3>Coreference Resolution</h3>
+            <p>Links words to the same thing (e.g., “Alice” and “she”).</p>
+            <ul>
+                <li>“Alice bought a book. She read it.” → “She” is Alice, “it” is the book.</li>
+                <li>Helps chatbots follow conversations.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “Google made a phone. It’s fast.” → “It” is the phone.
+                <br><strong>Use:</strong> Chatbots like XiaoIce use this to reply correctly.
+            </p>
+        </div>
+
+        <!-- Slide 19: Intent Detection -->
+        <div class="slide">
+            <h3>Intent Detection</h3>
+            <p>Guesses what a user wants from their words.</p>
+            <ul>
+                <li>“What’s the weather?” → Question intent.</li>
+                <li>“Play music” → Command intent.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “Book a flight to Paris” → Intent: Book flight.
+                <br><strong>Use:</strong> Siri uses this to know you want a flight booked.
+            </p>
+        </div>
+
+        <!-- Slide 20: Dialogue Management -->
+        <div class="slide">
+            <h3>Dialogue Management</h3>
+            <p>Keeps conversations flowing naturally.</p>
+            <ul>
+                <li>Tracks what’s said (e.g., user wants a flight).</li>
+                <li>Decides next steps (e.g., ask for date).</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> User: “Book a flight to Paris.” Bot: “When?” User: “Tomorrow.” Bot: “Found flights for tomorrow.”
+                <br><strong>Use:</strong> Alexa uses this to guide users step-by-step.
+            </p>
+        </div>
+
+        <!-- Slide 21: Challenges in NLP -->
+        <div class="slide">
+            <h3>Challenges in NLP</h3>
+            <p>Language is tricky for machines because:</p>
+            <ul>
+                <li><strong>Multiple Meanings:</strong> “Bank” can mean riverbank or a place for money.</li>
+                <li><strong>Negation:</strong> “Not good” means the opposite of “good”.</li>
+                <li><strong>Common Sense:</strong> Machines miss things like “rain makes you wet”.</li>
+            </ul>
+            <p class="example-box">
+                <strong>Example:</strong> “It’s cold” might mean “Turn on the heater,” but machines may not guess that.
+            </p>
+        </div>
+
+        <!-- Slide 22: Future of NLP -->
+        <div class="slide">
+            <h3>Future of NLP</h3>
+            <p>NLP is improving to:</p>
+            <ul>
+                <li>Understand longer texts better.</li>
+                <li>Combine text with images or speech.</li>
+                <li>Learn common sense (e.g., “rain → umbrella”).</li>
+                <li>Be fair and avoid biases (e.g., not assuming doctors are male).</li>
+            </ul>
+            <p class="case-study-box">
+                <strong>Case Study:</strong> Google’s model answers “If it rains, what happens to my car with open windows?” with “It gets wet,” using common sense.
+            </p>
+        </div>
+
+        <!-- Slide 23: Part 3 - Wrap-Up -->
+        <div class="slide">
+            <h2>Part 3: Wrap-Up</h2>
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li>NLP cleans text and breaks it into parts to understand it.</li>
+                <li>Machines turn words into numbers to “read” them, using tools like BERT.</li>
+                <li>They figure out meaning and intent, like knowing “Book a flight” is a request.</li>
+                <li>Challenges remain, but NLP is getting smarter with context and fairness.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 24: Homework Assignment -->
+        <div class="slide">
+            <h3>Homework Assignment</h3>
+            <p>Pick a short paragraph (e.g., from a news article). Choose 3 key words and explain:</p>
+            <ul>
+                <li>What words might a machine link them to? (e.g., “dog” → “cat”, “pet”).</li>
+                <li>How does the paragraph’s context affect their meaning? (e.g., “bank” in a money story vs. a river story).</li>
+                <li>Write 1-2 sentences per word on how a machine might understand it.</li>
+            </ul>
+            <p class="note">Example: For “dog” in a pet story, a machine might link it to “cat” and know it’s about pets, not wild animals.</p>
+        </div>
+
+        <!-- Slide 25: Final Thoughts -->
+        <div class="slide">
+            <h3>Final Thoughts</h3>
+            <p>We learned how NLP cleans text, turns it into numbers, and understands meaning. From simple steps like removing “the” to advanced tools like BERT, NLP powers tools we use daily, like Google and Siri.</p>
+            <p>Next week, we’ll explore Large Language Models (LLMs). Great work today, and have fun with the homework!</p>
+        </div>
+
+        <!-- Next Button -->
+        <button class="next-button" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length; // Loop back to first slide
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
+</body>
+</html>
