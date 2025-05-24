@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3: Introduction to Large Language Models (LLMs)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slide {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+        }
+        .slide h1, .slide h2, .slide h3 {
+            color: #4A00E0;
+            margin-bottom: 20px;
+        }
+        .slide h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .slide h2 {
+            font-size: 28px;
+            border-bottom: 2px solid #4A00E0;
+            padding-bottom: 10px;
+        }
+        .slide h3 {
+            font-size: 22px;
+            color: #8E2DE2;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .slide ul, .slide ol {
+            padding-left: 30px;
+        }
+        .example-box, .case-study-box {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-left: 5px solid #4A00E0;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .case-study-box {
+            background-color: #fff5e6;
+            border-left: 5px solid #FF8C00;
+        }
+        .highlight {
+            color: #ff4b5c;
+            font-weight: bold;
+        }
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide">
+            <h1>Week 3: Introduction to Large Language Models (LLMs)</h1>
+            <p style="text-align: center; font-size: 20px;">Instructor: Wajdi Zaghouani</p>
+        </div>
+
+        <!-- Slide 2: Welcome -->
+        <div class="slide">
+            <h2>Welcome to Week 3!</h2>
+            <p>Hello everyone! In our past sessions, we learned about the basics of AI and Natural Language Processing (NLP), which is how computers understand human language, like when you talk to a chatbot or use a translation app. We also explored how machines process language step-by-step, like breaking down sentences into smaller pieces and turning words into numbers.</p>
+            <p>Today, we’re diving into something really exciting: <span class="highlight">Large Language Models</span>, or LLMs for short. These are like super-smart computer programs that can write stories, answer questions, and even help with homework! Don’t worry if you’re not a tech expert—we’ll use simple examples, like comparing LLMs to a magic librarian who knows every book in the world, to make this easy to understand.</p>
+        </div>
+
+        <!-- Slide 3: Learning Objectives -->
+        <div class="slide">
+            <h2>What We’ll Learn Today</h2>
+            <p>By the end of this session, you’ll be able to:</p>
+            <ul>
+                <li>Understand what Large Language Models (LLMs) are and why they’re called “large”—think of them as giant recipe books for language that computers use to create sentences.</li>
+                <li>Learn how LLMs are trained, which is like teaching a child to speak by reading them millions of books and practicing conversations.</li>
+                <li>Discover the amazing things LLMs can do, like writing essays, translating languages, or helping doctors with research, and see real-life examples.</li>
+                <li>Explore the challenges and limitations of LLMs, such as making mistakes or sometimes saying things that aren’t fair, and why we need to be careful when using them.</li>
+            </ul>
+            <p class="note">Note: We’ll use everyday examples, like how you learn a new language or write a story, to make these ideas super clear for everyone!</p>
+        </div>
+
+        <!-- Section 1: What Are Large Language Models? (Slides 4-20) -->
+        <div class="slide">
+            <h2>Part 1: What Are Large Language Models?</h2>
+            <p>Let’s start by understanding what Large Language Models, or LLMs, are. Imagine you have a magical librarian who has read every book, article, and website in the world. When you ask this librarian a question—like “Tell me a story about a dragon”—they can write a brand-new story for you, using everything they’ve learned. That’s what LLMs are like: they’re computer programs that have learned a lot about language and can create sentences, answer questions, or even chat with you!</p>
+            <p>In this section, we’ll break down what makes LLMs special, how they’re different from other computer programs, and why they’re called “large.” We’ll use simple analogies, like comparing them to a super-smart pen pal, to make this easy to grasp.</p>
+        </div>
+
+        <!-- Slide 5: Definition of LLMs -->
+        <div class="slide">
+            <h3>What Are LLMs? A Simple Definition</h3>
+            <p>A <span class="highlight">Large Language Model (LLM)</span> is a computer program that understands and creates human language, like English, Arabic, or Spanish. It’s called “large” because it has learned from a huge amount of text—like millions of books, websites, and conversations!</p>
+            <ul>
+                <li><strong>Think of It Like:</strong> A giant notebook where someone has written down every sentence they’ve ever read. When you ask the notebook a question, it uses all those sentences to come up with an answer.</li>
+                <li><strong>Examples:</strong> Some famous LLMs are GPT (which stands for Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers). These are the names of the “magic librarians” we’ll talk about today!</li>
+                <li><strong>What They Do:</strong> LLMs can do things like write a poem, answer a history question, or help you with a recipe. For example, if you ask, “What’s a good recipe for chocolate cake?” an LLM can give you a list of ingredients and steps, just like a friend sharing their favorite recipe.</li>
+            </ul>
+            <p>LLMs are amazing because they can understand and create language in a way that feels almost human. But they’re still computer programs, so they don’t really “think” like we do—they just use patterns they’ve learned from text to make guesses about what to say next.</p>
+        </div>
+
+        <!-- Slide 6: Why Are They Called "Large"? -->
+        <div class="slide">
+            <h3>Why Are They Called "Large"?</h3>
+            <p>The word “large” in Large Language Models refers to two big things: the amount of text they learn from and the number of instructions (called parameters) they use to make decisions.</p>
+            <ul>
+                <li><strong>Huge Amount of Text:</strong> LLMs are trained on billions of sentences from books, websites, and more. Imagine if you read every book in a giant library—that’s what an LLM does! For example, GPT-3, a famous LLM, was trained on text that would fill over 500,000 books.</li>
+                <li><strong>Lots of Parameters:</strong> Parameters are like the “rules” the model uses to understand and create language. GPT-3 has 175 billion parameters—that’s like having 175 billion tiny notes in your notebook to help you decide what to say next. More parameters mean the model can remember more patterns and make better guesses.</li>
+                <li><strong>Analogy:</strong> Think of an LLM as a chef with a massive recipe book. The more recipes they know (text), and the more cooking tips they have (parameters), the better they can cook a new dish (create a sentence) for you.</li>
+            </ul>
+            <p>Because LLMs are so “large,” they can do really impressive things, like writing a story or answering questions about science. But being large also means they need a lot of computer power to work, just like how a big library needs a lot of space to store all its books.</p>
+        </div>
+
+        <!-- Slide 7: How Are LLMs Different from Other Programs? -->
+        <div class="slide">
+            <h3>How Are LLMs Different from Other Programs?</h3>
+            <p>Not all computer programs can understand language like LLMs do. Let’s compare LLMs to other kinds of programs to see what makes them special.</p>
+            <ul>
+                <li><strong>LLMs vs. Calculators:</strong> A calculator can add numbers like 2 + 2, but it can’t write a story or answer a question like “Why is the sky blue?” LLMs are designed for language, not just math, so they can handle words and sentences in a way calculators can’t.</li>
+                <li><strong>LLMs vs. Simple Chatbots:</strong> Some chatbots, like the ones you might find on a website, can only answer specific questions, like “What’s your order number?” They use simple rules, not learning. LLMs, on the other hand, learn from tons of text, so they can answer almost any question, even ones they’ve never seen before.</li>
+                <li><strong>LLMs vs. Search Engines:</strong> A search engine like Google finds websites for you, but it doesn’t create new answers. If you ask Google, “Write a poem about a cat,” it will show you poems others wrote. An LLM can write a brand-new poem just for you, like: “A fluffy cat with eyes so bright, sleeps in the sun from morning to night.”</li>
+            </ul>
+            <p>LLMs are special because they don’t just follow strict rules—they learn from examples and can create new language, making them more flexible and creative than other programs. It’s like having a friend who can talk about almost anything, instead of a robot that only knows a few phrases.</p>
+        </div>
+
+        <!-- Slide 8: A Magic Librarian Analogy -->
+        <div class="slide">
+            <h3>A Magic Librarian Analogy</h3>
+            <p>To make LLMs easier to understand, let’s use an analogy: think of an LLM as a <span class="highlight">magic librarian</span> who has read every book, blog, and tweet in the world!</p>
+            <ul>
+                <li><strong>What They Know:</strong> This librarian remembers every story, fact, and conversation they’ve ever read. It’s like they have a super memory that holds billions of pages of text.</li>
+                <li><strong>What They Do:</strong> When you ask the librarian a question, like “Tell me about space,” they use their memory to come up with an answer, combining bits and pieces from all the books they’ve read to create a new explanation just for you.</li>
+                <li><strong>How They Work:</strong> The librarian doesn’t really “think” like a human—they just look for patterns in what they’ve read. For example, if they’ve seen the word “space” near “stars” and “planets” a lot, they might say, “Space is full of stars and planets!”</li>
+            </ul>
+            <p>Just like this magic librarian, an LLM uses its huge memory of text to help you with all kinds of tasks, from writing a letter to answering a trivia question. But they’re not perfect—if the librarian only read books with wrong facts, they might give you a wrong answer too!</p>
+        </div>
+
+        <!-- Slide 9: Famous LLMs - GPT -->
+        <div class="slide">
+            <h3>Famous LLMs: GPT</h3>
+            <p>Let’s meet one of the most famous LLMs: <span class="highlight">GPT</span>, which stands for Generative Pre-trained Transformer. It’s made by a company called OpenAI and is like a superstar in the world of language models.</p>
+            <ul>
+                <li><strong>What It Does:</strong> GPT can write stories, answer questions, and even help you brainstorm ideas. For example, if you say, “Write a story about a magical tree,” GPT might create a tale about a tree that grants wishes to kind children.</li>
+                <li><strong>How It’s Used:</strong> GPT powers tools like ChatGPT, a chatbot you can talk to about almost anything. People use it for fun (like writing poems), for school (like summarizing books), or for work (like drafting emails).</li>
+                <li><strong>Fun Fact:</strong> GPT-3, one version of GPT, has 175 billion parameters—that’s like having 175 billion tiny helpers inside the model, each one helping it decide what word to say next!</li>
+            </ul>
+            <p>GPT is like a very clever friend who can write or talk about almost anything you ask. It’s called “generative” because it can generate new sentences, and “pre-trained” because it learned a lot before it was ready to help people like you!</p>
+        </div>
+
+        <!-- Slide 10: Famous LLMs - BERT -->
+        <div class="slide">
+            <h3>Famous LLMs: BERT</h3>
+            <p>Another famous LLM is <span class="highlight">BERT</span>, which stands for Bidirectional Encoder Representations from Transformers. It was created by Google and is really good at understanding language, not just creating it.</p>
+            <ul>
+                <li><strong>What It Does:</strong> BERT is great at figuring out the meaning of sentences. For example, if you ask, “Is the movie good?” BERT can read reviews and tell you, “Some people say it’s great, but others say it’s boring.” It understands the context of words, like knowing “bank” means a riverbank near “river” but a money bank near “account.”</li>
+                <li><strong>How It’s Used:</strong> BERT helps Google Search understand your questions better. When you search “how to bake a cake,” BERT helps find recipes by understanding what “bake” means in this context.</li>
+                <li><strong>Fun Fact:</strong> BERT looks at a sentence from both directions—left to right and right to left—which helps it understand tricky sentences better, like figuring out if “not good” means something negative.</li>
+            </ul>
+            <p>BERT is like a detective who’s really good at understanding clues in a sentence. It helps computers “get” what you mean, making things like search engines and chatbots smarter and more helpful.</p>
+        </div>
+
+        <!-- Slide 11: How LLMs Work - A Simple Overview -->
+        <div class="slide">
+            <h3>How LLMs Work: A Simple Overview</h3>
+            <p>LLMs work by learning patterns in language and using those patterns to create or understand sentences. Let’s break it down into three easy steps:</p>
+            <ul>
+                <li><strong>Step 1: Learn from Text:</strong> LLMs read a huge amount of text—like all the books in a library—to learn how people use words. They notice things like “happy” often comes before “birthday” in phrases like “happy birthday.”</li>
+                <li><strong>Step 2: Guess the Next Word:</strong> When you give an LLM a sentence, like “I like to eat…,” it guesses what word comes next by looking at patterns. It might guess “pizza” because it’s seen “eat pizza” a lot in its training text.</li>
+                <li><strong>Step 3: Create or Understand:</strong> Using its guesses, the LLM can create new sentences (like writing a story) or understand what you mean (like answering a question). It’s like playing a game of “fill in the blank” with words!</li>
+            </ul>
+            <p>Think of an LLM as a super-smart autocomplete tool on your phone, but instead of just suggesting the next word when you text, it can write whole paragraphs or answer questions by guessing what makes sense based on everything it’s learned.</p>
+        </div>
+
+        <!-- Slide 12: What’s Inside an LLM? -->
+        <div class="slide">
+            <h3>What’s Inside an LLM?</h3>
+            <p>Inside an LLM, there’s something called a “neural network,” which is like a big map of connections that helps the model learn and make decisions. Let’s break it down for non-tech students:</p>
+            <ul>
+                <li><strong>Neural Network:</strong> Imagine a neural network as a team of tiny helpers in your brain, each one passing messages to the others to solve a puzzle. In an LLM, these helpers work together to figure out what words to use in a sentence.</li>
+                <li><strong>Layers:</strong> The neural network has layers, like floors in a building. Each layer looks at the sentence in a different way—one layer might focus on individual words, another on how words fit together, and another on the whole sentence’s meaning.</li>
+                <li><strong>Transformers:</strong> Most LLMs, like GPT and BERT, use a special kind of neural network called a Transformer. Think of a Transformer as a super-smart organizer that helps the model pay attention to the most important words in a sentence, like focusing on “cake” when you ask for a recipe.</li>
+            </ul>
+            <p>You don’t need to know the math behind it, but just know that an LLM’s “brain” is made up of lots of tiny connections that work together to understand and create language, kind of like how your brain connects ideas when you write a story.</p>
+        </div>
+
+        <!-- Slide 13: LLMs and Patterns -->
+        <div class="slide">
+            <h3>LLMs and Patterns: How They Think</h3>
+            <p>LLMs don’t think like humans—they don’t have feelings or ideas. Instead, they look for <span class="highlight">patterns</span> in the text they’ve learned from, kind of like how you might notice patterns in a game or a song.</p>
+            <ul>
+                <li><strong>Pattern Example:</strong> If an LLM sees “I’m going to the…” a lot, it might notice that “park,” “store,” or “school” often comes next. So, if you say “I’m going to the…,” it might guess “park” because it’s a common pattern.</li>
+                <li><strong>Not Really Thinking:</strong> The LLM isn’t thinking, “Oh, parks are nice!” It’s just playing a guessing game based on what it’s seen before, like picking the most likely answer in a multiple-choice quiz.</li>
+                <li><strong>Why Patterns Matter:</strong> These patterns let LLMs create sentences that sound natural. For example, if you ask for a story, the LLM uses patterns to write something that sounds like a real story, with a beginning, middle, and end.</li>
+            </ul>
+            <p>Patterns are the key to how LLMs work—they’re like a recipe book for language, helping the model guess what to say next based on what it’s seen in its “cookbook” of text. That’s why they can sound so smart, even though they’re just following patterns!</p>
+        </div>
+
+        <!-- Slide 14: Example - Guessing the Next Word -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Guessing the Next Word</h3>
+                <p>Let’s see how an LLM guesses the next word using patterns, step by step.</p>
+                <p><strong>Input:</strong> “I like to play with my…”</p>
+                <p><strong>LLM Guess:</strong> “I like to play with my dog.”</p>
+                <p><strong>Explanation:</strong> Here’s how the LLM makes this guess:</p>
+                <ul>
+                    <li><strong>Step 1 - Look at Patterns:</strong> The LLM has seen sentences like “I play with my brother,” “I play with my toy,” and “I play with my dog” in its training text. It notices that “play with my” is often followed by something the person owns, like a pet or toy.</li>
+                    <li><strong>Step 2 - Pick the Most Likely Word:</strong> Based on patterns, “dog” is a common word after “play with my,” because lots of people talk about playing with their dogs. So, the LLM guesses “dog” as the next word.</li>
+                    <li><strong>Step 3 - Create the Sentence:</strong> The LLM adds “dog” to the sentence, making it “I like to play with my dog,” which sounds natural because it matches a common pattern.</li>
+                </ul>
+                <p>This guessing game is how LLMs create sentences—they look at what words often go together and pick the one that fits best, just like how you might guess the next line in a song you’ve heard before.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: What Makes LLMs Powerful? -->
+        <div class="slide">
+            <h3>What Makes LLMs Powerful?</h3>
+            <p>LLMs are powerful because they can do so many things with language, thanks to how they’re built and what they’ve learned. Let’s look at why they’re so impressive.</p>
+            <ul>
+                <li><strong>They Know a Lot:</strong> Because LLMs learn from billions of sentences, they have a huge “memory” of language patterns. It’s like having a friend who knows facts about everything—history, science, cooking, you name it!</li>
+                <li><strong>They’re Flexible:</strong> LLMs can handle all kinds of tasks, from writing a fairy tale to explaining gravity. You can ask them almost anything, and they’ll try to help, like a super-helpful teacher.</li>
+                <li><strong>They Understand Context:</strong> Models like BERT are really good at understanding the meaning of a sentence by looking at all the words together. For example, they can tell if “cool” means “cold” or “awesome” depending on the sentence.</li>
+            </ul>
+            <p>LLMs are like a Swiss Army knife for language—they can do lots of different things because they’ve learned so much and can figure out what you mean. That’s why they’re used in so many places, from apps on your phone to big companies helping doctors or teachers.</p>
+        </div>
+
+        <!-- Slide 16: LLMs vs. Humans -->
+        <div class="slide">
+            <h3>LLMs vs. Humans: How Are They Different?</h3>
+            <p>LLMs can seem very human because they write sentences that sound natural, but they’re still very different from us. Let’s compare them.</p>
+            <ul>
+                <li><strong>LLMs Don’t Feel or Think:</strong> When you’re happy and write a cheerful story, you’re using your feelings. LLMs don’t have feelings—they just use patterns to write a story that sounds happy, like copying what they’ve seen in other happy stories.</li>
+                <li><strong>LLMs Don’t Understand Like We Do:</strong> If you say, “I’m feeling blue,” a human knows you mean you’re sad. An LLM might guess “sad” because it’s seen that phrase before, but it doesn’t really “get” what sadness feels like—it’s just matching patterns.</li>
+                <li><strong>LLMs Can’t Learn Like Humans:</strong> You learn by experiencing life, talking to friends, or trying new things. LLMs learn only from the text they’re given, so if they’ve never read about something, they can’t answer well.</li>
+            </ul>
+            <p>LLMs are amazing tools, but they’re not like humans—they’re more like a very clever parrot that repeats and combines things it’s heard, without truly understanding emotions, experiences, or the world the way we do.</p>
+        </div>
+
+        <!-- Slide 17: A Quick Recap of Part 1 -->
+        <div class="slide">
+            <h3>A Quick Recap of Part 1</h3>
+            <p>Let’s sum up what we’ve learned about what LLMs are:</p>
+            <ul>
+                <li>LLMs are computer programs that understand and create language, like a magic librarian who knows every book in the world.</li>
+                <li>They’re called “large” because they learn from tons of text and have billions of rules (parameters) to help them decide what to say.</li>
+                <li>They work by looking for patterns in language, guessing the next word, and using that to write sentences or answer questions.</li>
+                <li>Famous LLMs like GPT and BERT can do amazing things, like writing stories or helping with search engines, because they’re so good at understanding and creating language.</li>
+            </ul>
+            <p>We’ve got a good picture of what LLMs are now! Next, we’ll look at how they learn all this language—like how a child learns to talk, but on a much bigger scale.</p>
+        </div>
+
+        <!-- Section 2: How Are LLMs Trained? (Slides 18-35) -->
+        <div class="slide">
+            <h2>Part 2: How Are LLMs Trained?</h2>
+            <p>Now that we know what LLMs are, let’s find out how they learn to be so smart with language. Training an LLM is like teaching a child to read, write, and talk, but instead of a few years, it happens with millions of books and super-powerful computers! In this section, we’ll use simple examples, like comparing training to studying for a big test, to make this easy to understand.</p>
+            <p>We’ll cover where LLMs get their knowledge, how they practice, and what makes their training so special. Don’t worry about the tech details—we’ll focus on the big picture and fun analogies!</p>
+        </div>
+
+        <!-- Slide 19: Training LLMs - The Big Picture -->
+        <div class="slide">
+            <h3>Training LLMs: The Big Picture</h3>
+            <p>Training an LLM is the process of teaching it how to understand and create language. It’s like teaching a child to speak, but on a massive scale with computers and lots of text. Here’s the big picture:</p>
+            <ul>
+                <li><strong>Step 1 - Gather Text:</strong> LLMs learn from a huge collection of text, like books, websites, and social media posts. It’s like giving a child every storybook in the world to read!</li>
+                <li><strong>Step 2 - Practice with Patterns:</strong> The LLM practices by trying to guess what comes next in a sentence, like playing a game of “fill in the blank.” For example, if it sees “The sun is…,” it might guess “shining.”</li>
+                <li><strong>Step 3 - Get Better Over Time:</strong> The LLM keeps practicing, getting better at guessing words and understanding sentences, until it can write stories or answer questions on its own.</li>
+            </ul>
+            <p>Training is like studying for a really big test—except the test is being able to talk about anything, and the study material is every book ever written! It takes a lot of work, but once the LLM is trained, it can help with all kinds of tasks.</p>
+        </div>
+
+        <!-- Slide 20: Step 1 - Gathering Text -->
+        <div class="slide">
+            <h3>Step 1: Gathering Text to Learn From</h3>
+            <p>The first step in training an LLM is gathering a huge amount of text for it to learn from. This text is like the “school” where the LLM studies language.</p>
+            <ul>
+                <li><strong>Where Does the Text Come From?</strong> LLMs use text from books, websites, blogs, social media, and even Wikipedia. For example, GPT-3 learned from a mix of public internet texts, books, and articles—billions of sentences!</li>
+                <li><strong>Why So Much Text?</strong> The more text the LLM reads, the more it learns about how people use language. It’s like if you read lots of cookbooks, you’d learn tons of recipes. More text means the LLM can handle more topics, like history, science, or cooking.</li>
+                <li><strong>Analogy:</strong> Imagine you’re trying to learn a new language, like French. If you only read one French book, you’d learn a little, but if you read thousands of books, you’d learn so much more! That’s why LLMs need lots of text to be good at language.</li>
+            </ul>
+            <p>The text an LLM learns from is called its “training data.” It’s like a giant library of knowledge that the LLM uses to figure out how to talk, write, and answer questions. The more diverse the library, the better the LLM can handle different topics and languages!</p>
+        </div>
+
+        <!-- Slide 21: What Kind of Text Do LLMs Learn From? -->
+        <div class="slide">
+            <h3>What Kind of Text Do LLMs Learn From?</h3>
+            <p>LLMs learn from all kinds of text, so they can talk about lots of different things. Let’s look at the types of text they use.</p>
+            <ul>
+                <li><strong>Books:</strong> LLMs read novels, textbooks, and storybooks to learn about storytelling, facts, and ideas. For example, they might read “Harry Potter” to learn about magic or a science book to learn about gravity.</li>
+                <li><strong>Websites:</strong> They read blogs, news articles, and Wikipedia pages to learn about current events, history, and culture. For example, they might read a cooking blog to learn how to make pizza or a news article about space travel.</li>
+                <li><strong>Social Media:</strong> LLMs look at posts on platforms like Twitter or Reddit to learn how people talk casually, using slang or short sentences. For example, they might see tweets like “LOL that’s so funny!” to learn about informal language.</li>
+            </ul>
+            <p>It’s like if you learned English by reading fairy tales, school books, and your friends’ text messages—you’d get a mix of formal and casual language, plus lots of different topics. That’s how LLMs become so good at understanding and creating all kinds of language!</p>
+        </div>
+
+        <!-- Slide 22: Step 2 - Practicing with Patterns -->
+        <div class="slide">
+            <h3>Step 2: Practicing with Patterns</h3>
+            <p>Once the LLM has its giant library of text, it starts practicing by looking for patterns in the sentences, kind of like playing a guessing game to learn how language works.</p>
+            <ul>
+                <li><strong>Guessing Game:</strong> The LLM tries to guess the next word in a sentence. For example, if it sees “I like to eat…,” it might guess “pizza” because it’s seen that pattern a lot in its training text.</li>
+                <li><strong>Learning from Mistakes:</strong> If the LLM guesses wrong—like guessing “book” after “I like to eat”—it gets feedback from the computer and adjusts its guesses. It’s like practicing spelling words: the more you practice, the better you get!</li>
+                <li><strong>Analogy:</strong> Imagine you’re learning to finish song lyrics. If you hear “Twinkle, twinkle, little…,” you might guess “star” because you’ve heard the song before. LLMs do the same thing with sentences—they guess based on patterns they’ve seen.</li>
+            </ul>
+            <p>This guessing game helps the LLM learn how words go together, like how “happy” often comes before “birthday” or how “rain” is often followed by “umbrella.” By practicing millions of times, the LLM gets really good at predicting what comes next in a sentence!</p>
+        </div>
+
+        <!-- Slide 23: Example - Practicing with a Sentence -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Practicing with a Sentence</h3>
+                <p>Let’s see how an LLM practices by guessing words in a sentence.</p>
+                <p><strong>Sentence:</strong> “The cat sits on the mat and purrs.”</p>
+                <p><strong>Training Process:</strong> The LLM looks at this sentence and tries to guess each word, one at a time.</p>
+                <ul>
+                    <li><strong>Start:</strong> It sees “The” and tries to guess the next word. Based on patterns, it might guess “cat” because “The cat” is a common phrase in stories.</li>
+                    <li><strong>Next:</strong> Now it sees “The cat” and guesses “sits,” because it’s seen “The cat sits” or similar phrases a lot. If it guesses wrong, like “The cat runs,” the computer tells it the right answer (“sits”) so it can learn.</li>
+                    <li><strong>Keep Going:</strong> It continues: “The cat sits on” → guesses “the” (common after “on”), then “the mat,” and so on, until it guesses the whole sentence.</li>
+                </ul>
+                <p>By practicing with millions of sentences like this, the LLM learns how to put words together in a way that makes sense, just like how you learn to finish sentences in a conversation by practicing with friends.</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: Step 3 - Getting Better Over Time -->
+        <div class="slide">
+            <h3>Step 3: Getting Better Over Time</h3>
+            <p>Training an LLM isn’t a one-time thing—it practices over and over, getting better each time, kind of like how you improve at a sport or game the more you play.</p>
+            <ul>
+                <li><strong>Adjusting Guesses:</strong> Every time the LLM guesses a word, it checks if it was right. If it guesses “I like to eat book” instead of “I like to eat pizza,” the computer tells it, “Nope, try again!” and the LLM adjusts its patterns to guess better next time.</li>
+                <li><strong>Millions of Practice Rounds:</strong> The LLM does this guessing game millions or even billions of times, with different sentences, until it gets really good at predicting words and understanding sentences.</li>
+                <li><strong>Analogy:</strong> Think of it like learning to ride a bike. At first, you might fall a lot, but the more you practice, the better you get at balancing. For LLMs, practicing with more sentences helps them “balance” their guesses to create natural language.</li>
+            </ul>
+            <p>This process of practicing and improving is called “training,” and it can take weeks or even months on powerful computers. But once the LLM is trained, it’s ready to help with all kinds of tasks, like writing a story or answering your questions!</p>
+        </div>
+
+        <!-- Slide 25: What Does "Pre-trained" Mean? -->
+        <div class="slide">
+            <h3>What Does "Pre-trained" Mean?</h3>
+            <p>You might have heard the term “pre-trained” in names like GPT (Generative Pre-trained Transformer). Let’s break down what that means in a simple way.</p>
+            <ul>
+                <li><strong>Pre-trained = Already Learned:</strong> When an LLM is “pre-trained,” it means it has already done a lot of learning before it’s used for a specific job. It’s like if you study a subject, like history, for years before taking a test—you’re already prepared!</li>
+                <li><strong>How It Works:</strong> During pre-training, the LLM reads tons of text and practices guessing words, as we talked about. This gives it a general understanding of language, like knowing how to write sentences or what words mean.</li>
+                <li><strong>Example:</strong> GPT-3 was pre-trained on billions of sentences, so it already knows a lot about language before someone asks it to write a story or answer a question. It’s like a student who’s ready for any test because they’ve studied everything!</li>
+            </ul>
+            <p>Pre-training is important because it saves time—once the LLM is pre-trained, it can quickly learn to do specific tasks, like helping with math homework or writing emails, without starting from scratch.</p>
+        </div>
+
+        <!-- Slide 26: Fine-Tuning - Making LLMs Even Better -->
+        <div class="slide">
+            <h3>Fine-Tuning: Making LLMs Even Better</h3>
+            <p>After pre-training, LLMs can get even better through a process called <span class="highlight">fine-tuning</span>. This is like giving the LLM extra practice for a specific job.</p>
+            <ul>
+                <li><strong>What Is Fine-Tuning?</strong> Fine-tuning is when the LLM gets extra training on a smaller, specific set of text to make it better at a certain task. It’s like if you’re good at cooking in general, but then you practice making pizza to become a pizza expert.</li>
+                <li><strong>Example:</strong> If you want an LLM to help doctors, you fine-tune it with medical books and doctor-patient conversations. Now it’s better at understanding medical words, like “fever” or “medicine,” and can help doctors with research or answering questions.</li>
+                <li><strong>Why It’s Important:</strong> Fine-tuning makes the LLM more accurate for specific jobs. A general LLM might write a story, but a fine-tuned LLM can write a story in the style of a specific author, like Dr. Seuss, because it’s had extra practice.</li>
+            </ul>
+            <p>Fine-tuning is like giving the LLM a special class to become an expert in one area, like medicine, law, or creative writing. It builds on the general knowledge from pre-training to make the LLM even more helpful for specific tasks.</p>
+        </div>
+
+        <!-- Slide 27: Example - Fine-Tuning for a Job -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Fine-Tuning for a Job</h3>
+                <p>Let’s see how fine-tuning works with a real example.</p>
+                <p><strong>Job:</strong> Helping a teacher create lesson plans.</p>
+                <p><strong>Fine-Tuning Process:</strong></p>
+                <ul>
+                    <li><strong>Start with Pre-training:</strong> The LLM, like GPT, has already learned general language from books, websites, and more. It knows how to write sentences and understand topics like history or math.</li>
+                    <li><strong>Fine-Tune with Teacher Stuff:</strong> Now, the LLM gets extra practice with teaching materials—like lesson plans, school books, and teacher guides. It learns phrases like “learning objectives” or “group activity” that teachers use a lot.</li>
+                    <li><strong>Result:</strong> After fine-tuning, the LLM can create a lesson plan, like: “Today’s lesson: Learn about the solar system. Objective: Students will name the planets. Activity: Draw the planets in order.” It’s now a teacher’s helper!</li>
+                </ul>
+                <p>Fine-tuning helps the LLM focus on what’s important for a specific job, like teaching, making it more useful and accurate for that task. It’s like how you might study extra hard for a history test to get better at history specifically!</p>
+            </div>
+        </div>
+
+        <!-- Slide 28: What Computers Do They Use? -->
+        <div class="slide">
+            <h3>What Computers Do They Use?</h3>
+            <p>Training an LLM takes a lot of computer power because they’re learning from so much text and practicing billions of times. Let’s look at what kind of computers they use.</p>
+            <ul>
+                <li><strong>Super-Powerful Computers:</strong> LLMs are trained on special computers called GPUs (Graphics Processing Units) or TPUs (Tensor Processing Units). These are like the fastest race cars of computers—they can do billions of calculations in a second!</li>
+                <li><strong>Lots of Them:</strong> Companies use thousands of these computers working together, kind of like a big team of chefs cooking a giant meal. For example, training GPT-3 took thousands of GPUs running for weeks.</li>
+                <li><strong>Analogy:</strong> Imagine you’re baking cookies for the whole school. If you only have one oven, it’ll take forever, but if you have lots of ovens, you can bake faster. GPUs are like those extra ovens for LLMs—they make training faster!</li>
+            </ul>
+            <p>These powerful computers are why LLMs can learn so much, but they also use a lot of energy, kind of like how a big car uses more gas. That’s one reason why training LLMs is expensive and needs big companies to do it.</p>
+        </div>
+
+        <!-- Slide 29: How Long Does Training Take? -->
+        <div class="slide">
+            <h3>How Long Does Training Take?</h3>
+            <p>Training an LLM isn’t quick—it takes a long time because there’s so much to learn and practice. Let’s look at why.</p>
+            <ul>
+                <li><strong>Weeks or Months:</strong> Training a big LLM like GPT-3 can take weeks or even months, even with lots of fast computers. It’s like if you were reading every book in a library—it wouldn’t happen overnight!</li>
+                <li><strong>Why So Long?</strong> The LLM has to read billions of sentences, practice guessing words, and adjust its guesses over and over. Each sentence it practices with is like a tiny lesson, and it needs billions of lessons to get good.</li>
+                <li><strong>Analogy:</strong> Think of training an LLM like learning to play the piano. You can’t become an expert in one day—it takes months of practice to play a song perfectly. For LLMs, those “months” are spent practicing with text!</li>
+            </ul>
+            <p>Training takes a long time, but once it’s done, the LLM can help with tasks really quickly, like writing a story in just a few seconds. All that practice pays off when you see how smart the LLM becomes!</p>
+        </div>
+
+        <!-- Slide 30: Who Trains LLMs? -->
+        <div class="slide">
+            <h3>Who Trains LLMs?</h3>
+            <p>Training LLMs is a big job, so it’s usually done by big companies or research groups with lots of resources. Let’s see who’s behind these amazing models.</p>
+            <ul>
+                <li><strong>Big Companies:</strong> Companies like Google (who made BERT), OpenAI (who made GPT), and Meta (who made models like LLaMA) train LLMs. They have the money, computers, and people to do this big job.</li>
+                <li><strong>Researchers:</strong> Sometimes, university researchers or groups like the Allen Institute for AI work on LLMs too. They might create smaller models or study how to make LLMs better and safer.</li>
+                <li><strong>Analogy:</strong> Think of training an LLM like building a giant playground. It takes a big team—like a company or a group of builders—to make it happen, because it’s too big for just one person to do alone.</li>
+            </ul>
+            <p>These companies and researchers are like the “teachers” who help LLMs learn language, so they can help people like you with all kinds of tasks, from school projects to creative writing.</p>
+        </div>
+
+        <!-- Slide 31: Challenges in Training LLMs -->
+        <div class="slide">
+            <h3>Challenges in Training LLMs</h3>
+            <p>Training LLMs isn’t easy—there are some big challenges that make it a tricky job. Let’s look at a few.</p>
+            <ul>
+                <li><strong>It’s Expensive:</strong> Training needs lots of powerful computers, which cost a lot of money and use a lot of energy. It’s like if you wanted to bake a cake for the whole city—you’d need a huge kitchen and lots of ingredients!</li>
+                <li><strong>Bad Text Can Cause Problems:</strong> If the training text has mistakes or unfair ideas (like saying only boys can be doctors), the LLM might learn those mistakes too. It’s like if you learned from a book with wrong facts—you’d learn the wrong things!</li>
+                <li><strong>Too Much to Learn:</strong> There’s so much text in the world, and the LLM can’t learn it all. If it misses something important, like a new word people start using, it might not understand it. It’s like if you studied for a test but the teacher asked about something you never read.</li>
+            </ul>
+            <p>These challenges mean that training LLMs takes a lot of care and effort. People are working on ways to make training cheaper, safer, and better, so LLMs can learn the right things and help us in the best way possible.</p>
+        </div>
+
+        <!-- Slide 32: A Quick Recap of Part 2 -->
+        <div class="slide">
+            <h3>A Quick Recap of Part 2</h3>
+            <p>Let’s sum up what we’ve learned about how LLMs are trained:</p>
+            <ul>
+                <li>LLMs learn from a huge library of text, like books, websites, and social media, so they can talk about lots of topics.</li>
+                <li>They practice by guessing the next word in a sentence, like playing a fill-in-the-blank game, and get better over time by adjusting their guesses.</li>
+                <li>They’re pre-trained on general language, then fine-tuned for specific jobs, like helping teachers or doctors, to make them even better.</li>
+                <li>Training takes lots of powerful computers and a long time, but it’s worth it because it makes LLMs so smart and helpful!</li>
+            </ul>
+            <p>Now we know how LLMs become so good at language! Next, we’ll explore all the amazing things they can do with what they’ve learned.</p>
+        </div>
+
+        <!-- Section 3: Applications of LLMs (Slides 33-48) -->
+        <div class="slide">
+            <h2>Part 3: Applications of LLMs</h2>
+            <p>Now that we know what LLMs are and how they’re trained, let’s see what they can do! LLMs are used in so many places to help people with all kinds of tasks, from writing to learning to helping doctors. We’ll look at real-life examples and use analogies, like comparing LLMs to a helpful friend, to make this fun and easy to understand.</p>
+            <p>In this section, we’ll explore how LLMs are making our lives better in areas like school, work, and even creative projects. You’ll be amazed at how versatile they are!</p>
+        </div>
+
+        <!-- Slide 34: Applications Overview -->
+        <div class="slide">
+            <h3>Applications Overview: What Can LLMs Do?</h3>
+            <p>LLMs are like super-helpful friends who can assist with lots of different tasks. Here are some of the main things they can do:</p>
+            <ul>
+                <li><strong>Writing:</strong> LLMs can write stories, essays, or emails for you, like a friend who’s really good at writing and helps you with your homework.</li>
+                <li><strong>Answering Questions:</strong> They can answer questions about almost anything, like history, science, or cooking, as if they’re a walking encyclopedia.</li>
+                <li><strong>Translating:</strong> LLMs can translate languages, like turning English into Arabic, so you can talk to people from all over the world.</li>
+                <li><strong>Helping Professionals:</strong> They help doctors, teachers, and lawyers by giving them information or ideas, like a super-smart assistant.</li>
+            </ul>
+            <p>LLMs are used in so many places because they’re so good at language. Whether you’re a student, a teacher, or a doctor, there’s an LLM application that can help you out!</p>
+        </div>
+
+        <!-- Slide 35: Application 1 - Writing Stories and Poems -->
+        <div class="slide">
+            <h3>Application 1: Writing Stories and Poems</h3>
+            <p>One of the coolest things LLMs can do is write stories and poems, just like a creative writer. They can make up new tales or verses for you!</p>
+            <ul>
+                <li><strong>What They Do:</strong> You can ask an LLM to write a story about anything—like a dragon, a princess, or a space adventure. It’ll create a brand-new story using the patterns it’s learned.</li>
+                <li><strong>Example:</strong> If you say, “Write a short story about a magical forest,” the LLM might write: “In a magical forest, the trees glowed with golden light. A little girl named Lila found a talking rabbit who led her to a hidden treasure chest full of sparkling jewels.”</li>
+                <li><strong>Analogy:</strong> It’s like having a friend who’s amazing at making up bedtime stories—they can create a new one every night, just for you!</li>
+            </ul>
+            <p>LLMs are great for sparking creativity. Whether you’re writing a book, coming up with a poem for a class project, or just having fun, an LLM can help you create something new and exciting.</p>
+        </div>
+
+        <!-- Slide 36: Example - A Poem by an LLM -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: A Poem by an LLM</h3>
+                <p>Let’s see what happens when we ask an LLM to write a poem.</p>
+                <p><strong>Request:</strong> “Write a short poem about the moon.”</p>
+                <p><strong>LLM Output:</strong> The moon so bright, a silver glow,  
+                Lights up the night, so soft, so slow.  
+                Stars all around, they twinkle and play,  
+                The moon whispers dreams till the break of day.</p>
+                <p><strong>Explanation:</strong> The LLM created this poem by using patterns it learned from other poems and texts about the moon. It knows the moon is often described as “bright” and “silver,” and that poems often rhyme, so it made “glow” rhyme with “slow.” It also added stars and dreams because those ideas often appear in moon-related writing. It’s like the LLM mixed together all the moon poems it’s read to make a new one just for you!</p>
+            </div>
+        </div>
+
+        <!-- Slide 37: Application 2 - Answering Questions -->
+        <div class="slide">
+            <h3>Application 2: Answering Questions</h3>
+            <p>LLMs are really good at answering questions, like a super-smart friend who knows a lot about everything.</p>
+            <ul>
+                <li><strong>What They Do:</strong> You can ask an LLM questions about history, science, or even fun facts, and it’ll try to give you the right answer based on what it’s learned.</li>
+                <li><strong>Example:</strong> If you ask, “Who was the first person on the moon?” the LLM might say, “Neil Armstrong was the first person on the moon. He landed there in 1969 during the Apollo 11 mission.”</li>
+                <li><strong>Analogy:</strong> It’s like having a walking encyclopedia that you can talk to—it knows so much and can tell you what you need, whether you’re doing homework or just curious!</li>
+            </ul>
+            <p>LLMs can help you learn new things or solve problems by answering questions, making them a great tool for school, work, or just satisfying your curiosity.</p>
+        </div>
+
+        <!-- Slide 38: Example - Answering a Question -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Answering a Question</h3>
+                <p>Let’s see how an LLM answers a question for you.</p>
+                <p><strong>Question:</strong> “Why do leaves change color in the fall?”</p>
+                <p><strong>LLM Answer:</strong> Leaves change color in the fall because the days get shorter and cooler. The green color in leaves comes from something called chlorophyll, which helps plants make food. In the fall, chlorophyll breaks down, and other colors—like yellow, orange, and red—show up because they were hiding underneath the green all along!</p>
+                <p><strong>Explanation:</strong> The LLM knows this because it’s read science books and articles about plants. It uses patterns—like “leaves change color” often being linked to “fall,” “chlorophyll,” and “yellow, orange, red”—to create a clear answer. It’s like if you studied for a science test and remembered all the key facts to explain to a friend!</p>
+            </div>
+        </div>
+
+        <!-- Slide 39: Application 3 - Translating Languages -->
+        <div class="slide">
+            <h3>Application 3: Translating Languages</h3>
+            <p>LLMs can help translate languages, making it easier to talk to people from different countries or read things in other languages.</p>
+            <ul>
+                <li><strong>What They Do:</strong> LLMs can take a sentence in one language, like English, and turn it into another language, like Arabic or Spanish. For example, they can translate “Hello” into “Hola” (Spanish) or “مرحبا” (Arabic).</li>
+                <li><strong>Example:</strong> If you say, “I love to travel,” an LLM might translate it to French as “J’adore voyager.” It knows how to match words and grammar between languages.</li>
+                <li><strong>Analogy:</strong> It’s like having a friend who speaks every language in the world—they can help you say “I love you” in French, Spanish, or any language you want!</li>
+            </ul>
+            <p>Translation with LLMs is super helpful for traveling, learning new languages, or even chatting with friends from other countries. It’s like having a magic translator in your pocket!</p>
+        </div>
+
+        <!-- Slide 40: Example - Translating a Sentence -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Translating a Sentence</h3>
+                <p>Let’s see how an LLM translates a sentence for you.</p>
+                <p><strong>Sentence:</strong> “I’m excited to visit Paris!”</p>
+                <p><strong>LLM Translation (Spanish):</strong> “¡Estoy emocionado de visitar París!”</p>
+                <p><strong>Explanation:</strong> Here’s how the LLM does this:</p>
+                <ul>
+                    <li><strong>Understand the Sentence:</strong> The LLM knows “I’m excited” means feeling happy about something, and “visit Paris” means going to the city of Paris.</li>
+                    <li><strong>Match to Spanish:</strong> It translates “I’m excited” to “Estoy emocionado” (using the right form for “I” and adding emotion), and “visit Paris” to “visitar París,” keeping the city name the same but using Spanish grammar.</li>
+                    <li><strong>Add Excitement:</strong> It adds the “¡!” marks because Spanish often uses them to show excitement, matching the tone of the original sentence.</li>
+                </ul>
+                <p>The LLM learned how to translate by reading lots of English and Spanish texts, so it knows how to match words and grammar between the two languages. It’s like if you learned Spanish by reading books in both languages and figured out how to say things the right way!</p>
+            </div>
+        </div>
+
+        <!-- Slide 41: Application 4 - Helping with Schoolwork -->
+        <div class="slide">
+            <h3>Application 4: Helping with Schoolwork</h3>
+            <p>LLMs are great for helping with schoolwork, like a super-smart study buddy who can help you with homework, projects, or studying for tests.</p>
+            <ul>
+                <li><strong>What They Do:</strong> LLMs can summarize books, explain hard concepts, or help you write essays. For example, if you’re studying history, they can explain what happened during the French Revolution in simple words.</li>
+                <li><strong>Example:</strong> If you say, “Summarize Chapter 1 of ‘Charlotte’s Web’,” the LLM might say, “In Chapter 1, a girl named Fern saves a little pig named Wilbur from being killed because he’s too small. She promises to take care of him like a baby.”</li>
+                <li><strong>Analogy:</strong> It’s like having a tutor who’s always ready to help you with any subject, whether you’re writing a story for English class or learning about planets for science.</li>
+            </ul>
+            <p>LLMs can make schoolwork easier and more fun by helping you understand things better or giving you ideas for projects. They’re like a friend who’s really good at every subject!</p>
+        </div>
+
+        <!-- Slide 42: Example - Helping with Schoolwork -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Helping with Schoolwork</h3>
+                <p>Let’s see how an LLM can help with a school assignment.</p>
+                <p><strong>Assignment:</strong> “Write a short paragraph about why recycling is important.”</p>
+                <p><strong>LLM Output:</strong> Recycling is important because it helps save the planet by reducing waste. When we recycle things like paper, plastic, and glass, we use less new stuff, which means fewer trees are cut down and less pollution is made. It also saves energy, because making new things takes a lot of power, but recycling uses less. Plus, it keeps our cities cleaner by keeping trash out of landfills, so we can all enjoy a healthier environment.</p>
+                <p><strong>Explanation:</strong> The LLM wrote this paragraph by using what it’s learned about recycling from articles and books. It knows words like “waste,” “pollution,” and “landfills” are often linked to recycling, and it puts them together in a way that makes sense for your assignment. It’s like if you asked a friend to help you write a paragraph, and they gave you a great idea to start with!</p>
+            </div>
+        </div>
+
+        <!-- Slide 43: Application 5 - Helping Professionals -->
+        <div class="slide">
+            <h3>Application 5: Helping Professionals</h3>
+            <p>LLMs aren’t just for students—they also help professionals like doctors, teachers, and lawyers by giving them information or ideas to make their jobs easier.</p>
+            <ul>
+                <li><strong>Doctors:</strong> LLMs can help doctors by reading medical reports and suggesting ideas, like “This patient’s symptoms might mean they have a cold.” They’re like a helpful assistant who knows a lot about medicine.</li>
+                <li><strong>Teachers:</strong> LLMs can create lesson plans or quiz questions for teachers, like “What are the three branches of government?” They’re like a teacher’s helper who makes class prep easier.</li>
+                <li><strong>Lawyers:</strong> LLMs can read legal documents and summarize them, like saying, “This contract says you have to pay by the 15th.” They’re like a super-smart clerk who helps with paperwork.</li>
+            </ul>
+            <p>LLMs are like a trusty sidekick for professionals, helping them save time and do their jobs better by giving them useful information or ideas, all based on the language patterns they’ve learned.</p>
+        </div>
+
+        <!-- Slide 44: Example - Helping a Doctor -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Helping a Doctor</h3>
+                <p>Let’s see how an LLM can help a doctor with their work.</p>
+                <p><strong>Doctor’s Request:</strong> “What might cause a patient to have a fever and cough?”</p>
+                <p><strong>LLM Response:</strong> A fever and cough might be caused by a common cold, which is a viral infection that also causes a runny nose or sore throat. Another possibility is the flu, which is more serious and might include body aches too. It could also be something like bronchitis, especially if the cough lasts a long time. The doctor should check the patient’s other symptoms and maybe do a test to find out for sure.</p>
+                <p><strong>Explanation:</strong> The LLM knows this because it’s read lots of medical books and articles. It recognizes that “fever” and “cough” are often linked to illnesses like the “cold” or “flu,” and it suggests possibilities based on those patterns. It also knows doctors need to check more symptoms, so it adds that advice. It’s like having a medical student who’s read every health book and can give the doctor ideas to think about!</p>
+            </div>
+        </div>
+
+        <!-- Slide 45: Application 6 - Chatting Like a Friend -->
+        <div class="slide">
+            <h3>Application 6: Chatting Like a Friend</h3>
+            <p>LLMs can chat with you like a friend, answering your questions or just talking about whatever you’re interested in, making them great for fun or learning.</p>
+            <ul>
+                <li><strong>What They Do:</strong> LLMs power chatbots that can talk about anything, from your favorite movie to what you’re learning in school. They can even tell jokes or play games!</li>
+                <li><strong>Example:</strong> If you say, “I’m bored, tell me a joke,” the LLM might say, “Why did the cat sit on the computer? Because he wanted to keep an eye on the mouse!”</li>
+                <li><strong>Analogy:</strong> It’s like having a pen pal who’s always ready to chat, whether you want to talk about your day, share a laugh, or learn something new.</li>
+            </ul>
+            <p>Chatting with an LLM can be fun and helpful, like having a friend who’s always there to talk, joke, or help you with ideas, all through the magic of language!</p>
+        </div>
+
+        <!-- Slide 46: Example - Chatting with an LLM -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Chatting with an LLM</h3>
+                <p>Let’s see what it’s like to chat with an LLM, like you’re talking to a friend.</p>
+                <p><strong>You:</strong> “I had a great day! What about you?”</p>
+                <p><strong>LLM Response:</strong> That’s awesome to hear! I don’t have days like humans do, but I can tell you I’ve been having fun chatting with people all over the world. What made your day so great?</p>
+                <p><strong>Explanation:</strong> The LLM understands that “I had a great day” means you’re happy, and it responds in a friendly way, like a friend would. It knows it’s not human, so it says it doesn’t have days, but it keeps the conversation going by asking a question, just like a good friend would. It learned this friendly tone by reading lots of conversations, like emails or social media chats, where people talk this way.</p>
+            </div>
+        </div>
+
+        <!-- Slide 47: A Quick Recap of Part 3 -->
+        <div class="slide">
+            <h3>A Quick Recap of Part 3</h3>
+            <p>Let’s sum up what we’ve learned about the applications of LLMs:</p>
+            <ul>
+                <li>LLMs can write stories and poems, like a creative friend who makes up new tales or verses for you.</li>
+                <li>They can answer questions about almost anything, like a walking encyclopedia that helps with homework or curiosity.</li>
+                <li>They can translate languages, making it easier to talk to people from other countries, like a magic translator.</li>
+                <li>They help with schoolwork, professionals like doctors and teachers, and can even chat with you like a friend!</li>
+            </ul>
+            <p>LLMs are so versatile—they’re like a super-tool that can help with almost any language task, making life easier, more fun, and more connected!</p>
+        </div>
+
+        <!-- Section 4: Challenges and Limitations of LLMs (Slides 48-60) -->
+        <div class="slide">
+            <h2>Part 4: Challenges and Limitations of LLMs</h2>
+            <p>LLMs are amazing, but they’re not perfect. They can make mistakes, say things that aren’t fair, or sometimes not know what to say. In this section, we’ll look at the challenges and limitations of LLMs, using simple examples to understand why they’re not always right and what we can do about it. We’ll keep this easy and relatable, like talking about a friend who’s great but not perfect.</p>
+        </div>
+
+        <!-- Slide 49: Challenges Overview -->
+        <div class="slide">
+            <h3>Challenges Overview: What Can Go Wrong?</h3>
+            <p>Even though LLMs are super smart, they have some challenges that we need to know about. Here are the main ones we’ll talk about:</p>
+            <ul>
+                <li><strong>Making Mistakes:</strong> LLMs can say things that aren’t true, like a friend who sometimes gets their facts mixed up.</li>
+                <li><strong>Unfair Ideas:</strong> They might learn unfair ideas from the text they read, like thinking only boys can be doctors, which isn’t right.</li>
+                <li><strong>Not Knowing Everything:</strong> LLMs can’t know things they haven’t read about, like new events or words they’ve never seen.</li>
+                <li><strong>Using a Lot of Energy:</strong> Training LLMs takes a lot of computer power, which can affect the environment, like using too much electricity.</li>
+            </ul>
+            <p>Understanding these challenges helps us use LLMs in a smart way, knowing when to trust them and when to double-check their answers, just like you’d double-check a friend’s advice.</p>
+        </div>
+
+        <!-- Slide 50: Challenge 1 - Making Mistakes -->
+        <div class="slide">
+            <h3>Challenge 1: Making Mistakes</h3>
+            <p>LLMs can sometimes make mistakes and say things that aren’t true, because they’re just guessing based on patterns, not really knowing facts.</p>
+            <ul>
+                <li><strong>What Happens:</strong> An LLM might give a wrong answer because it’s seen a pattern that isn’t correct. For example, if you ask, “Who is the president of France?” it might guess someone from an old book it read, not the current president.</li>
+                <li><strong>Example:</strong> If you ask, “What’s 2 + 2?” the LLM might say “4,” which is right. But if you ask something tricky like “What’s the smell of rain like?” it might say something silly, like “Rain smells like chocolate,” because it doesn’t really know what smells are—it’s just guessing!</li>
+                <li><strong>Analogy:</strong> It’s like if you asked a friend who’s never been outside, “What does rain smell like?” They might guess based on books they’ve read, but they could be wrong because they’ve never smelled rain themselves.</li>
+            </ul>
+            <p>LLMs can make mistakes because they don’t really “know” things—they just guess based on patterns. That’s why it’s important to check their answers, especially for important things like schoolwork or facts.</p>
+        </div>
+
+        <!-- Slide 51: Example - A Mistake by an LLM -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: A Mistake by an LLM</h3>
+                <p>Let’s see an example of an LLM making a mistake.</p>
+                <p><strong>Question:</strong> “What animal has the longest neck?”</p>
+                <p><strong>LLM Answer:</strong> “A flamingo has the longest neck because it’s a tall bird.”</p>
+                <p><strong>Explanation:</strong> The correct answer is a giraffe, which has the longest neck of any animal—up to 6 feet long! The LLM made a mistake because it might have seen a lot of text about flamingos being tall birds with long necks, but it didn’t see enough about giraffes to know they’re the right answer. It’s like if a friend guessed “elephant” because they forgot about giraffes—they’re trying their best, but they got it wrong!</p>
+            </div>
+        </div>
+
+        <!-- Slide 52: Challenge 2 - Unfair Ideas -->
+        <div class="slide">
+            <h3>Challenge 2: Unfair Ideas</h3>
+            <p>LLMs can sometimes learn unfair ideas from the text they read, which can make their answers unfair or unkind, even if they don’t mean to be.</p>
+            <ul>
+                <li><strong>What Happens:</strong> If the training text has unfair ideas—like saying “Doctors are always men”—the LLM might learn that pattern and repeat it, even though it’s not true (lots of doctors are women too!).</li>
+                <li><strong>Example:</strong> If you ask an LLM, “Who’s a good engineer?” it might say, “John, because engineers are usually men,” which isn’t fair—women can be great engineers too, like Ada Lovelace, who was one of the first computer programmers!</li>
+                <li><strong>Analogy:</strong> It’s like if you learned about jobs from an old book that says only boys can be pilots. You might think that’s true, but it’s not—lots of pilots are women, like Amelia Earhart!</li>
+            </ul>
+            <p>LLMs can learn unfair ideas because they learn from what people have written, and sometimes people write unfair things. People are working on fixing this by teaching LLMs to be fairer and more kind in what they say.</p>
+        </div>
+
+        <!-- Slide 53: Example - An Unfair Idea -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: An Unfair Idea</h3>
+                <p>Let’s see an example of an LLM saying something unfair.</p>
+                <p><strong>Question:</strong> “Write a story about a scientist.”</p>
+                <p><strong>LLM Output:</strong> “Dr. James was a brilliant scientist. He worked in a lab all day, inventing new gadgets, because men are good at science.”</p>
+                <p><strong>Explanation:</strong> The LLM made the scientist a man and said “men are good at science,” which isn’t fair—women are great scientists too, like Marie Curie, who discovered radioactivity! The LLM might have learned this unfair idea because it read old books where most scientists were men, and it copied that pattern. It’s like if a friend said, “Only girls can be teachers,” because they only saw girl teachers in stories—that’s not true, and it’s not fair!</p>
+            </div>
+        </div>
+
+        <!-- Slide 54: Challenge 3 - Not Knowing Everything -->
+        <div class="slide">
+            <h3>Challenge 3: Not Knowing Everything</h3>
+            <p>LLMs can’t know things they haven’t learned from their training text, which means they might not have answers for new events, new words, or things they’ve never read about.</p>
+            <ul>
+                <li><strong>What Happens:</strong> If something new happens after the LLM was trained—like a new invention or a new slang word—the LLM won’t know about it. For example, if a new word like “yeet” becomes popular, the LLM might not know what it means if it wasn’t in its training text.</li>
+                <li><strong>Example:</strong> If you ask, “What’s the latest iPhone?” but the LLM was trained on text from years ago, it might talk about an old iPhone model, not the newest one, because it doesn’t know about recent updates.</li>
+                <li><strong>Analogy:</strong> It’s like if you studied for a history test using an old book—you’d know a lot, but if the teacher asked about something that happened last week, you wouldn’t know because your book doesn’t have that information!</li>
+            </ul>
+            <p>LLMs can only use what they’ve learned from their training text, so they might miss new things. That’s why it’s good to check their answers, especially for recent events or new ideas.</p>
+        </div>
+
+        <!-- Slide 55: Example - Not Knowing Something New -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Not Knowing Something New</h3>
+                <p>Let’s see an example of an LLM not knowing something because it’s too new.</p>
+                <p><strong                <p><strong>Question:</strong> “What’s the newest social media app everyone’s using?”</p>
+                <p><strong>LLM Response:</strong> “I know about apps like TikTok and Instagram, which were popular in my training data. But I don’t know about new apps that came out after that—maybe you can tell me about them?”</p>
+                <p><strong>Explanation:</strong> The LLM’s training data might only include social media apps up to a certain point, like TikTok and Instagram, which were big a few years ago. If a new app became popular recently, the LLM wouldn’t know about it because it hasn’t read any new text about it. It’s like if a friend only read old magazines—they’d know about trends from back then, but not the latest ones. That’s why the LLM might ask you for more information, kind of like saying, “I’m not sure, can you tell me more?”</p>
+            </div>
+        </div>
+
+        <!-- Slide 56: Challenge 4 - Using a Lot of Energy -->
+        <div class="slide">
+            <h3>Challenge 4: Using a Lot of Energy</h3>
+            <p>Training LLMs takes a lot of computer power, which uses a lot of energy, and that can affect the environment, kind of like how using too many lights at home can raise your electric bill and use up resources.</p>
+            <ul>
+                <li><strong>What Happens:</strong> To train an LLM, companies use thousands of super-fast computers, called GPUs, that run for weeks or months. These computers need a lot of electricity to work, just like how a big air conditioner uses a lot of power to cool your house.</li>
+                <li><strong>Impact on the Environment:</strong> Using so much electricity can create more carbon emissions, which contribute to climate change, like how driving a car a lot can add pollution to the air. For example, training a big LLM like GPT-3 can use as much energy as a small town!</li>
+                <li><strong>Analogy:</strong> It’s like if you wanted to bake cookies for everyone in your city—you’d need lots of ovens running all day, which would use a ton of electricity. Training an LLM is similar, but with computers instead of ovens.</li>
+            </ul>
+            <p>People are working on ways to make LLMs use less energy, like using smaller models or finding cleaner ways to power computers, kind of like using solar panels instead of regular electricity. It’s important because we want to use LLMs to help people without hurting the planet!</p>
+        </div>
+
+        <!-- Slide 57: Example - Energy Use in Training -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Energy Use in Training</h3>
+                <p>Let’s look at how much energy training an LLM might use, compared to something we understand better.</p>
+                <p><strong>Training GPT-3:</strong> Training GPT-3, a famous LLM, used about as much energy as driving a car across a country thousands of times! That’s a lot of energy, like charging your phone every day for hundreds of years.</p>
+                <p><strong>Explanation:</strong> Here’s what that means:</p>
+                <ul>
+                    <li><strong>Computers Needed:</strong> GPT-3 was trained on thousands of GPUs, which are like super-fast computers that do billions of calculations to learn language patterns.</li>
+                    <li><strong>Energy Used:</strong> All those computers running for weeks used a huge amount of electricity, which creates carbon emissions—like the pollution from a car. It’s as if one car drove 1,000 times across a big country!</li>
+                    <li><strong>What It’s Like:</strong> Imagine if you left all the lights, TVs, and fans in your house on for a whole year—that’s a lot of energy! Training an LLM uses even more, because it’s such a big job.</li>
+                </ul>
+                <p>This energy use is a big challenge, but people are trying to make LLMs more “green” by using less power or cleaner energy, so they can help us without harming the environment too much.</p>
+            </div>
+        </div>
+
+        <!-- Slide 58: How Can We Fix These Challenges? -->
+        <div class="slide">
+            <h3>How Can We Fix These Challenges?</h3>
+            <p>Even though LLMs have challenges, people are working hard to make them better and safer. Let’s look at some ways we can fix these problems, using simple ideas.</p>
+            <ul>
+                <li><strong>Check Their Answers:</strong> To avoid mistakes, we can double-check what LLMs say, like looking up a fact in a book to make sure it’s right. For example, if an LLM says the wrong president, we can check a trusted website.</li>
+                <li><strong>Teach Them Fairness:</strong> To stop unfair ideas, we can train LLMs with better text that’s fair and kind, like books that show everyone can be a scientist or engineer. We can also add rules to make sure they don’t say unfair things.</li>
+                <li><strong>Keep Them Updated:</strong> To help LLMs know new things, we can give them new text to learn from, like adding new pages to a book. For example, we can give them news articles about the latest events so they don’t miss out.</li>
+                <li><strong>Use Less Energy:</strong> To save energy, we can make smaller LLMs that don’t need as many computers, or use clean energy like solar power to train them, kind of like using a bike instead of a car to save gas.</li>
+            </ul>
+            <p>By fixing these challenges, we can make LLMs even better helpers, making sure they’re accurate, fair, and good for the planet, so they can help everyone in the best way possible!</p>
+        </div>
+
+        <!-- Slide 59: Why Do These Challenges Matter? -->
+        <div class="slide">
+            <h3>Why Do These Challenges Matter?</h3>
+            <p>Understanding the challenges of LLMs is important because they’re used in so many places, and we want to make sure they help people in a good way, not a harmful one.</p>
+            <ul>
+                <li><strong>Trust:</strong> If LLMs make mistakes or say unfair things, we might not trust them, like if a friend keeps giving you wrong advice—you’d stop asking them for help.</li>
+                <li><strong>Fairness:</strong> We want LLMs to be fair to everyone, so they don’t make anyone feel left out or treated badly, like making sure a game is fair for all players.</li>
+                <li><strong>Planet:</strong> Using too much energy can hurt the environment, and we want to keep our planet healthy, like making sure we don’t use too much water or electricity at home.</li>
+                <li><strong>Helping Everyone:</strong> By fixing these challenges, LLMs can help more people—like students, doctors, and teachers—in a way that’s safe and kind for everyone.</li>
+            </ul>
+            <p>These challenges remind us that LLMs are tools, not perfect humans, and we need to use them carefully, like how you’d use a new toy—making sure it’s safe and fun for everyone!</p>
+        </div>
+
+        <!-- Slide 60: A Quick Recap of Part 4 -->
+        <div class="slide">
+            <h3>A Quick Recap of Part 4</h3>
+            <p>Let’s sum up what we’ve learned about the challenges and limitations of LLMs:</p>
+            <ul>
+                <li>LLMs can make mistakes, like saying wrong facts, because they guess based on patterns, not real understanding.</li>
+                <li>They might learn unfair ideas from the text they read, like thinking only boys can be engineers, which isn’t right.</li>
+                <li>They can’t know new things they haven’t learned, like the latest social media app, because they only know what’s in their training text.</li>
+                <li>Training LLMs uses a lot of energy, which can affect the environment, like using too much electricity.</li>
+            </ul>
+            <p>Knowing these challenges helps us use LLMs in a smart way, checking their answers and making sure they’re fair and good for the planet. Now we understand both the amazing things LLMs can do and the things we need to watch out for!</p>
+        </div>
+
+        <!-- Section 5: Wrap-Up (Slides 61-63) -->
+        <div class="slide">
+            <h2>Part 5: Wrap-Up</h2>
+            <h3>Key Takeaways</h3>
+            <p>Let’s bring it all together and review what we’ve learned about Large Language Models today:</p>
+            <ul>
+                <li><strong>What Are LLMs?</strong> LLMs are computer programs that understand and create language, like a magic librarian who’s read every book in the world. They’re called “large” because they learn from tons of text and have billions of rules to help them decide what to say.</li>
+                <li><strong>How Are They Trained?</strong> LLMs learn by reading lots of text—like books and websites—practicing guessing the next word, and getting better over time with powerful computers, kind of like studying for a big test.</li>
+                <li><strong>What Can They Do?</strong> They can write stories, answer questions, translate languages, help with schoolwork, assist professionals like doctors, and even chat like a friend, making them super helpful in many ways.</li>
+                <li><strong>Challenges to Watch For:</strong> LLMs can make mistakes, learn unfair ideas, miss new things, and use a lot of energy, so we need to use them carefully and work on making them better.</li>
+            </ul>
+            <p>We’ve learned so much about LLMs today! They’re amazing tools that can help us in many ways, but we also know they’re not perfect, and we need to be thoughtful about how we use them.</p>
+        </div>
+
+        <!-- Slide 62: Homework Assignment -->
+        <div class="slide">
+            <h3>Homework Assignment</h3>
+            <p><strong>Assignment:</strong> Try talking to a free LLM, like ChatGPT (you can find it online), and ask it to do something fun, like write a short story, answer a question, or translate a sentence. Write a short paragraph about your experience, answering these questions:</p>
+            <ul>
+                <li>What did you ask the LLM to do?</li>
+                <li>What did you think of its answer—was it helpful, fun, or did it make a mistake?</li>
+                <li>How does this connect to what we learned about LLMs today, like their abilities or challenges?</li>
+            </ul>
+            <p>This assignment will let you play with an LLM yourself and see how it works in real life, connecting what we’ve learned to your own experience. Have fun exploring!</p>
+        </div>
+
+        <!-- Slide 63: Final Thoughts -->
+        <div class="slide">
+            <h3>Final Thoughts</h3>
+            <p>Today, we’ve explored the exciting world of Large Language Models—how they work, how they’re trained, what they can do, and the challenges they face. You’ve learned that LLMs are like magic librarians who can help with writing, answering questions, and so much more, but they also need to be used carefully because they can make mistakes or say unfair things.</p>
+            <p>I hope you’re as amazed as I am by how powerful LLMs are and how they’re helping people in so many ways, from school to work to creativity. In our next session, we’ll look at the ethics of AI and how we can use these tools responsibly, building on everything we’ve learned so far. Great job, everyone, and I can’t wait to see your homework!</p>
+        </div>
+    </div>
+</body>
+</html>
