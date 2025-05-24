@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethics, Bias, Privacy, Risk, Evaluation, and Limitations in Gen AI & LLMs</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        h1 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        ul, p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.4;
+            margin: 0;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .nav-buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <h1>Ethics, Bias, Privacy, Risk, Evaluation, and Limitations in Gen AI & LLMs</h1>
+            <p>A beginner’s guide to understanding challenges in AI that creates text, images, and more.</p>
+            <div class="slide-number">1/60</div>
+        </div>
+        <!-- Slide 2: What is Generative AI? -->
+        <div class="slide">
+            <h1>What is Generative AI?</h1>
+            <p>AI that creates new content like stories, images, or music by learning patterns from data.</p>
+            <p><b>Example</b>: An AI writing a poem or generating a photo of a fictional city.</p>
+            <div class="slide-number">2/60</div>
+        </div>
+        <!-- Slide 3: What are LLMs? -->
+        <div class="slide">
+            <h1>What are Large Language Models?</h1>
+            <p>AI models trained on huge text datasets to understand and generate human-like text.</p>
+            <p><b>Example</b>: A chatbot answering your questions or translating languages.</p>
+            <div class="slide-number">3/60</div>
+        </div>
+        <!-- Section: Ethical Concerns -->
+        <div class="slide">
+            <h1>Section: Ethical Concerns</h1>
+            <p>Exploring how AI impacts fairness, truth, and human values.</p>
+            <div class="slide-number">4/60</div>
+        </div>
+        <div class="slide">
+            <h1>What Are AI Ethics?</h1>
+            <p>Principles to ensure AI is fair, transparent, and respects human rights.</p>
+            <p><b>Example</b>: Ensuring an AI doesn’t discriminate in job hiring.</p>
+            <div class="slide-number">5/60</div>
+        </div>
+        <div class="slide">
+            <h1>Bias in Language Models</h1>
+            <p>AI can learn unfair stereotypes from biased training data.</p>
+            <p><b>Example</b>: An AI suggesting “engineer” for men and “nurse” for women.</p>
+            <div class="slide-number">6/60</div>
+        </div>
+        <div class="slide">
+            <h1>Example: Bias in Recommendations</h1>
+            <p>A movie streaming AI might suggest action films to men and romances to women based on biased data.</p>
+            <p>This reinforces stereotypes and limits user choice.</p>
+            <div class="slide-number">7/60</div>
+        </div>
+        <div class="slide">
+            <h1>Misinformation Dangers</h1>
+            <p>AI can create convincing but false information, spreading lies.</p>
+            <p><b>Example</b>: An AI writing a fake news story about a celebrity.</p>
+            <div class="slide-number">8/60</div>
+        </div>
+        <div class="slide">
+            <h1>Example: Deepfake Misinformation</h1>
+            <p>AI-generated videos of politicians saying false things can mislead voters.</p>
+            <p>This erodes trust in media.</p>
+            <div class="slide-number">9/60</div>
+        </div>
+        <div class="slide">
+            <h1>Privacy in AI</h1>
+            <p>AI systems may collect or expose personal data without consent.</p>
+            <p><b>Example</b>: A chatbot saving your private messages.</p>
+            <div class="slide-number">10/60</div>
+        </div>
+        <div class="slide">
+            <h1>Transparency Issues</h1>
+            <p>Users often don’t know how AI makes decisions or uses their data.</p>
+            <p><b>Example</b>: An AI loan app rejecting you without explaining why.</p>
+            <div class="slide-number">11/60</div>
+        </div>
+        <div class="slide">
+            <h1>Accountability Challenges</h1>
+            <p>It’s unclear who’s responsible when AI causes harm.</p>
+            <p><b>Example</b>: If an AI medical tool misdiagnoses, who’s to blame?</p>
+            <div class="slide-number">12/60</div>
+        </div>
+        <div class="slide">
+            <h1>Fairness in AI</h1>
+            <p>AI must treat all users equally, regardless of race, gender, or background.</p>
+            <p><b>Example</b>: Ensuring facial recognition works for all skin tones.</p>
+            <div class="slide-number">13/60</div>
+        </div>
+        <div class="slide">
+            <h1>Ethical AI Solutions</h1>
+            <ul>
+                <li>Use diverse data to reduce bias.</li>
+                <li>Explain AI decisions clearly.</li>
+            </ul>
+            <p><b>Example</b>: Auditing AI hiring tools for fairness.</p>
+            <div class="slide-number">14/60</div>
+        </div>
+        <div class="slide">
+            <h1>Human Oversight</h1>
+            <p>Humans must monitor AI to catch ethical issues.</p>
+            <p><b>Example</b>: Editors reviewing AI-written articles for accuracy.</p>
+            <div class="slide-number">15/60</div>
+        </div>
+        <!-- Section: Risks -->
+        <div class="slide">
+            <h1>Section: Risks in Gen AI</h1>
+            <p>Potential harms from AI misuse or errors.</p>
+            <div class="slide-number">16/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Amplifying Bias</h1>
+            <p>Biased AI can worsen inequality in society.</p>
+            <p><b>Example</b>: AI policing tools targeting certain communities unfairly.</p>
+            <div class="slide-number">17/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Spreading Misinformation</h1>
+            <p>AI-generated fake content can spread rapidly online.</p>
+            <p><b>Example</b>: A viral AI-written post claiming a false cure for a disease.</p>
+            <div class="slide-number">18/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Overreliance</h1>
+            <p>People may trust AI too much, ignoring its errors.</p>
+            <p><b>Example</b>: Students using AI answers without checking facts.</p>
+            <div class="slide-number">19/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Job Displacement</h1>
+            <p>AI automating tasks may reduce jobs in some fields.</p>
+            <p><b>Example</b>: AI replacing customer service agents with chatbots.</p>
+            <div class="slide-number">20/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Security Threats</h1>
+            <p>AI can be hacked or used for malicious purposes.</p>
+            <p><b>Example</b>: AI creating phishing emails that trick users.</p>
+            <div class="slide-number">21/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Environmental Cost</h1>
+            <p>Training AI models uses massive energy, harming the planet.</p>
+            <p><b>Example</b>: AI training emitting as much CO2 as a car’s lifetime.</p>
+            <div class="slide-number">22/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Lack of Rules</h1>
+            <p>Without laws, AI can be misused or cause harm.</p>
+            <p><b>Example</b>: Unregulated AI in ads manipulating voters.</p>
+            <div class="slide-number">23/60</div>
+        </div>
+        <div class="slide">
+            <h1>Mitigating Risks</h1>
+            <ul>
+                <li>Test AI thoroughly before use.</li>
+                <li>Educate users about AI flaws.</li>
+            </ul>
+            <p><b>Example</b>: Warning labels on AI-generated content.</p>
+            <div class="slide-number">24/60</div>
+        </div>
+        <div class="slide">
+            <h1>Risk: Accessibility Gaps</h1>
+            <p>AI may not work well for all users, like those with disabilities.</p>
+            <p><b>Example</b>: Voice AI struggling with certain accents.</p>
+            <div class="slide-number">25/60</div>
+        </div>
+        <!-- Section: Privacy -->
+        <div class="slide">
+            <h1>Section: Privacy in Gen AI</h1>
+            <p>Protecting personal data in AI systems.</p>
+            <div class="slide-number">26/60</div>
+        </div>
+        <div class="slide">
+            <h1>Data Collection Issues</h1>
+            <p>AI needs large datasets, often including personal info.</p>
+            <p><b>Example</b>: A fitness app sharing your health data with AI.</p>
+            <div class="slide-number">27/60</div>
+        </div>
+        <div class="slide">
+            <h1>Data Storage Risks</h1>
+            <p>Stored data can be hacked or misused.</p>
+            <p><b>Example</b>: A chatbot’s database leaking user chats.</p>
+            <div class="slide-number">28/60</div>
+        </div>
+        <div class="slide">
+            <h1>User Consent</h1>
+            <p>Users must agree to how their data is used, but terms are often unclear.</p>
+            <p><b>Example</b>: A voice assistant recording you without clear permission.</p>
+            <div class="slide-number">29/60</div>
+        </div>
+        <div class="slide">
+            <h1>Anonymization Challenges</h1>
+            <p>Removing personal details from data is hard and often incomplete.</p>
+            <p><b>Example</b>: AI identifying you from “anonymous” survey answers.</p>
+            <div class="slide-number">30/60</div>
+        </div>
+        <div class="slide">
+            <h1>Privacy-Preserving AI</h1>
+            <p>Methods like federated learning keep data on user devices.</p>
+            <p><b>Example</b>: A phone’s AI learning your typing habits locally.</p>
+            <div class="slide-number">31/60</div>
+        </div>
+        <div class="slide">
+            <h1>Example: Privacy in Voice Assistants</h1>
+            <p>A smart speaker might record private conversations to train AI.</p>
+            <p>Users may not know their data is stored.</p>
+            <div class="slide-number">32/60</div>
+        </div>
+        <div class="slide">
+            <h1>Privacy Laws</h1>
+            <p>Laws like GDPR protect user data, but enforcement is tricky.</p>
+            <p><b>Example</b>: Fining companies for AI data breaches.</p>
+            <div class="slide-number">33/60</div>
+        </div>
+        <div class="slide">
+            <h1>Building Trust</h1>
+            <p>Clear data policies make users trust AI systems.</p>
+            <p><b>Example</b>: An app showing exactly what data it collects.</p>
+            <div class="slide-number">34/60</div>
+        </div>
+        <div class="slide">
+            <h1>Privacy in Healthcare</h1>
+            <p>AI analyzing medical records must protect sensitive data.</p>
+            <p><b>Example</b>: A hospital AI leaking patient diagnoses.</p>
+            <div class="slide-number">35/60</div>
+        </div>
+        <!-- Section: Evaluation -->
+        <div class="slide">
+            <h1>Section: Evaluating Gen AI</h1>
+            <p>Checking if AI is accurate, fair, and reliable.</p>
+            <div class="slide-number">36/60</div>
+        </div>
+        <div class="slide">
+            <h1>Evaluation Basics</h1>
+            <p>Measure AI’s performance with tests for accuracy and fairness.</p>
+            <p><b>Example</b>: Checking if a chatbot gives correct math answers.</p>
+            <div class="slide-number">37/60</div>
+        </div>
+        <div class="slide">
+            <h1>Testing for Bias</h1>
+            <p>Look for unfair outputs, like favoring one group.</p>
+            <p><b>Example</b>: Testing if AI misidentifies people in photos by race.</p>
+            <div class="slide-number">38/60</div>
+        </div>
+        <div class="slide">
+            <h1>Human Evaluation</h1>
+            <p>People review AI outputs for quality and appropriateness.</p>
+            <p><b>Example</b>: Rating AI-generated stories for creativity.</p>
+            <div class="slide-number">39/60</div>
+        </div>
+        <div class="slide">
+            <h1>Automated Testing</h1>
+            <p>Software checks AI for errors or inconsistencies.</p>
+            <p><b>Example</b>: A tool flagging AI’s factual mistakes.</p>
+            <div class="slide-number">40/60</div>
+        </div>
+        <div class="slide">
+            <h1>Evaluation Challenges</h1>
+            <p>It’s hard to test AI’s “understanding” or real-world performance.</p>
+            <p><b>Example</b>: An AI passing a quiz but failing complex questions.</p>
+            <div class="slide-number">41/60</div>
+        </div>
+        <div class="slide">
+            <h1>Benchmark Datasets</h1>
+            <p>Standard tests compare AI models’ abilities.</p>
+            <p><b>Example</b>: GLUE tests AI on language tasks like summarizing.</p>
+            <div class="slide-number">42/60</div>
+        </div>
+        <div class="slide">
+            <h1>Real-World Testing</h1>
+            <p>AI must be tested in actual use cases, not just labs.</p>
+            <p><b>Example</b>: Trying a chatbot in a busy customer service setting.</p>
+            <div class="slide-number">43/60</div>
+        </div>
+        <div class="slide">
+            <h1>Continuous Monitoring</h1>
+            <p>Track AI performance as it learns or data changes.</p>
+            <p><b>Example</b>: Checking if a news AI starts spreading rumors.</p>
+            <div class="slide-number">44/60</div>
+        </div>
+        <div class="slide">
+            <h1>Fairness Metrics</h1>
+            <p>Measure if AI treats all groups equally.</p>
+            <p><b>Example</b>: Ensuring an AI loan tool doesn’t reject minorities more.</p>
+            <div class="slide-number">45/60</div>
+        </div>
+        <!-- Section: Limitations -->
+        <div class="slide">
+            <h1>Section: Limitations of Gen AI</h1>
+            <p>What AI can’t do and why it matters.</p>
+            <div class="slide-number">46/60</div>
+        </div>
+        <div class="slide">
+            <h1>Hallucinations</h1>
+            <p>AI makes up facts or details that aren’t true.</p>
+            <p><b>Example</b>: An AI saying “dogs flew planes in 1900.”</p>
+            <div class="slide-number">47/60</div>
+        </div>
+        <div class="slide">
+            <h1>Example: Hallucination in History</h1>
+            <p>An AI might claim Cleopatra used a smartphone, mixing fiction with fact.</p>
+            <p>This confuses users seeking truth.</p>
+            <div class="slide-number">48/60</div>
+        </div>
+        <div class="slide">
+            <h1>No True Understanding</h1>
+            <p>AI mimics patterns but doesn’t grasp meaning like humans.</p>
+            <p><b>Example</b>: AI explaining “love” without feeling it.</p>
+            <div class="slide-number">49/60</div>
+        </div>
+        <div class="slide">
+            <h1>Context Struggles</h1>
+            <p>AI can misinterpret vague or complex questions.</p>
+            <p><b>Example</b>: Asking “What’s hot?” and getting weather instead of trends.</p>
+            <div class="slide-number">50/60</div>
+        </div>
+        <div class="slide">
+            <h1>Data Dependency</h1>
+            <p>AI’s quality depends on its training data.</p>
+            <p><b>Example</b>: Poor data makes AI give bad recipe suggestions.</p>
+            <div class="slide-number">51/60</div>
+        </div>
+        <div class="slide">
+            <h1>High Costs</h1>
+            <p>Building and running AI needs expensive hardware and energy.</p>
+            <p><b>Example</b>: Training an AI costs millions in electricity.</p>
+            <div class="slide-number">52/60</div>
+        </div>
+        <div class="slide">
+            <h1>Ethical Blind Spots</h1>
+            <p>AI lacks moral reasoning or empathy.</p>
+            <p><b>Example</b>: AI suggesting a harmful diet without understanding risks.</p>
+            <div class="slide-number">53/60</div>
+        </div>
+        <div class="slide">
+            <h1>Limited Generalization</h1>
+            <p>AI struggles outside its training scope.</p>
+            <p><b>Example</b>: A medical AI failing on rare diseases it wasn’t trained on.</p>
+            <div class="slide-number">54/60</div>
+        </div>
+        <div class="slide">
+            <h1>Overcoming Limitations</h1>
+            <ul>
+                <li>Better data and training methods.</li>
+                <li>Human checks on AI outputs.</li>
+            </ul>
+            <p><b>Example</b>: Fact-checkers reviewing AI news summaries.</p>
+            <div class="slide-number">55/60</div>
+        </div>
+        <div class="slide">
+            <h1>Limitation: Cultural Nuances</h1>
+            <p>AI may miss cultural or emotional context.</p>
+            <p><b>Example</b>: AI translating a joke poorly, offending users.</p>
+            <div class="slide-number">56/60</div>
+        </div>
+        <div class="slide">
+            <h1>Limitation: Creativity Gaps</h1>
+            <p>AI’s creativity is limited to remixing patterns, not true innovation.</p>
+            <p><b>Example</b>: AI art copying styles without original ideas.</p>
+            <div class="slide-number">57/60</div>
+        </div>
+        <!-- Section: Future Considerations -->
+        <div class="slide">
+            <h1>Section: Future Considerations</h1>
+            <p>How to improve AI for a better, safer future.</p>
+            <div class="slide-number">58/60</div>
+        </div>
+        <div class="slide">
+            <h1>Responsible AI Development</h1>
+            <p>Create AI with ethics, privacy, and fairness in mind.</p>
+            <p><b>Example</b>: Global rules to prevent AI misuse in elections.</p>
+            <div class="slide-number">59/60</div>
+        </div>
+        <div class="slide">
+            <h1>Conclusion</h1>
+            <p>Gen AI and LLMs are powerful but need careful handling to avoid bias, privacy issues, and errors.</p>
+            <p>With ethics and oversight, AI can benefit everyone.</p>
+            <div class="slide-number">60/60</div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
