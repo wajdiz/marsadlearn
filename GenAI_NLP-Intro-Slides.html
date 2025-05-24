@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1: Introduction to Generative AI and NLP Basics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slide {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+        }
+        .slide h1, .slide h2, .slide h3 {
+            color: #4A00E0;
+            margin-bottom: 20px;
+        }
+        .slide h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .slide h2 {
+            font-size: 28px;
+            border-bottom: 2px solid #4A00E0;
+            padding-bottom: 10px;
+        }
+        .slide h3 {
+            font-size: 22px;
+            color: #8E2DE2;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .slide ul, .slide ol {
+            padding-left: 30px;
+        }
+        .example-box, .case-study-box {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-left: 5px solid #4A00E0;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .case-study-box {
+            background-color: #fff5e6;
+            border-left: 5px solid #FF8C00;
+        }
+        .highlight {
+            color: #ff4b5c;
+            font-weight: bold;
+        }
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide">
+            <h1>Week 1: Introduction to Generative AI and NLP Basics</h1>
+            <p style="text-align: center; font-size: 20px;">Date: Week of May 26, 2025</p>
+            <p style="text-align: center; font-size: 18px;">Duration: 4 Hours</p>
+            <p style="text-align: center; font-size: 18px;">Instructor: [Your Name]</p>
+        </div>
+
+        <!-- Slide 2: Welcome and Agenda -->
+        <div class="slide">
+            <h2>Welcome to the Course!</h2>
+            <p>Welcome to this beginner-friendly course on Generative AI, Large Language Models (LLMs), and Natural Language Processing (NLP). Over the next 5 weeks, we’ll explore how AI can create content and understand human language.</p>
+            <h3>Agenda for Today (4 Hours)</h3>
+            <ul>
+                <li><strong>9:00 AM - 11:00 AM:</strong> What is Generative AI? Concepts, History, Examples, and Applications</li>
+                <li><strong>11:00 AM - 11:15 AM:</strong> Break</li>
+                <li><strong>11:15 AM - 1:15 PM:</strong> Introduction to NLP: Concepts, History, Examples, and Applications</li>
+                <li><strong>1:15 PM - 1:30 PM:</strong> Wrap-Up</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Learning Objectives -->
+        <div class="slide">
+            <h2>Learning Objectives for Today</h2>
+            <ul>
+                <li>Understand the concepts, history, and evolution of Generative AI.</li>
+                <li>Learn how Generative AI creates content through detailed examples and case studies.</li>
+                <li>Explore the fundamentals of Natural Language Processing (NLP), its history, and core concepts.</li>
+                <li>Examine real-world applications of Generative AI and NLP across various industries.</li>
+            </ul>
+            <p class="note">Note: This session focuses on concepts and examples—no activities today.</p>
+        </div>
+
+        <!-- Section 1: What is Generative AI? (Slides 4-43) -->
+        <div class="slide">
+            <h2>Part 1: What is Generative AI?</h2>
+            <p>We’ll start by exploring Generative AI, a transformative area of artificial intelligence that focuses on creating new content.</p>
+        </div>
+
+        <!-- Slide 5: Definition of Generative AI -->
+        <div class="slide">
+            <h3>Definition of Generative AI</h3>
+            <p><span class="highlight">Generative AI</span> refers to a subset of artificial intelligence systems designed to <span class="highlight">generate new content</span> by learning patterns from existing data. This content can include:</p>
+            <ul>
+                <li>Text (e.g., stories, articles, poetry)</li>
+                <li>Images (e.g., artwork, synthetic photos)</li>
+                <li>Music (e.g., compositions, melodies)</li>
+                <li>Videos, 3D models, and even code</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Generative AI vs. Discriminative AI -->
+        <div class="slide">
+            <h3>Generative AI vs. Discriminative AI</h3>
+            <p>AI models can be broadly classified into two types:</p>
+            <ul>
+                <li><strong>Discriminative AI:</strong> Focuses on classification or prediction (e.g., identifying if an email is spam or not).</li>
+                <li><strong>Generative AI:</strong> Focuses on creating new data (e.g., writing a new email or generating an image).</li>
+            </ul>
+            <p>Generative AI models aim to understand the underlying distribution of data to produce new, similar data.</p>
+        </div>
+
+        <!-- Slide 7: History of Generative AI - Early Beginnings -->
+        <div class="slide">
+            <h3>History of Generative AI: Early Beginnings</h3>
+            <p>The concept of Generative AI dates back to the 1950s with early AI research:</p>
+            <ul>
+                <li><strong>1950s:</strong> Alan Turing proposed the idea of machines generating creative outputs in his paper “Computing Machinery and Intelligence.”</li>
+                <li><strong>1960s:</strong> Early generative models like Markov Chains were used to generate simple text sequences.</li>
+                <li><strong>1980s:</strong> The development of neural networks laid the groundwork for more complex generative models.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: History of Generative AI - Modern Developments -->
+        <div class="slide">
+            <h3>History of Generative AI: Modern Developments</h3>
+            <p>Generative AI evolved significantly in the 21st century:</p>
+            <ul>
+                <li><strong>2014:</strong> Generative Adversarial Networks (GANs) were introduced by Ian Goodfellow, enabling high-quality image generation.</li>
+                <li><strong>2017:</strong> Transformers, a key architecture for text generation, were introduced in the paper “Attention is All You Need.”</li>
+                <li><strong>2020s:</strong> Models like GPT-3, DALL-E, and Stable Diffusion became mainstream, producing human-like text and realistic images.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Key Generative AI Models -->
+        <div class="slide">
+            <h3>Key Generative AI Models</h3>
+            <p>Several models have shaped the field of Generative AI:</p>
+            <ul>
+                <li><strong>GANs (Generative Adversarial Networks):</strong> Two networks (generator and discriminator) work together to create realistic data.</li>
+                <li><strong>VAEs (Variational Autoencoders):</strong> Used for generating data by learning latent representations.</li>
+                <li><strong>Transformers:</strong> Power text generation in models like GPT (Generative Pre-trained Transformer).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 10: How Generative AI Works - Overview -->
+        <div class="slide">
+            <h3>How Does Generative AI Work? (Overview)</h3>
+            <p>Generative AI models follow these steps:</p>
+            <ul>
+                <li><strong>Data Collection:</strong> Gather large datasets (e.g., books, images, music).</li>
+                <li><strong>Training:</strong> The model learns patterns in the data using neural networks.</li>
+                <li><strong>Generation:</strong> The model creates new content based on a user prompt or random input.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: How Generative AI Works - Training Data -->
+        <div class="slide">
+            <h3>How Generative AI Works: Training Data</h3>
+            <p>The quality and quantity of training data are crucial:</p>
+            <ul>
+                <li><strong>Text Models:</strong> Trained on datasets like Wikipedia, books, and web pages (e.g., billions of words).</li>
+                <li><strong>Image Models:</strong> Trained on datasets like ImageNet or LAION (millions of images).</li>
+                <li><strong>Music Models:</strong> Trained on MIDI files or audio datasets (e.g., classical music archives).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: How Generative AI Works - Neural Networks -->
+        <div class="slide">
+            <h3>How Generative AI Works: Neural Networks</h3>
+            <p>Generative AI relies on neural networks:</p>
+            <ul>
+                <li><strong>Layers:</strong> Networks have input, hidden, and output layers to process data.</li>
+                <li><strong>Weights:</strong> Adjusted during training to minimize errors.</li>
+                <li><strong>Activation Functions:</strong> Determine how data is transformed (e.g., ReLU, Sigmoid).</li>
+            </ul>
+            <p>For example, a Transformer model uses “attention mechanisms” to focus on important words in a sentence.</p>
+        </div>
+
+        <!-- Slide 13: Example 1 - Text Generation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 1: Text Generation</h3>
+                <p><strong>Prompt:</strong> “Write a short story about a time traveler.”</p>
+                <p><strong>AI Output:</strong> <em>In 2045, Clara, a curious time traveler, activated her wrist device and landed in ancient Rome. She marveled at the Colosseum, but her modern attire drew stares. Using a translation gadget, she befriended a merchant who shared stories of gladiators, while Clara secretly documented history for her future archive.</em></p>
+                <p>The AI used patterns from historical fiction and sci-fi to create this narrative.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Example 2 - Image Generation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 2: Image Generation</h3>
+                <p><strong>Prompt:</strong> “A dragon flying over a snowy mountain at sunrise.”</p>
+                <p><strong>AI Output (Described):</strong> The AI generates an image of a majestic dragon with shimmering scales, soaring above a snow-capped mountain. The sky glows with pink and orange hues as the sun rises, casting a soft light on the icy peaks.</p>
+                <p>Tools like Stable Diffusion learn from millions of fantasy artworks to create such images.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Example 3 - Music Generation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 3: Music Generation</h3>
+                <p><strong>Prompt:</strong> “Create an upbeat jazz tune.”</p>
+                <p><strong>AI Output (Described):</strong> The AI generates a lively jazz melody with a fast-paced saxophone lead, accompanied by a rhythmic drumbeat and a walking bassline, evoking the energy of a 1920s jazz club.</p>
+                <p>Models like MuseNet analyze jazz compositions to replicate their style.</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Example 4 - Code Generation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 4: Code Generation</h3>
+                <p><strong>Prompt:</strong> “Write a Python function to calculate the factorial of a number.”</p>
+                <p><strong>AI Output:</strong></p>
+                <pre>
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+                </pre>
+                <p>The AI learned from repositories like GitHub to generate functional code.</p>
+            </div>
+        </div>
+
+        <!-- Slide 17: Applications of Generative AI - Overview -->
+        <div class="slide">
+            <h3>Applications of Generative AI: Overview</h3>
+            <p>Generative AI has a wide range of applications across industries:</p>
+            <ul>
+                <li>Creative arts (e.g., writing, art, music)</li>
+                <li>Business and marketing</li>
+                <li>Education and training</li>
+                <li>Healthcare and science</li>
+                <li>Technology and software development</li>
+            </ul>
+        </div>
+
+        <!-- Slide 18: Application 1 - Creative Arts -->
+        <div class="slide">
+            <h3>Application 1: Creative Arts</h3>
+            <p>Generative AI is transforming the creative industry:</p>
+            <ul>
+                <li><strong>Writing:</strong> Generates novels, scripts, or poetry.</li>
+                <li><strong>Visual Art:</strong> Creates paintings, illustrations, or digital art.</li>
+                <li><strong>Music:</strong> Composes songs or background scores.</li>
+                <li><strong>Film:</strong> Generates storyboards or special effects.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 19: Case Study 1 - AI in Film -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 1: AI in Film - “Sunspring” (2016)</h3>
+                <p>In 2016, an AI named Benjamin, developed by NYU researchers, wrote a short sci-fi film script called “Sunspring.”</p>
+                <p><strong>Details:</strong> Benjamin was trained on hundreds of sci-fi scripts from the 1980s and 1990s. The resulting script was surreal, with odd dialogue like: <em>“I’m not a human. I’m here to help you… in the future, we’ll all be dead.”</em></p>
+                <p><strong>Impact:</strong> The film was produced and acted by humans, showcasing how AI can inspire unique, albeit unconventional, creative projects.</p>
+            </div>
+        </div>
+
+        <!-- Slide 20: Application 2 - Marketing -->
+        <div class="slide">
+            <h3>Application 2: Marketing</h3>
+            <p>Generative AI enhances marketing efforts:</p>
+            <ul>
+                <li><strong>Ad Copy:</strong> Writes slogans, product descriptions, or email campaigns.</li>
+                <li><strong>Visuals:</strong> Designs logos, banners, or social media graphics.</li>
+                <li><strong>Personalization:</strong> Creates tailored content for individual customers.</li>
+                <li><strong>A/B Testing:</strong> Generates multiple ad versions for testing.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 21: Case Study 2 - AI in Marketing -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 2: AI in Marketing - Coca-Cola Campaign</h3>
+                <p>In 2023, Coca-Cola used Generative AI to launch a personalized ad campaign called “Share a Coke.”</p>
+                <p><strong>Details:</strong> The AI generated thousands of unique slogans and visuals, such as <em>“Share a Coke with Sarah – Refresh Your Day!”</em> paired with a custom Coke bottle image.</p>
+                <p><strong>Impact:</strong> The campaign increased customer engagement by 20% and boosted sales in targeted regions.</p>
+            </div>
+        </div>
+
+        <!-- Slide 22: Application 3 - Education -->
+        <div class="slide">
+            <h3>Application 3: Education</h3>
+            <p>Generative AI supports education in various ways:</p>
+            <ul>
+                <li><strong>Content Creation:</strong> Generates study guides, quizzes, or summaries.</li>
+                <li><strong>Language Learning:</strong> Creates dialogues or exercises for language practice.</li>
+                <li><strong>Virtual Tutors:</strong> Powers AI tutors that explain concepts or answer questions.</li>
+                <li><strong>Accessibility:</strong> Generates audio or text for students with disabilities.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 23: Case Study 3 - AI in Education -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 3: AI in Education - Duolingo</h3>
+                <p>Duolingo uses Generative AI to enhance language learning.</p>
+                <p><strong>Details:</strong> The AI generates personalized dialogues for users to practice speaking, such as <em>“Hola, ¿cómo estás? Me gusta ir al parque los fines de semana.”</em> (Hello, how are you? I like to go to the park on weekends.)</p>
+                <p><strong>Impact:</strong> This approach increased user engagement by 30%, as learners could practice real-world conversations tailored to their skill level.</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: Application 4 - Healthcare -->
+        <div class="slide">
+            <h3>Application 4: Healthcare</h3>
+            <p>Generative AI is making significant contributions to healthcare:</p>
+            <ul>
+                <li><strong>Synthetic Data:</strong> Generates fake medical images (e.g., X-rays, MRIs) for training.</li>
+                <li><strong>Drug Discovery:</strong> Creates molecular structures for potential new drugs.</li>
+                <li><strong>Patient Communication:</strong> Writes empathetic responses for telemedicine chatbots.</li>
+                <li><strong>Medical Reports:</strong> Generates summaries of patient data.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 25: Case Study 4 - AI in Healthcare -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 4: AI in Healthcare - Synthetic Medical Images</h3>
+                <p>In 2022, MIT researchers used Generative AI to create synthetic X-ray images of lungs.</p>
+                <p><strong>Details:</strong> These images were generated using a GAN trained on real X-rays. They depicted various conditions like pneumonia and tuberculosis without using real patient data.</p>
+                <p><strong>Impact:</strong> The synthetic images helped train medical students, addressing privacy concerns while improving diagnostic skills.</p>
+            </div>
+        </div>
+
+        <!-- Slide 26: Application 5 - Technology -->
+        <div class="slide">
+            <h3>Application 5: Technology</h3>
+            <p>Generative AI is advancing technology:</p>
+            <ul>
+                <li><strong>Code Generation:</strong> Writes software code or automates debugging.</li>
+                <li><strong>UI/UX Design:</strong> Generates wireframes or app interfaces.</li>
+                <li><strong>Data Augmentation:</strong> Creates synthetic datasets for machine learning.</li>
+                <li><strong>Simulations:</strong> Generates virtual environments for testing (e.g., self-driving cars).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 27: Case Study 5 - AI in Technology -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 5: AI in Technology - GitHub Copilot</h3>
+                <p>GitHub Copilot, launched in 2021, uses Generative AI to assist developers.</p>
+                <p><strong>Details:</strong> Copilot, powered by OpenAI’s Codex, generates code snippets based on comments or partial code. For example, writing <em>“# Function to calculate Fibonacci sequence”</em> prompts Copilot to generate the full function.</p>
+                <p><strong>Impact:</strong> Developers reported a 30% increase in productivity, as Copilot automated repetitive coding tasks.</p>
+            </div>
+        </div>
+
+        <!-- Slide 28: Benefits of Generative AI -->
+        <div class="slide">
+            <h3>Benefits of Generative AI</h3>
+            <ul>
+                <li><strong>Creativity:</strong> Inspires new ideas for artists, writers, and designers.</li>
+                <li><strong>Efficiency:</strong> Automates time-consuming tasks like writing or designing.</li>
+                <li><strong>Accessibility:</strong> Makes creative tools available to non-experts.</li>
+                <li><strong>Scalability:</strong> Generates large volumes of content quickly (e.g., personalized ads).</li>
+                <li><strong>Innovation:</strong> Drives advancements in fields like healthcare and technology.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 29: Challenges of Generative AI -->
+        <div class="slide">
+            <h3>Challenges of Generative AI</h3>
+            <ul>
+                <li><strong>Quality:</strong> Outputs can be inconsistent or nonsensical.</li>
+                <li><strong>Bias:</strong> Models may reflect biases in training data (e.g., gender stereotypes).</li>
+                <li><strong>Ethics:</strong> Risk of misuse, such as creating deepfakes or misinformation.</li>
+                <li><strong>Computational Cost:</strong> Training requires significant resources (e.g., GPUs, energy).</li>
+                <li><strong>Legal Issues:</strong> Copyright concerns with AI-generated content.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 30: Ethical Concerns - Deepfakes -->
+        <div class="slide">
+            <h3>Ethical Concerns: Deepfakes</h3>
+            <p>Deepfakes are AI-generated videos or images that depict fake events:</p>
+            <ul>
+                <li><strong>Example:</strong> A deepfake video might show a politician giving a false speech.</li>
+                <li><strong>Impact:</strong> Can spread misinformation, damage reputations, or influence elections.</li>
+                <li><strong>Mitigation:</strong> Researchers are developing detection tools to identify deepfakes.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 31: Ethical Concerns - Bias -->
+        <div class="slide">
+            <h3>Ethical Concerns: Bias</h3>
+            <p>Generative AI can perpetuate biases present in its training data:</p>
+            <ul>
+                <li><strong>Example:</strong> An AI trained on biased datasets might generate stereotypical content (e.g., portraying engineers as male).</li>
+                <li><strong>Impact:</strong> Reinforces societal biases and inequalities.</li>
+                <li><strong>Mitigation:</strong> Use diverse datasets and implement fairness checks.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 32: Future of Generative AI -->
+        <div class="slide">
+            <h3>Future of Generative AI</h3>
+            <p>The field is evolving rapidly:</p>
+            <ul>
+                <li><strong>Multimodal AI:</strong> Models that generate text, images, and audio together.</li>
+                <li><strong>Personalization:</strong> More tailored content for individual users.</li>
+                <li><strong>Ethics and Regulation:</strong> Increased focus on responsible AI development.</li>
+                <li><strong>Accessibility:</strong> Tools becoming more user-friendly for non-experts.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 33: Break Reminder -->
+        <div class="slide">
+            <h2>Break Time (15 Minutes)</h2>
+            <p>We’ll take a 15-minute break now. Come back at 11:15 AM for our next topic: Introduction to NLP!</p>
+        </div>
+
+        <!-- Section 2: Introduction to NLP (Slides 34-79) -->
+        <div class="slide">
+            <h2>Part 2: Introduction to NLP: Concepts and Applications</h2>
+            <p>Now, let’s explore Natural Language Processing (NLP), a critical area of AI that enables computers to understand and generate human language.</p>
+        </div>
+
+        <!-- Slide 35: Definition of NLP -->
+        <div class="slide">
+            <h3>Definition of NLP</h3>
+            <p><span class="highlight">Natural Language Processing (NLP)</span> is a branch of AI that focuses on the interaction between computers and human language. It enables machines to:</p>
+            <ul>
+                <li>Understand spoken or written language.</li>
+                <li>Generate human-like responses.</li>
+                <li>Perform tasks like translation, summarization, and sentiment analysis.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 36: Goals of NLP -->
+        <div class="slide">
+            <h3>Goals of NLP</h3>
+            <p>NLP aims to:</p>
+            <ul>
+                <li><strong>Understand Language:</strong> Interpret meaning, context, and intent.</li>
+                <li><strong>Generate Language:</strong> Produce coherent and natural responses.</li>
+                <li><strong>Bridge Communication:</strong> Enable seamless human-computer interaction.</li>
+                <li><strong>Automate Tasks:</strong> Handle language-related tasks like translation or summarization.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 37: History of NLP - Early Beginnings -->
+        <div class="slide">
+            <h3>History of NLP: Early Beginnings</h3>
+            <p>NLP has roots in the mid-20th century:</p>
+            <ul>
+                <li><strong>1950:</strong> Alan Turing’s “Turing Test” proposed evaluating a machine’s ability to mimic human conversation.</li>
+                <li><strong>1954:</strong> The Georgetown-IBM experiment translated 60 Russian sentences into English using rule-based methods.</li>
+                <li><strong>1966:</strong> ELIZA, an early chatbot, simulated a therapist using simple pattern matching.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 38: History of NLP - Evolution -->
+        <div class="slide">
+            <h3>History of NLP: Evolution</h3>
+            <p>NLP evolved with advances in computing:</p>
+            <ul>
+                <li><strong>1980s:</strong> Statistical methods emerged, using probabilities to process language.</li>
+                <li><strong>1990s:</strong> Machine learning techniques improved NLP tasks like speech recognition.</li>
+                <li><strong>2010s:</strong> Deep learning and neural networks (e.g., RNNs, Transformers) revolutionized NLP.</li>
+                <li><strong>2020s:</strong> Large-scale models like BERT and GPT-3 achieved near-human performance.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 39: Core Components of NLP -->
+        <div class="slide">
+            <h3>Core Components of NLP</h3>
+            <p>NLP involves several key components:</p>
+            <ul>
+                <li><strong>Syntax:</strong> Analyzes sentence structure (e.g., grammar, parsing).</li>
+                <li><strong>Semantics:</strong> Understands meaning (e.g., word relationships).</li>
+                <li><strong>Pragmatics:</strong> Interprets context and intent (e.g., sarcasm, idioms).</li>
+                <li><strong>Phonetics:</strong> Processes spoken language (e.g., speech recognition).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 40: NLP Pipeline -->
+        <div class="slide">
+            <h3>NLP Pipeline</h3>
+            <p>NLP systems follow a pipeline to process language:</p>
+            <ul>
+                <li><strong>Tokenization:</strong> Splits text into words or phrases.</li>
+                <li><strong>Part-of-Speech Tagging:</strong> Labels words as nouns, verbs, etc.</li>
+                <li><strong>Named Entity Recognition (NER):</strong> Identifies entities like names or locations.</li>
+                <li><strong>Dependency Parsing:</strong> Analyzes grammatical relationships.</li>
+                <li><strong>Semantic Analysis:</strong> Interprets meaning and context.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 41: Example 1 - Tokenization -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 1: Tokenization</h3>
+                <p><strong>Input:</strong> “I love learning about AI in New York.”</p>
+                <p><strong>Output:</strong> “I” | “love” | “learning” | “about” | “AI” | “in” | “New” | “York”</p>
+                <p>Tokenization breaks the sentence into manageable units for further processing.</p>
+            </div>
+        </div>
+
+        <!-- Slide 42: Example 2 - Part-of-Speech Tagging -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 2: Part-of-Speech Tagging</h3>
+                <p><strong>Input:</strong> “I love learning about AI.”</p>
+                <p><strong>Output:</strong> I (pronoun) | love (verb) | learning (verb) | about (preposition) | AI (noun)</p>
+                <p>This helps the system understand the grammatical role of each word.</p>
+            </div>
+        </div>
+
+        <!-- Slide 43: Example 3 - Named Entity Recognition -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 3: Named Entity Recognition (NER)</h3>
+                <p><strong>Input:</strong> “Elon Musk visited Tokyo last week.”</p>
+                <p><strong>Output:</strong> Elon Musk (Person) | Tokyo (Location) | last week (Time)</p>
+                <p>NER identifies key entities, useful for tasks like information extraction.</p>
+            </div>
+        </div>
+
+        <!-- Slide 44: Example 4 - Sentiment Analysis -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 4: Sentiment Analysis</h3>
+                <p><strong>Input:</strong> “This product is fantastic, but the delivery was slow.”</p>
+                <p><strong>Output:</strong> Positive (fantastic) | Negative (slow) | Overall: Mixed</p>
+                <p>Sentiment analysis helps businesses understand customer feedback.</p>
+            </div>
+        </div>
+
+        <!-- Slide 45: Example 5 - Machine Translation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 5: Machine Translation</h3>
+                <p><strong>Input:</strong> “Je t’aime.” (French)</p>
+                <p><strong>Output:</strong> “I love you.” (English)</p>
+                <p>Translation systems use parallel corpora (e.g., French-English sentence pairs) to learn mappings between languages.</p>
+            </div>
+        </div>
+
+        <!-- Slide 46: Example 6 - Text Summarization -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example 6: Text Summarization</h3>
+                <p><strong>Input:</strong> “A new study shows that regular exercise improves mental health. Researchers found that 30 minutes of daily activity reduces stress and anxiety. The study was conducted over six months with 500 participants.”</p>
+                <p><strong>Output:</strong> A study found that 30 minutes of daily exercise reduces stress and anxiety, improving mental health, based on a six-month study with 500 participants.</p>
+                <p>Summarization extracts key points, useful for news digests or research abstracts.</p>
+            </div>
+        </div>
+
+        <!-- Slide 47: Applications of NLP - Overview -->
+        <div class="slide">
+            <h3>Applications of NLP: Overview</h3>
+            <p>NLP is used across industries:</p>
+            <ul>
+                <li>Customer service</li>
+                <li>Healthcare</li>
+                <li>E-commerce</li>
+                <li>Social media</li>
+                <li>Education</li>
+                <li>Legal and finance</li>
+            </ul>
+        </div>
+
+        <!-- Slide 48: Application 1 - Customer Service -->
+        <div class="slide">
+            <h3>Application 1: Customer Service</h3>
+            <p>NLP powers customer service tools:</p>
+            <ul>
+                <li><strong>Chatbots:</strong> Answer FAQs or resolve issues (e.g., “Track my order”).</li>
+                <li><strong>Voice Assistants:</strong> Handle requests via speech (e.g., “Call customer support”).</li>
+                <li><strong>Email Automation:</strong> Classifies and responds to customer emails.</li>
+                <li><strong>Sentiment Analysis:</strong> Gauges customer satisfaction from feedback.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 49: Case Study 6 - NLP in Customer Service -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 6: NLP in Customer Service - Zendesk</h3>
+                <p>Zendesk uses NLP to power its customer service chatbots.</p>
+                <p><strong>Details:</strong> In 2024, a retail company implemented Zendesk’s chatbot to handle order inquiries. The chatbot understood queries like <em>“Where’s my package?”</em> and responded with tracking details.</p>
+                <p><strong>Impact:</strong> Reduced customer wait times by 40% and handled 80% of inquiries without human intervention.</p>
+            </div>
+        </div>
+
+        <!-- Slide 50: Application 2 - Healthcare -->
+        <div class="slide">
+            <h3>Application 2: Healthcare</h3>
+            <p>NLP supports healthcare professionals:</p>
+            <ul>
+                <li><strong>Clinical Documentation:</strong> Extracts information from doctor’s notes.</li>
+                <li><strong>Patient Support:</strong> Powers chatbots for mental health or telemedicine.</li>
+                <li><strong>Research:</strong> Analyzes medical literature for insights.</li>
+                <li><strong>Diagnosis:</strong> Identifies patterns in patient data (e.g., symptoms).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 51: Case Study 7 - NLP in Healthcare -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 7: NLP in Healthcare - IBM Watson</h3>
+                <p>IBM Watson uses NLP to analyze unstructured medical data.</p>
+                <p><strong>Details:</strong> In 2023, a hospital used Watson to process doctor’s notes and identify patterns in symptoms, such as <em>“persistent cough, fever,”</em> flagging a flu outbreak.</p>
+                <p><strong>Impact:</strong> Early detection reduced hospital admissions by 15% during flu season.</p>
+            </div>
+        </div>
+
+        <!-- Slide 52: Application 3 - E-commerce -->
+        <div class="slide">
+            <h3>Application 3: E-commerce</h3>
+            <p>NLP enhances online shopping experiences:</p>
+            <ul>
+                <li><strong>Search:</strong> Understands natural language queries (e.g., “red running shoes”).</li>
+                <li><strong>Recommendations:</strong> Analyzes reviews for personalized suggestions.</li>
+                <li><strong>Review Analysis:</strong> Detects fake reviews or summarizes feedback.</li>
+                <li><strong>Chatbots:</strong> Assists with product inquiries or returns.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 53: Case Study 8 - NLP in E-commerce -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 8: NLP in E-commerce - Amazon</h3>
+                <p>Amazon uses NLP to improve product recommendations.</p>
+                <p><strong>Details:</strong> In 2024, Amazon’s NLP system analyzed reviews for a fitness tracker, identifying sentiments like <em>“great for running”</em> (positive) and <em>“battery life is short”</em> (negative).</p>
+                <p><strong>Impact:</strong> The system recommended the tracker to runners while suggesting alternatives with better battery life, increasing sales by 10%.</p>
+            </div>
+        </div>
+
+        <!-- Slide 54: Application 4 - Social Media -->
+        <div class="slide">
+            <h3>Application 4: Social Media</h3>
+            <p>NLP helps social media platforms:</p>
+            <ul>
+                <li><strong>Content Moderation:</strong> Detects hate speech, misinformation, or spam.</li>
+                <li><strong>Trend Analysis:</strong> Identifies popular topics or hashtags.</li>
+                <li><strong>Sentiment Analysis:</strong> Gauges public opinion on events or brands.</li>
+                <li><strong>Ad Targeting:</strong> Personalizes ads based on user posts.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 55: Case Study 9 - NLP in Social Media -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 9: NLP in Social Media - Twitter (Now X)</h3>
+                <p>In 2024, X used NLP to detect hate speech in posts.</p>
+                <p><strong>Details:</strong> The system analyzed posts like <em>“This group doesn’t belong here!”</em> and flagged them as potential hate speech based on keywords and sentiment.</p>
+                <p><strong>Impact:</strong> Reduced harmful content by 25% on the platform.</p>
+            </div>
+        </div>
+
+        <!-- Slide 56: Application 5 - Education -->
+        <div class="slide">
+            <h3>Application 5: Education</h3>
+            <p>NLP enhances educational tools:</p>
+            <ul>
+                <li><strong>Automated Grading:</strong> Evaluates essays or short answers.</li>
+                <li><strong>Language Learning:</strong> Powers interactive language apps.</li>
+                <li><strong>Content Summarization:</strong> Summarizes lectures or textbooks.</li>
+                <li><strong>Chatbots:</strong> Answers student questions (e.g., “Explain photosynthesis”).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 57: Case Study 10 - NLP in Education -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 10: NLP in Education - Grammarly</h3>
+                <p>Grammarly uses NLP to assist with writing.</p>
+                <p><strong>Details:</strong> In 2024, Grammarly enhanced its platform to provide detailed feedback on student essays, identifying grammar errors, tone, and clarity issues.</p>
+                <p><strong>Impact:</strong> Improved student writing skills, with 85% of users reporting better grades on written assignments.</p>
+            </div>
+        </div>
+
+        <!-- Slide 58: Application 6 - Legal and Finance -->
+        <div class="slide">
+            <h3>Application 6: Legal and Finance</h3>
+            <p>NLP is used in legal and financial sectors:</p>
+            <ul>
+                <li><strong>Contract Analysis:</strong> Extracts key clauses or identifies risks.</li>
+                <li><strong>Fraud Detection:</strong> Analyzes transaction descriptions for suspicious patterns.</li>
+                <li><strong>Regulatory Compliance:</strong> Monitors communications for compliance.</li>
+                <li><strong>Customer Support:</strong> Automates responses to client inquiries.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 59: Case Study 11 - NLP in Legal -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 11: NLP in Legal - Kira Systems</h3>
+                <p>Kira Systems uses NLP to analyze legal contracts.</p>
+                <p><strong>Details:</strong> In 2023, a law firm used Kira to review 1,000 contracts, extracting clauses related to liability and payment terms.</p>
+                <p><strong>Impact:</strong> Reduced review time by 60%, allowing lawyers to focus on higher-value tasks.</p>
+            </div>
+        </div>
+
+        <!-- Slide 60: Challenges in NLP - Ambiguity -->
+        <div class="slide">
+            <h3>Challenges in NLP: Ambiguity</h3>
+            <p>Human language is inherently ambiguous:</p>
+            <ul>
+                <li><strong>Lexical Ambiguity:</strong> “Bark” (dog sound or tree covering?).</li>
+                <li><strong>Syntactic Ambiguity:</strong> “I saw the man with a telescope.” (Who has the telescope?).</li>
+                <li><strong>Semantic Ambiguity:</strong> “The chicken is ready to eat.” (To be eaten or to eat something?).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 61: Challenges in NLP - Context -->
+        <div class="slide">
+            <h3>Challenges in NLP: Context</h3>
+            <p>NLP systems struggle with context:</p>
+            <ul>
+                <li><strong>Anaphora Resolution:</strong> “John bought a car. He loves it.” (Who is “he”? What is “it”?).</li>
+                <li><strong>Cultural Context:</strong> Idioms like “kick the bucket” (meaning to die) may confuse AI.</li>
+                <li><strong>Conversational Context:</strong> Maintaining coherence in multi-turn dialogues.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 62: Challenges in NLP - Sarcasm and Tone -->
+        <div class="slide">
+            <h3>Challenges in NLP: Sarcasm and Tone</h3>
+            <p>Detecting sarcasm and tone is difficult:</p>
+            <ul>
+                <li><strong>Example:</strong> “Oh great, another meeting!” (May be sarcastic).</li>
+                <li><strong>Problem:</strong> NLP systems lack vocal cues or facial expressions to detect tone.</li>
+                <li><strong>Solution:</strong> Advanced models use context or sentiment analysis to infer tone.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 63: Challenges in NLP - Multilingualism -->
+        <div class="slide">
+            <h3>Challenges in NLP: Multilingualism</h3>
+            <p>Handling multiple languages is complex:</p>
+            <ul>
+                <li><strong>Low-Resource Languages:</strong> Limited data for languages like Swahili or Quechua.</li>
+                <li><strong>Script Variations:</strong> Different scripts (e.g., Arabic, Chinese) require specialized processing.</li>
+                <li><strong>Code-Switching:</strong> Users mixing languages (e.g., “I love this comida so much!”).</li>
+            </ul>
+        </div>
+
+        <!-- Slide 64: Benefits of NLP -->
+        <div class="slide">
+            <h3>Benefits of NLP</h3>
+            <ul>
+                <li><strong>Efficiency:</strong> Automates language-related tasks (e.g., answering queries).</li>
+                <li><strong>Accessibility:</strong> Enables voice commands for people with disabilities.</li>
+                <li><strong>Insights:</strong> Extracts valuable information from text (e.g., customer feedback).</li>
+                <li><strong>Globalization:</strong> Facilitates communication across languages.</li>
+                <li><strong>Innovation:</strong> Drives advancements in AI applications.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 65: Future of NLP -->
+        <div class="slide">
+            <h3>Future of NLP</h3>
+            <p>NLP is poised for significant advancements:</p>
+            <ul>
+                <li><strong>Contextual Understanding:</strong> Better handling of sarcasm, idioms, and context.</li>
+                <li><strong>Multilingual Models:</strong> Support for more languages, including low-resource ones.</li>
+                <li><strong>Real-Time Processing:</strong> Faster speech recognition and translation.</li>
+                <li><strong>Ethics:</strong> Focus on reducing bias and ensuring fairness in NLP systems.</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Wrap-Up (Slides 80-82) -->
+        <div class="slide">
+            <h2>Part 3: Wrap-Up</h2>
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li>Generative AI creates new content by learning patterns from data, with a history dating back to the 1950s.</li>
+                <li>NLP enables computers to understand and generate human language, evolving from rule-based systems to deep learning models.</li>
+                <li>Both technologies have wide applications but face challenges like bias, ambiguity, and ethical concerns.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 81: Homework Assignment -->
+        <div class="slide">
+            <h3>Homework Assignment (Due Next Week)</h3>
+            <p><strong>Assignment:</strong> Write a 1-paragraph reflection on an AI tool you’ve used (e.g., Siri, Google Translate). Describe what it does and how it might use Generative AI or NLP.</p>
+            <p><strong>Due Date:</strong> June 2, 2025 (next session).</p>
+        </div>
+
+        <!-- Slide 82: Final Thoughts -->
+        <div class="slide">
+            <h3>Final Thoughts</h3>
+            <p>Today, we’ve explored the fundamentals of Generative AI and NLP, from their history to their modern applications. Next week, we’ll dive deeper into how machines process language and explore practical activities. Great job, everyone!</p>
+        </div>
+    </div>
+</body>
+</html>
