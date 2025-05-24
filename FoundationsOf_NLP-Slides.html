@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2: Foundations of NLP and How Machines Understand Language</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slide {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+        }
+        .slide h1, .slide h2, .slide h3 {
+            color: #4A00E0;
+            margin-bottom: 20px;
+        }
+        .slide h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .slide h2 {
+            font-size: 28px;
+            border-bottom: 2px solid #4A00E0;
+            padding-bottom: 10px;
+        }
+        .slide h3 {
+            font-size: 22px;
+            color: #8E2DE2;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .slide ul, .slide ol {
+            padding-left: 30px;
+        }
+        .example-box, .case-study-box {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-left: 5px solid #4A00E0;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .case-study-box {
+            background-color: #fff5e6;
+            border-left: 5px solid #FF8C00;
+        }
+        .highlight {
+            color: #ff4b5c;
+            font-weight: bold;
+        }
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide">
+            <h1>Week 2: Foundations of NLP and How Machines Understand Language</h1>
+            <p style="text-align: center; font-size: 20px;">Instructor: Wajdi Zaghouani</p>
+        </div>
+
+        <!-- Slide 2: Welcome -->
+        <div class="slide">
+            <h2>Welcome to Week 2!</h2>
+            <p>In our previous session, we explored the basics of Generative AI and Natural Language Processing (NLP), including what they are, their applications, and some introductory examples like tokenization and sentiment analysis. We learned that NLP is a field of AI focused on enabling computers to understand and generate human language, and we saw how it powers tools like chatbots and translation systems.</p>
+            <p>Today, we’ll dive deeper into the technical foundations of NLP, examining the core processes and techniques that allow machines to process human language systematically. We’ll also explore how machines convert text into numerical forms and extract meaning, enabling them to understand language in a way that mimics human comprehension. This session will focus on the building blocks of NLP, such as stemming, lemmatization, and parsing, and then move into advanced concepts like word embeddings and contextual understanding.</p>
+        </div>
+
+        <!-- Slide 3: Learning Objectives -->
+        <div class="slide">
+            <h2>Learning Objectives</h2>
+            <p>By the end of this session, you will be able to:</p>
+            <ul>
+                <li>Understand the core processes and techniques in NLP, such as stemming, lemmatization, and syntactic parsing, and explain how they contribute to language processing.</li>
+                <li>Explore how machines convert text into numerical representations using methods like word embeddings, and why this is essential for NLP tasks.</li>
+                <li>Learn how machines interpret meaning through semantic analysis (e.g., word sense disambiguation) and pragmatic analysis (e.g., intent detection), which allow them to understand context and user goals.</li>
+                <li>Examine advanced NLP models like BERT and ELMo, and understand their role in achieving deeper language understanding through contextual embeddings.</li>
+            </ul>
+            <p class="note">Note: This session will be a deep dive into the technical aspects of NLP, but we’ll keep explanations beginner-friendly.</p>
+        </div>
+
+        <!-- Section 1: Foundations of NLP (Slides 4-32) -->
+        <div class="slide">
+            <h2>Part 1: Foundations of NLP: Core Processes and Techniques</h2>
+            <p>We’ll begin by exploring the foundational techniques that enable NLP systems to process human language. These techniques form the backbone of any NLP system, allowing raw text to be cleaned, structured, and analyzed in a way that machines can work with. We’ll build on the basic concepts introduced last week, such as tokenization, and dive into more advanced processes like stemming, lemmatization, and syntactic parsing.</p>
+            <p>Understanding these processes is crucial because they prepare text for higher-level tasks like translation, sentiment analysis, or chatbot responses. Each step in the NLP pipeline addresses specific challenges in language processing, such as variability in word forms, grammatical structure, and the need to identify key entities in text.</p>
+        </div>
+
+        <!-- Slide 5: Review of the NLP Pipeline -->
+        <div class="slide">
+            <h3>Review: The NLP Pipeline</h3>
+            <p>NLP systems process language in a series of stages, often referred to as the NLP pipeline. This pipeline ensures that raw text, which is unstructured and messy, is transformed into a structured format that machines can analyze. The main stages include:</p>
+            <ul>
+                <li><strong>Text Preprocessing:</strong> Cleaning and preparing text by removing noise, such as punctuation or irrelevant words, to make it easier to analyze. This step often includes tasks like lowercasing and removing stop words.</li>
+                <li><strong>Tokenization:</strong> Breaking text into smaller units, such as words or phrases, which serve as the building blocks for further analysis.</li>
+                <li><strong>Syntactic Analysis:</strong> Understanding the grammatical structure of sentences, such as identifying nouns, verbs, and their relationships.</li>
+                <li><strong>Semantic Analysis:</strong> Extracting the meaning of words and sentences, such as understanding that “big” and “large” are similar.</li>
+                <li><strong>Pragmatic Analysis:</strong> Interpreting the context and intent behind the language, such as determining whether a user is asking a question or making a statement.</li>
+            </ul>
+            <p>Each stage builds on the previous one, creating a structured representation of language that machines can use for various tasks. Today, we’ll focus on the deeper techniques within these stages, such as how to handle word variations and parse sentence structures.</p>
+        </div>
+
+        <!-- Slide 6: Text Preprocessing - Normalization -->
+        <div class="slide">
+            <h3>Text Preprocessing: Normalization</h3>
+            <p>Normalization is a critical step in text preprocessing that standardizes text to ensure consistency across the dataset. Human language is often inconsistent—people use different cases, contractions, and symbols, which can confuse NLP systems. Normalization addresses these inconsistencies by applying a set of rules to clean the text.</p>
+            <ul>
+                <li><strong>Lowercasing:</strong> Converts all characters to lowercase to avoid treating “Hello” and “hello” as different words. For example, “The CAT” becomes “the cat,” ensuring uniformity.</li>
+                <li><strong>Removing Special Characters:</strong> Strips out punctuation marks (e.g., commas, exclamation points), emojis, and other symbols that don’t contribute to meaning. For instance, “Hello!!!” becomes “Hello.”</li>
+                <li><strong>Handling Contractions:</strong> Expands shortened forms like “don’t” to “do not” or “I’m” to “I am.” This helps standardize text for analysis, as contractions can vary (e.g., “dont” without an apostrophe).</li>
+                <li><strong>Removing Stop Words:</strong> Eliminates common words like “the,” “is,” and “and” that appear frequently but often add little semantic value. For example, in the sentence “The dog is running,” removing stop words leaves “dog running.”</li>
+            </ul>
+            <p>Normalization reduces variability in text, making it easier for NLP models to focus on meaningful content. However, it must be applied carefully—over-normalization can remove important context, such as when stop words are part of a meaningful phrase like “to be or not to be.”</p>
+        </div>
+
+        <!-- Slide 7: Example - Normalization -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Normalization</h3>
+                <p><strong>Input:</strong> “I LOVE coding! Don’t you? 😊 Let’s do it!”</p>
+                <p><strong>Output:</strong> “i love coding do not you lets do it”</p>
+                <p><strong>Explanation:</strong> Let’s break down the normalization process step by step:</p>
+                <ul>
+                    <li><strong>Lowercasing:</strong> “I LOVE” becomes “i love,” ensuring that the same word in different cases is treated identically.</li>
+                    <li><strong>Removing Special Characters:</strong> The exclamation points, question mark, and emoji (😊) are removed, as they don’t contribute to the core meaning for most NLP tasks.</li>
+                    <li><strong>Handling Contractions:</strong> “Don’t” is expanded to “do not,” and “Let’s” to “lets,” standardizing the text (though “lets” might need further correction to “let us” in some systems).</li>
+                    <li><strong>Stop Words:</strong> In this example, stop words like “you” could be removed in some contexts, but here we retain them to preserve meaning for the example.</li>
+                </ul>
+                <p>Normalization ensures that the text is consistent, which is essential for tasks like text classification or clustering, where variations in case or punctuation could lead to incorrect groupings. However, it’s worth noting that some tasks, like sentiment analysis, might benefit from retaining punctuation (e.g., “!” can indicate excitement).</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Stemming -->
+        <div class="slide">
+            <h3>Stemming</h3>
+            <p><span class="highlight">Stemming</span> is a text preprocessing technique that reduces words to their root or base form by removing suffixes. The goal is to treat different forms of the same word as a single entity, which simplifies text analysis and reduces the vocabulary size for NLP models.</p>
+            <ul>
+                <li><strong>Purpose:</strong> Stemming helps group variations of a word together. For example, “running,” “runner,” and “ran” are all derived from the root “run.” By stemming them to “run,” the model can treat them as the same concept, which is useful for tasks like search engines or topic modeling.</li>
+                <li><strong>Algorithms:</strong> Common stemming algorithms include the Porter Stemmer (one of the oldest and most widely used), the Snowball Stemmer (an improved version of Porter, also known as Porter2), and the Lancaster Stemmer (more aggressive but less accurate). These algorithms apply rules to strip suffixes like “-ing,” “-s,” or “-ed.”</li>
+                <li><strong>Limitation:</strong> Stemming can be overly aggressive, leading to incorrect roots. For example, “university” might be stemmed to “univers,” which isn’t a valid word, or “news” might become “new,” changing the meaning. Additionally, stemming doesn’t consider the grammatical context, so it might not always produce meaningful results.</li>
+                <li><strong>Applications:</strong> Stemming is often used in information retrieval systems, such as search engines, where matching “run,” “running,” and “runner” to the same root improves search accuracy. It’s also used in text mining to reduce dimensionality in datasets.</li>
+            </ul>
+            <p>Stemming is a fast and simple technique, but its lack of linguistic accuracy can sometimes lead to errors, which is why more advanced methods like lemmatization are often preferred for tasks requiring precise meaning.</p>
+        </div>
+
+        <!-- Slide 9: Example - Stemming -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Stemming</h3>
+                <p><strong>Input:</strong> “running,” “runners,” “ran,” “organization,” “organizing”</p>
+                <p><strong>Output (Porter Stemmer):</strong> “run,” “runner,” “ran,” “organ,” “organ”</p>
+                <p><strong>Explanation:</strong> Let’s analyze how the Porter Stemmer processes these words:</p>
+                <ul>
+                    <li>“running” → “run”: The suffix “-ing” is removed, leaving the root “run.” This correctly identifies the base form of the verb.</li>
+                    <li>“runners” → “runner”: The plural “-s” is removed, but the Stemmer doesn’t go further to reduce “runner” to “run,” showing a limitation in handling complex suffixes.</li>
+                    <li>“ran” → “ran”: As an irregular past tense, “ran” remains unchanged, since stemming focuses on suffix removal and doesn’t account for irregular forms.</li>
+                    <li>“organization” and “organizing” → “organ”: Both words are reduced to “organ” by removing “-ization” and “-izing,” demonstrating how stemming groups related words but may lose specificity (e.g., “organ” could also refer to a body part).</li>
+                </ul>
+                <p>Stemming simplifies text by reducing word variations, which can improve the efficiency of NLP models by lowering the number of unique words they need to process. However, the resulting stems, like “organ,” may not always be meaningful words, and the process doesn’t account for grammatical roles (e.g., “runner” as a noun vs. “running” as a verb).</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Lemmatization -->
+        <div class="slide">
+            <h3>Lemmatization</h3>
+            <p><span class="highlight">Lemmatization</span> is a more advanced text preprocessing technique that reduces words to their base or dictionary form, known as the lemma. Unlike stemming, which simply chops off suffixes, lemmatization uses linguistic knowledge to ensure the resulting word is a valid, meaningful form.</p>
+            <ul>
+                <li><strong>Purpose:</strong> Lemmatization aims to produce accurate base forms of words, preserving their meaning. For example, “better” is lemmatized to “good,” and “geese” to “goose.” This ensures that different forms of a word are treated as the same concept while maintaining linguistic correctness.</li>
+                <li><strong>Requires:</strong> Lemmatization often relies on part-of-speech (POS) tagging to understand the word’s grammatical role. For instance, “saw” as a verb lemmatizes to “see,” but “saw” as a noun (a tool) remains “saw.” This context-awareness makes lemmatization more precise than stemming.</li>
+                <li><strong>Tools:</strong> The WordNet Lemmatizer, commonly used with the NLTK library in Python, leverages the WordNet lexical database to map words to their lemmas. Other tools include spaCy’s lemmatizer, which also incorporates POS tagging for accuracy.</li>
+                <li><strong>Applications:</strong> Lemmatization is used in tasks requiring precise meaning, such as chatbots (where understanding “better” as “good” improves responses) or machine translation (where accurate word forms are critical).</li>
+            </ul>
+            <p>Lemmatization is slower than stemming because it requires linguistic resources and POS tagging, but it produces more accurate and meaningful results, making it ideal for applications where understanding the exact meaning of words is important. For example, in a customer service chatbot, lemmatizing “complaining” to “complain” ensures the system recognizes the user’s intent more accurately.</p>
+        </div>
+
+        <!-- Slide 11: Example - Lemmatization -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Lemmatization</h3>
+                <p><strong>Input:</strong> “running,” “better,” “geese,” “studies,” “is”</p>
+                <p><strong>Output (WordNet Lemmatizer):</strong> “run,” “good,” “goose,” “study,” “be”</p>
+                <p><strong>Explanation:</strong> Let’s break down how lemmatization works for each word:</p>
+                <ul>
+                    <li>“running” → “run”: Identified as a verb (via POS tagging), “running” is reduced to its base form “run,” which is the infinitive form of the verb.</li>
+                    <li>“better” → “good”: Recognized as the comparative form of the adjective “good,” lemmatization correctly maps it to “good,” preserving the semantic meaning.</li>
+                    <li>“geese” → “goose”: Identified as the plural form of the noun “goose,” lemmatization converts it to the singular form, which is more appropriate for analysis.</li>
+                    <li>“studies” → “study”: As a plural noun or verb form, it’s lemmatized to “study,” ensuring both “study” and “studies” are treated as the same concept.</li>
+                    <li>“is” → “be”: Recognized as a form of the verb “to be,” lemmatization maps it to the infinitive “be,” grouping all forms like “is,” “are,” and “was” together.</li>
+                </ul>
+                <p>Lemmatization ensures that the output is a valid word, unlike stemming, which might produce something like “studi” for “studies.” This accuracy is crucial for tasks where meaning matters, such as understanding user queries in a search engine or chatbot. However, lemmatization requires more computational resources due to its reliance on dictionaries and POS tagging.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Stemming vs. Lemmatization -->
+        <div class="slide">
+            <h3>Stemming vs. Lemmatization</h3>
+            <p>While both stemming and lemmatization reduce words to a base form, they differ in their approach, accuracy, and use cases. Understanding their differences helps us choose the right technique for a given NLP task.</p>
+            <ul>
+                <li><strong>Stemming:</strong> Stemming is a faster, rule-based process that applies heuristic rules to remove suffixes, such as “-ing” or “-ed.” For example, “studies” becomes “studi,” and “playing” becomes “play.” However, the resulting stem may not be a real word (e.g., “studi”), and stemming doesn’t consider the word’s grammatical role, leading to potential errors.</li>
+                <li><strong>Lemmatization:</strong> Lemmatization is slower but more accurate, as it uses a dictionary and POS tagging to reduce words to their lemma. For example, “studies” becomes “study,” and “better” becomes “good.” This ensures the output is a valid word and preserves meaning, making it suitable for tasks requiring linguistic accuracy.</li>
+                <li><strong>Use Case:</strong> Stemming is often used in search engines, where speed is critical, and slight inaccuracies are acceptable (e.g., matching “running” and “run” in search results). Lemmatization is preferred for chatbots or question-answering systems, where understanding the exact meaning of words (e.g., “better” as “good”) improves response quality.</li>
+                <li><strong>Trade-offs:</strong> Stemming is computationally lighter but less precise, while lemmatization is more resource-intensive due to its reliance on linguistic resources. For example, lemmatizing a large dataset might take longer, but the results will be more reliable for tasks like sentiment analysis or translation.</li>
+            </ul>
+            <p>Choosing between stemming and lemmatization depends on the task’s requirements for speed, accuracy, and meaning preservation. In practice, many NLP systems use a combination of both, depending on the stage of processing and the specific application.</p>
+        </div>
+
+        <!-- Slide 13: Part-of-Speech (POS) Tagging - Deep Dive -->
+        <div class="slide">
+            <h3>Part-of-Speech (POS) Tagging: Deep Dive</h3>
+            <p>Part-of-Speech (POS) tagging is a fundamental NLP task that assigns grammatical categories to each word in a sentence, such as noun, verb, adjective, or adverb. This process is essential for understanding the syntactic structure of language and enabling further analysis.</p>
+            <ul>
+                <li><strong>Tags:</strong> Common POS tags include Noun (NN), Verb (VB), Adjective (JJ), Adverb (RB), Determiner (DT), and Preposition (IN). For example, in “The big dog runs,” “The” is a determiner, “big” is an adjective, “dog” is a noun, and “runs” is a verb.</li>
+                <li><strong>Methods:</strong> POS tagging can be performed using rule-based approaches (e.g., the Brill Tagger, which uses hand-crafted rules to assign tags), statistical methods (e.g., Hidden Markov Models, which use probabilities to predict tags based on word sequences), or neural models (e.g., fine-tuned BERT models for higher accuracy).</li>
+                <li><strong>Use:</strong> POS tagging is a prerequisite for many NLP tasks. It aids in lemmatization (e.g., knowing “saw” is a verb to lemmatize it to “see”), syntactic parsing (to understand sentence structure), and even machine translation (to ensure correct grammatical forms in the target language).</li>
+                <li><strong>Challenges:</strong> POS tagging can be tricky due to ambiguity. For example, “book” can be a noun (“I read a book”) or a verb (“I book a flight”). The tagger must use context to decide, which can be challenging in short or ambiguous sentences.</li>
+            </ul>
+            <p>POS tagging provides the grammatical foundation for NLP systems, allowing them to analyze how words function within a sentence. Modern taggers, especially those using neural networks, achieve high accuracy (over 97% on standard datasets like the Penn Treebank), but they still struggle with informal text, slang, or languages with complex grammar.</p>
+        </div>
+
+        <!-- Slide 14: Example - POS Tagging -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: POS Tagging</h3>
+                <p><strong>Input:</strong> “The quick brown fox jumps over a lazy dog.”</p>
+                <p><strong>Output:</strong> The (DT), quick (JJ), brown (JJ), fox (NN), jumps (VBZ), over (IN), a (DT), lazy (JJ), dog (NN)</p>
+                <p><strong>Explanation:</strong> Let’s break down the tags:</p>
+                <ul>
+                    <li>“The” and “a” → DT (Determiner): These words specify the noun they precede, indicating definiteness (“the” dog vs. “a” dog).</li>
+                    <li>“quick,” “brown,” “lazy” → JJ (Adjective): These describe the nouns “fox” and “dog,” providing attributes like speed, color, and behavior.</li>
+                    <li>“fox,” “dog” → NN (Noun): These are the main entities in the sentence, representing objects or beings.</li>
+                    <li>“jumps” → VBZ (Verb, 3rd person singular present): Indicates the action performed by the fox, with the “-s” showing agreement with the singular subject “fox.”</li>
+                    <li>“over” → IN (Preposition): Shows the relationship between “jumps” and “dog,” indicating the direction of the action.</li>
+                </ul>
+                <p>POS tagging helps the system understand the sentence’s structure, which is crucial for tasks like parsing (to build a syntax tree) or translation (to ensure grammatical accuracy in another language). For example, knowing “jumps” is a verb ensures it’s translated correctly into a language with different verb forms for singular and plural subjects.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Syntactic Parsing -->
+        <div class="slide">
+            <h3>Syntactic Parsing</h3>
+            <p><span class="highlight">Syntactic Parsing</span> is the process of analyzing the grammatical structure of a sentence to understand how words are organized and related to each other. This step is critical for machines to interpret the syntax of language, which is the foundation for understanding meaning.</p>
+            <ul>
+                <li><strong>Types:</strong>
+                    <ul>
+                        <li><strong>Constituency Parsing:</strong> Breaks a sentence into constituent phrases, such as noun phrases (NP), verb phrases (VP), and prepositional phrases (PP). For example, in “The cat sleeps,” “The cat” is a noun phrase, and “sleeps” is a verb phrase. This creates a tree-like structure called a parse tree.</li>
+                        <li><strong>Dependency Parsing:</strong> Focuses on the relationships between words, identifying dependencies like subject-verb or verb-object. For example, in “The cat sleeps,” “cat” is the subject of “sleeps.” This creates a directed graph showing word dependencies.</li>
+                    </ul>
+                </li>
+                <li><strong>Purpose:</strong> Syntactic parsing helps machines understand the grammatical hierarchy of a sentence, which is essential for tasks like machine translation (to preserve grammar in the target language) or question answering (to identify the subject and object of a query).</li>
+                <li><strong>Methods:</strong> Early parsers used rule-based approaches, but modern parsers rely on statistical models (e.g., probabilistic context-free grammars) or neural networks (e.g., Transformer-based models like BERT fine-tuned for parsing).</li>
+                <li><strong>Challenges:</strong> Parsing can be difficult in languages with free word order (e.g., Latin, where “The cat sleeps” could be written as “Sleeps cat the”) or in sentences with ambiguity (e.g., “I saw the man with a telescope”—who has the telescope?).</li>
+            </ul>
+            <p>Syntactic parsing provides a structured representation of language, enabling machines to move beyond individual words and understand sentence-level relationships. This is a crucial step before semantic analysis, as the structure of a sentence often determines its meaning.</p>
+        </div>
+
+        <!-- Slide 16: Example - Dependency Parsing -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Dependency Parsing</h3>
+                <p><strong>Input:</strong> “The cat sleeps on the mat quietly.”</p>
+                <p><strong>Output (Simplified Dependency Structure):</strong></p>
+                <ul>
+                    <li>“sleeps” → root verb (the main action of the sentence).</li>
+                    <li>“cat” → subject of “sleeps” (the doer of the action, linked to “sleeps” with a “nsubj” relation).</li>
+                    <li>“mat” → object of preposition “on” (linked to “on” with a “pobj” relation).</li>
+                    <li>“on” → preposition modifying “sleeps” (indicating where the action happens, linked with a “prep” relation).</li>
+                    <li>“quietly” → adverb modifying “sleeps” (describing how the action is performed, linked with an “advmod” relation).</li>
+                    <li>“The” → determiner for “cat” and “mat” (specifying the nouns, linked with a “det” relation).</li>
+                </ul>
+                <p><strong>Explanation:</strong> Dependency parsing creates a graph where each word is a node, and the edges represent grammatical relationships. In this sentence, “sleeps” is the root because it’s the main verb. “The cat” is the subject performing the action, “on the mat” describes the location of the action, and “quietly” describes the manner. This structure helps the machine understand the roles of each word, which is essential for tasks like question answering (e.g., answering “Where does the cat sleep?” with “on the mat”).</p>
+            </div>
+        </div>
+
+        <!-- Slide 17: Named Entity Recognition (NER) - Deep Dive -->
+        <div class="slide">
+            <h3>Named Entity Recognition (NER): Deep Dive</h3>
+            <p><span class="highlight">Named Entity Recognition (NER)</span> is an NLP task that identifies and classifies named entities in text into predefined categories. Named entities are specific objects, people, or concepts that have proper names or identifiers.</p>
+            <ul>
+                <li><strong>Entities:</strong> Common categories include Person (e.g., “Elon Musk”), Organization (e.g., “Google”), Location (e.g., “Tokyo”), Date (e.g., “January 15”), Time, Money, and more specialized ones like Product or Event, depending on the system.</li>
+                <li><strong>Methods:</strong> NER can be performed using:
+                    <ul>
+                        <li><strong>Rule-Based:</strong> Uses patterns and dictionaries (e.g., a list of known company names) to identify entities.</li>
+                        <li><strong>Statistical:</strong> Employs models like Conditional Random Fields (CRFs), which use features like word context and POS tags to predict entities.</li>
+                        <li><strong>Neural:</strong> Modern systems use deep learning models like BERT, fine-tuned for NER, which achieve higher accuracy by leveraging contextual embeddings.</li>
+                    </ul>
+                </li>
+                <li><strong>Challenges:</strong> NER faces issues like ambiguity (e.g., “Washington” could be a person, George Washington, or a location, Washington D.C.), multi-word entities (e.g., “New York City” vs. “New York”), and domain-specific entities (e.g., medical terms like “Aspirin” as a Product).</li>
+                <li><strong>Applications:</strong> NER is used in information extraction (e.g., extracting names from news articles), knowledge graph construction (linking entities like “Apple” to related data), and chatbots (identifying user references to specific places or people).</li>
+            </ul>
+            <p>NER is a critical step in understanding text at a higher level, as it allows machines to identify key pieces of information that can be used for downstream tasks. For example, in a news article, NER can extract the names of people involved in an event, the location where it happened, and the date, enabling automated summarization or indexing.</p>
+        </div>
+
+        <!-- Slide 18: Example - NER -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Named Entity Recognition</h3>
+                <p><strong>Input:</strong> “Apple released a new iPhone in September in Tokyo with Tim Cook present.”</p>
+                <p><strong>Output:</strong> Apple (Organization), iPhone (Product), September (Date), Tokyo (Location), Tim Cook (Person)</p>
+                <p><strong>Explanation:</strong> Let’s break down how NER identifies each entity:</p>
+                <ul>
+                    <li>“Apple” → Organization: Recognized as a company name, likely based on a pre-trained list or contextual clues (e.g., “released” suggests a corporate action).</li>
+                    <li>“iPhone” → Product: Identified as a product, possibly through training data that associates “iPhone” with Apple products.</li>
+                    <li>“September” → Date: Recognized as a month, fitting the Date category, often identified by patterns like month names.</li>
+                    <li>“Tokyo” → Location: Known as a city, identified through a gazetteer (list of place names) or context (e.g., “in” often precedes a location).</li>
+                    <li>“Tim Cook” → Person: Recognized as a person’s name, likely through capitalization patterns and context (e.g., association with “Apple”).</li>
+                </ul>
+                <p>NER enables machines to extract structured information from unstructured text, which is useful for applications like news analysis (to tag articles with relevant entities) or virtual assistants (to understand user requests like “Book a flight to Tokyo”). However, NER might struggle with ambiguous cases, such as “Apple” referring to the fruit in a different context, requiring advanced models to disambiguate.</p>
+            </div>
+        </div>
+
+        <!-- Slide 19: Case Study 1 - NER in News Analysis -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 1: NER in News Analysis - Reuters</h3>
+                <p>Reuters, a global news agency, implemented an NER system to automate the tagging of news articles for better organization and searchability. The goal was to extract key entities from articles to enable faster indexing and retrieval of news content.</p>
+                <p><strong>Details:</strong> In an article stating “Tesla opened a factory in Shanghai with Elon Musk in attendance,” the NER system identified the following entities: Tesla (Organization), Shanghai (Location), and Elon Musk (Person). The system used a BERT-based model fine-tuned on a news dataset, which allowed it to handle multi-word entities like “Elon Musk” and disambiguate “Shanghai” as a location rather than a person’s name.</p>
+                <p><strong>Implementation:</strong> The NER model was integrated into Reuters’ content management system, where it processed thousands of articles daily. It tagged entities and linked them to metadata, enabling journalists to search for articles by entity (e.g., all articles about Tesla). The system also supported automated summarization by extracting key entities for headlines.</p>
+                <p><strong>Impact:</strong> The NER system reduced the time required for manual tagging by 50%, allowing journalists to focus on reporting rather than administrative tasks. It also improved the accuracy of article categorization, making it easier for readers to find relevant news through entity-based searches. This case demonstrates how NER can streamline information processing in high-volume text environments like news agencies.</p>
+            </div>
+        </div>
+
+        <!-- Slide 20: N-Grams and Language Modeling -->
+        <div class="slide">
+            <h3>N-Grams and Language Modeling</h3>
+            <p><span class="highlight">N-Grams</span> are sequences of N consecutive items (usually words) in a text, used to model language and predict word sequences. They are a foundational concept in statistical NLP, helping machines understand and generate language by analyzing patterns of word co-occurrence.</p>
+            <ul>
+                <li><strong>Unigram (N=1):</strong> A single word, such as “the.” Unigrams are the simplest form but don’t capture context, as they treat each word independently.</li>
+                <li><strong>Bigram (N=2):</strong> Two consecutive words, such as “the cat.” Bigrams capture some context by considering word pairs, which is useful for predicting the next word (e.g., “the” is often followed by a noun like “cat”).</li>
+                <li><strong>Trigram (N=3):</strong> Three consecutive words, such as “the cat sleeps.” Trigrams provide more context, improving predictions by considering a longer sequence of words.</li>
+                <li><strong>Use:</strong> N-grams are used in language modeling to predict the next word in a sequence (e.g., in autocomplete features like those in text editors or smartphone keyboards). They’re also used in text generation, spell-checking (to identify likely word sequences), and machine translation (to ensure fluent output).</li>
+                <li><strong>Limitations:</strong> N-grams struggle with long-distance dependencies (e.g., words far apart in a sentence) and sparse data (e.g., rare word sequences may not appear in the training data). Higher-order N-grams (e.g., 4-grams) provide more context but increase computational complexity and data requirements.</li>
+            </ul>
+            <p>N-grams are a simple yet powerful tool for modeling language statistically. They form the basis of early language models, such as those used in speech recognition systems, and are still used today in combination with more advanced techniques like neural networks to improve language understanding.</p>
+        </div>
+
+        <!-- Slide 21: Example - N-Grams -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: N-Grams</h3>
+                <p><strong>Input:</strong> “The cat sleeps quietly every night.”</p>
+                <p><strong>Unigrams:</strong> “The,” “cat,” “sleeps,” “quietly,” “every,” “night”</p>
+                <p><strong>Bigrams:</strong> “The cat,” “cat sleeps,” “sleeps quietly,” “quietly every,” “every night”</p>
+                <p><strong>Trigrams:</strong> “The cat sleeps,” “cat sleeps quietly,” “sleeps quietly every,” “quietly every night”</p>
+                <p><strong>Explanation:</strong> Let’s analyze how N-grams are constructed:</p>
+                <ul>
+                    <li><strong>Unigrams:</strong> Each word is treated independently, providing no context. For example, “cat” and “sleeps” are separate, so we can’t infer their relationship.</li>
+                    <li><strong>Bigrams:</strong> Pairs of words provide some context. “The cat” suggests that “cat” is likely a noun following a determiner, and “cat sleeps” indicates a subject-verb relationship.</li>
+                    <li><strong>Trigrams:</strong> Three-word sequences give more context. “The cat sleeps” confirms the subject-verb structure, and “sleeps quietly every” suggests the verb is modified by an adverb and a temporal phrase.</li>
+                </ul>
+                <p>N-grams are used to calculate probabilities in language models. For example, in an autocomplete system, if the user types “The cat,” the model might use bigram probabilities to predict “sleeps” as the next word, based on how often “cat sleeps” appears in the training data. However, N-grams can’t capture long-distance relationships, such as connecting “cat” to “night” in this sentence.</p>
+            </div>
+        </div>
+
+        <!-- Slide 22: Bag of Words (BoW) Model -->
+        <div class="slide">
+            <h3>Bag of Words (BoW) Model</h3>
+            <p>The <span class="highlight">Bag of Words (BoW)</span> model is a simple method for representing text in NLP, treating a document as a collection of words without considering grammar, word order, or sentence structure. It’s called a “bag” because it essentially throws all the words into a single container, ignoring their sequence.</p>
+            <ul>
+                <li><strong>Process:</strong> The BoW model creates a vocabulary of unique words from the text and counts the frequency of each word in a document. For example, in “I like to code,” the vocabulary might be {“I,” “like,” “to,” “code”}, and the document is represented as a vector of counts: [1, 1, 1, 1].</li>
+                <li><strong>Use:</strong> BoW is often used for simple text classification tasks, such as spam detection (e.g., identifying spam emails based on word frequencies like “win” or “free”) or topic modeling (grouping documents by word patterns). It’s also used in document similarity analysis, where documents with similar word frequencies are considered related.</li>
+                <li><strong>Limitation:</strong> BoW ignores word order and context, which can lead to loss of meaning. For example, “not good” and “good” are treated the same, as the model only counts the words “not” and “good” separately. It also struggles with large vocabularies, leading to sparse vectors (many zeros), which can be computationally inefficient.</li>
+                <li><strong>Variations:</strong> BoW can be extended to include N-grams (e.g., bigrams like “not good”) to capture some context, though this increases the vocabulary size. It can also be weighted using methods like TF-IDF (discussed later) to emphasize important words.</li>
+            </ul>
+            <p>Despite its simplicity, BoW is a foundational technique in NLP, often used as a starting point for text representation before applying more advanced methods like word embeddings. It’s particularly effective for tasks where word frequency is more important than word order, such as keyword-based classification.</p>
+        </div>
+
+        <!-- Slide 23: Example - Bag of Words -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Bag of Words</h3>
+                <p><strong>Input:</strong> “I like to code. Code is fun.”</p>
+                <p><strong>Vocabulary:</strong> {“I”: 1, “like”: 1, “to”: 1, “code”: 2, “is”: 1, “fun”: 1}</p>
+                <p><strong>Vector Representation:</strong> [1, 1, 1, 2, 1, 1]</p>
+                <p><strong>Explanation:</strong> Let’s break down the BoW process:</p>
+                <ul>
+                    <li><strong>Tokenization:</strong> The text is split into words: “I,” “like,” “to,” “code,” “code,” “is,” “fun” (after removing punctuation).</li>
+                    <li><strong>Vocabulary Creation:</strong> A list of unique words is created: “I,” “like,” “to,” “code,” “is,” “fun.”</li>
+                    <li><strong>Frequency Counting:</strong> The model counts how often each word appears. “Code” appears twice, while all other words appear once.</li>
+                    <li><strong>Vector Representation:</strong> The document is represented as a vector where each position corresponds to a word in the vocabulary, and the value is the word’s frequency.</li>
+                </ul>
+                <p>BoW simplifies text into a numerical form that machines can process, making it suitable for tasks like classifying emails as spam or non-spam based on word frequencies. However, it loses important information, such as the fact that “code is fun” indicates a positive sentiment, because it doesn’t consider the order of words. This limitation makes BoW less effective for tasks requiring contextual understanding, such as sentiment analysis of complex sentences.</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: TF-IDF (Term Frequency-Inverse Document Frequency) -->
+        <div class="slide">
+            <h3>TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+            <p><span class="highlight">TF-IDF</span> (Term Frequency-Inverse Document Frequency) is a statistical measure used to evaluate the importance of a word in a document relative to a collection of documents (called a corpus). It improves on the Bag of Words model by weighting words based on their significance, rather than just their frequency.</p>
+            <ul>
+                <li><strong>Term Frequency (TF):</strong> Measures how often a word appears in a document, normalized by the document’s length to avoid bias toward longer documents. For example, if “cat” appears 5 times in a document with 100 words, TF = 5/100 = 0.05.</li>
+                <li><strong>Inverse Document Frequency (IDF):</strong> Measures how rare a word is across the entire corpus. It’s calculated as IDF = log(N/df), where N is the total number of documents, and df is the number of documents containing the word. Rare words (low df) get higher IDF scores, while common words (high df) get lower scores.</li>
+                <li><strong>TF-IDF Score:</strong> Combines TF and IDF: TF-IDF = TF × IDF. This gives a high score to words that are frequent in a document (high TF) but rare across the corpus (high IDF), indicating they are likely important to that document’s content.</li>
+                <li><strong>Use:</strong> TF-IDF is widely used in information retrieval (e.g., search engines to rank documents), text classification (e.g., identifying topics in documents), and keyword extraction (to find the most representative words in a document).</li>
+                <li><strong>Advantages:</strong> Unlike BoW, TF-IDF reduces the weight of common words (e.g., “the”) and emphasizes unique words that define a document’s content, making it more effective for distinguishing between documents.</li>
+            </ul>
+            <p>TF-IDF is a powerful technique for text representation because it balances the importance of a word within a document against its commonality across a corpus. For example, in a corpus of pet-related articles, “dog” might have a low IDF because it appears in many documents, but “poodle” might have a high IDF, making it more significant in documents where it appears frequently.</p>
+        </div>
+
+        <!-- Slide 25: Example - TF-IDF -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: TF-IDF</h3>
+                <p><strong>Document 1:</strong> “Cats are great pets.”</p>
+                <p><strong>Document 2:</strong> “Dogs are great companions.”</p>
+                <p><strong>Document 3:</strong> “Birds are great singers.”</p>
+                <p><strong>TF-IDF for “great” and “cats” (Simplified):</strong></p>
+                <p><strong>Explanation:</strong> Let’s calculate TF-IDF for these words in Document 1, assuming a small corpus of 3 documents:</p>
+                <ul>
+                    <li><strong>TF for “great” in Document 1:</strong> “great” appears 1 time in a document with 4 words, so TF = 1/4 = 0.25.</li>
+                    <li><strong>IDF for “great”:</strong> “great” appears in all 3 documents, so df = 3, N = 3. IDF = log(3/3) = log(1) = 0. Since “great” is common, its IDF is low, reducing its overall importance.</li>
+                    <li><strong>TF-IDF for “great”:</strong> TF × IDF = 0.25 × 0 = 0, indicating “great” isn’t distinctive in this corpus.</li>
+                    <li><strong>TF for “cats” in Document 1:</strong> “cats” appears 1 time in 4 words, so TF = 1/4 = 0.25.</li>
+                    <li><strong>IDF for “cats”:</strong> “cats” appears in only 1 document, so df = 1, N = 3. IDF = log(3/1) = log(3) ≈ 0.477.</li>
+                    <li><strong>TF-IDF for “cats”:</strong> TF × IDF = 0.25 × 0.477 ≈ 0.119, indicating “cats” is more significant in Document 1 because it’s rare in the corpus.</li>
+                </ul>
+                <p>TF-IDF highlights words that are unique to a document while downplaying common words, making it effective for tasks like document ranking in search engines. In this example, “cats” has a higher TF-IDF score than “great,” so Document 1 would be ranked higher for a query like “cat-related content.”</p>
+            </div>
+        </div>
+
+        <!-- Slide 26: Case Study 2 - TF-IDF in Search Engines -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 2: TF-IDF in Search Engines - Google</h3>
+                <p>Google, one of the world’s leading search engines, uses TF-IDF as part of its ranking algorithm to determine the relevance of web pages to a user’s query. While Google’s algorithm includes many factors (e.g., PageRank, user behavior), TF-IDF helps identify key terms that define a page’s content.</p>
+                <p><strong>Details:</strong> For a query like “best AI tools,” Google’s system analyzed millions of web pages. Pages with high TF-IDF scores for “AI” and “tools” were prioritized, while common words like “best” were given lower weight due to their high document frequency (IDF). For example, a page with the sentence “Top AI tools for developers” would have a higher TF-IDF score for “AI” and “tools” compared to a generic page saying “Best tools for everyone.”</p>
+                <p><strong>Implementation:</strong> Google’s search engine processed the web pages by tokenizing the text, calculating TF-IDF scores for each term, and combining these scores with other signals (e.g., links, user clicks) to rank results. The system also used variations of TF-IDF to handle synonyms (e.g., treating “tools” and “software” as related) and multi-word phrases (e.g., “AI tools” as a bigram).</p>
+                <p><strong>Impact:</strong> The use of TF-IDF improved search relevance, ensuring that users found pages that were specifically about AI tools rather than generic content. This contributed to a reported 15% increase in user satisfaction, as users were more likely to find relevant results on the first page. This case highlights how TF-IDF remains a foundational technique in information retrieval, even in complex systems like Google’s search engine.</p>
+            </div>
+        </div>
+
+        <!-- Slide 27: Stop Words Removal - Deep Dive -->
+        <div class="slide">
+            <h3>Stop Words Removal: Deep Dive</h3>
+            <p>Stop words are common words in a language that appear frequently but typically carry little semantic meaning on their own, such as “the,” “is,” “and,” “of,” “in,” and “a.” Removing stop words is a common preprocessing step in NLP to reduce noise and focus on content words that carry more meaning.</p>
+            <ul>
+                <li><strong>Examples:</strong> In English, stop words include articles (“the,” “a”), prepositions (“in,” “on”), conjunctions (“and,” “but”), and auxiliary verbs (“is,” “are”). Lists of stop words are often predefined in NLP libraries like NLTK or spaCy, but they can be customized based on the task.</li>
+                <li><strong>Purpose:</strong> Removing stop words reduces the dimensionality of the text data, making models more efficient by focusing on meaningful words. For example, in a search engine, removing “the” from the query “the best laptop” allows the system to focus on “best” and “laptop,” improving search accuracy.</li>
+                <li><strong>Challenges:</strong> Stop words can be context-dependent. In some cases, removing them can alter meaning—for example, in the phrase “to be or not to be,” removing “to” and “or” would make the phrase nonsensical. Additionally, stop words may be important in certain tasks, like sentiment analysis, where “not” (sometimes considered a stop word) changes the meaning (e.g., “not good” vs. “good”).</li>
+                <li><strong>Customization:</strong> Depending on the application, you might modify the stop word list. For instance, in a legal document analysis system, words like “contract” might be common but critical, so they shouldn’t be treated as stop words.</li>
+            </ul>
+            <p>Stop words removal is a balancing act—while it can improve efficiency and focus on key terms, it must be applied judiciously to avoid losing important context. In practice, NLP practitioners often experiment with different stop word lists to find the best fit for their specific task.</p>
+        </div>
+
+        <!-- Slide 28: Example - Stop Words Removal -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Stop Words Removal</h3>
+                <p><strong>Input:</strong> “The cat is on the mat with a toy.”</p>
+                <p><strong>Output:</strong> “cat mat toy”</p>
+                <p><strong>Explanation:</strong> Let’s identify the stop words and see how removal affects the text:</p>
+                <ul>
+                    <li><strong>Stop Words Identified:</strong> “The,” “is,” “on,” “with,” “a” are all common English stop words, as they appear frequently and contribute little to the core meaning in most contexts.</li>
+                    <li><strong>Remaining Words:</strong> “cat,” “mat,” and “toy” are content words that carry the main semantic information—indicating the key entities (a cat and a toy) and their location (on a mat).</li>
+                    <li><strong>Impact:</strong> The simplified text “cat mat toy” focuses on the main concepts, which is useful for tasks like keyword extraction or topic modeling. For example, a search engine might use this to match a query like “cat toy” more effectively.</li>
+                    <li><strong>Potential Issue:</strong> Removing “on” loses the spatial relationship between “cat” and “mat,” which might be important in some contexts (e.g., answering “Where is the cat?”). This highlights the need to consider the task when deciding whether to remove stop words.</li>
+                </ul>
+                <p>Stop words removal streamlines text data, but it’s not always appropriate. For tasks like machine translation or dialogue systems, retaining stop words might be necessary to preserve grammatical structure and meaning.</p>
+            </div>
+        </div>
+
+        <!-- Slide 29: Noise Removal in Text -->
+        <div class="slide">
+            <h3>Noise Removal in Text</h3>
+            <p>Noise removal is a preprocessing step that eliminates irrelevant or distracting elements from text data, ensuring that the remaining text is clean and focused on meaningful content. Noise in text can come from various sources, especially when dealing with real-world data like web-scraped content or user-generated text.</p>
+            <ul>
+                <li><strong>HTML Tags:</strong> When scraping web pages, text often includes HTML tags like `<p>` or `<div>`, which are not part of the actual content. Noise removal strips these tags, leaving only the readable text. For example, “<p>Hello world</p>” becomes “Hello world.”</li>
+                <li><strong>Typos and Misspellings:</strong> Corrects errors like “recieve” to “receive” using spell-checkers or dictionaries. This ensures that misspelled words are standardized, preventing them from being treated as different words in analysis.</li>
+                <li><strong>Irrelevant Data:</strong> Removes boilerplate text (e.g., “Click here to subscribe” on a website) or metadata (e.g., timestamps, author names) that don’t contribute to the core content. For example, a product review might include “Posted by John at 5 PM,” which can be removed to focus on the review itself.</li>
+                <li><strong>Special Cases:</strong> Noise removal can also handle domain-specific noise, such as hashtags (#AI) or URLs in social media posts, which might need to be stripped or processed separately depending on the task.</li>
+            </ul>
+            <p>Noise removal improves the quality of text data, making it easier for NLP models to focus on meaningful content. However, it requires careful implementation to avoid removing important information—for example, a URL might be noise in a sentiment analysis task but critical in a web navigation system. Noise removal is often tailored to the specific dataset and task to ensure the right balance.</p>
+        </div>
+
+        <!-- Slide 30: Example - Noise Removal -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Noise Removal</h3>
+                <p><strong>Input:</strong> “<p>Click here to buy now! Recieve your order soon @home.</p>”</p>
+                <p><strong>Output:</strong> “buy now receive order soon home”</p>
+                <p><strong>Explanation:</strong> Let’s break down the noise removal process:</p>
+                <ul>
+                    <li><strong>HTML Tags:</strong> The `<p>` and `</p>` tags are removed, as they are part of the webpage structure, not the content, leaving “Click here to buy now! Recieve your order soon @home.”</li>
+                    <li><strong>Boilerplate Text:</strong> “Click here” is a common call-to-action phrase that doesn’t add meaning to the core message, so it’s removed, leaving “buy now! Recieve your order soon @home.”</li>
+                    <li><strong>Typos:</strong> “Recieve” is corrected to “receive,” ensuring the word is standardized for analysis.</li>
+                    <li><strong>Special Characters:</strong> The exclamation point and “@” symbol are removed, as they don’t contribute to meaning in this context. “@home” becomes “home,” assuming “home” is the intended word (context-dependent).</li>
+                </ul>
+                <p>The cleaned text “buy now receive order soon home” focuses on the key message, which is useful for tasks like extracting purchase-related keywords. However, noise removal must be applied carefully—for example, retaining “@home” might be important if it refers to a specific entity (e.g., a company name). This example shows how noise removal prepares text for analysis while highlighting the need for task-specific adjustments.</p>
+            </div>
+        </div>
+
+        <!-- Slide 31: Challenges in Text Preprocessing -->
+        <div class="slide">
+            <h3>Challenges in Text Preprocessing</h3>
+            <p>Text preprocessing, while essential, comes with several challenges due to the complexity and variability of human language. These challenges can affect the quality of the processed text and, consequently, the performance of NLP models.</p>
+            <ul>
+                <li><strong>Language Variability:</strong> Human language is diverse, with slang, dialects, and informal expressions that vary across cultures and contexts. For example, “gonna” (slang for “going to”) might need to be normalized to “going to,” but such variations are hard to catch systematically, especially in social media text where informal language is common.</li>
+                <li><strong>Domain-Specific Terms:</strong> In specialized domains like medicine or law, certain words might be frequent but critical, such as “diagnosis” in medical texts or “contract” in legal documents. Treating them as stop words or over-normalizing them can lead to loss of meaning. For example, removing “contract” from a legal document might obscure its main topic.</li>
+                <li><strong>Over-Processing:</strong> Aggressive preprocessing can remove important context. For instance, removing stop words like “not” in sentiment analysis can change “not good” to “good,” flipping the meaning. Similarly, over-stemming (e.g., “organization” to “organ”) can lead to ambiguity, as “organ” could also mean a body part.</li>
+                <li><strong>Multilingual Challenges:</strong> In multilingual datasets, preprocessing must account for different languages’ rules. For example, stop words in English (“the”) differ from those in Arabic (“ال”), and stemming rules vary across languages (e.g., Arabic has complex morphology requiring specialized stemmers).</li>
+            </ul>
+            <p>These challenges highlight the need for careful preprocessing tailored to the specific task and dataset. NLP practitioners often use a combination of techniques and iterate on their preprocessing pipeline, testing how changes affect model performance. For example, in a sentiment analysis task, retaining “not” might be critical, while in a keyword extraction task, removing it might be acceptable.</p>
+        </div>
+
+        <!-- Section 2: How Machines Understand Language (Slides 32-60) -->
+        <div class="slide">
+            <h2>Part 2: How Machines Understand Language: From Text to Meaning</h2>
+            <p>In this section, we’ll explore how machines convert text into numerical forms that they can process, and how they extract meaning from these representations. This process is at the heart of NLP, enabling machines to understand language in a way that mimics human comprehension. We’ll start with basic text-to-numbers methods and move into advanced techniques like contextual embeddings, semantic analysis, and pragmatic understanding.</p>
+            <p>Understanding language involves several layers: first, converting words into numbers (since machines can’t process text directly); then, capturing the relationships between words (e.g., “cat” and “dog” are similar); and finally, interpreting the meaning and intent behind the text (e.g., recognizing that “I need help” is a request). This section will break down each layer in detail.</p>
+        </div>
+
+        <!-- Slide 33: From Text to Numbers - Overview -->
+        <div class="slide">
+            <h3>From Text to Numbers: Overview</h3>
+            <p>Machines cannot understand text in its raw form—they need to convert it into numerical representations that can be processed mathematically. This conversion is a foundational step in NLP, enabling models to perform tasks like classification, translation, or generation.</p>
+            <ul>
+                <li><strong>Goal:</strong> The primary goal is to represent text in a way that captures its meaning and structure numerically. For example, the word “cat” might be represented as a vector of numbers that encodes its meaning and relationship to other words like “dog.”</li>
+                <li><strong>Methods:</strong>
+                    <ul>
+                        <li><strong>One-Hot Encoding:</strong> A basic method where each word is represented as a binary vector, with no semantic relationships captured.</li>
+                        <li><strong>Word Embeddings:</strong> Dense vectors that capture semantic similarity (e.g., “cat” and “dog” have similar vectors).</li>
+                        <li><strong>Contextual Embeddings:</strong> Advanced embeddings that consider the context of a word within a sentence, such as BERT embeddings.</li>
+                    </ul>
+                </li>
+                <li><strong>Importance:</strong> Numerical representations allow machines to apply mathematical operations (e.g., matrix multiplication) to text, which is essential for training machine learning models. For example, in text classification, a model might use these numbers to decide if a sentence is positive or negative.</li>
+                <li><strong>Evolution:</strong> Early NLP systems used simple methods like one-hot encoding, but modern systems use advanced embeddings that capture meaning and context, leading to better performance in tasks like understanding user queries or translating languages.</li>
+            </ul>
+            <p>Converting text to numbers is the first step in enabling machines to understand language. The quality of this representation directly impacts the model’s ability to perform higher-level tasks, such as understanding the meaning of a sentence or generating a coherent response.</p>
+        </div>
+
+        <!-- Slide 34: One-Hot Encoding -->
+        <div class="slide">
+            <h3>One-Hot Encoding</h3>
+            <p><span class="highlight">One-Hot Encoding</span> is one of the simplest methods for converting text into a numerical form, often used as a starting point in NLP. It represents each word as a unique binary vector, where the vector’s length equals the size of the vocabulary.</p>
+            <ul>
+                <li><strong>Process:</strong> Each word in the vocabulary is assigned a unique position in the vector. The word’s vector has a “1” in its assigned position and “0”s everywhere else. For example, in a vocabulary of 10,000 words, each word is represented by a 10,000-dimensional vector with a single “1.”</li>
+                <li><strong>Limitation:</strong> One-hot encoding doesn’t capture any semantic relationships between words. For example, “cat” and “dog” are as different as “cat” and “table” in this representation, because their vectors are orthogonal (no overlap). This lack of similarity information makes it unsuitable for tasks requiring semantic understanding.</li>
+                <li><strong>Use:</strong> One-hot encoding is used in simple tasks like basic text classification (e.g., spam detection) or as an input to early NLP models. It’s also used in some machine learning algorithms, such as Naive Bayes, where word order isn’t critical.</li>
+                <li><strong>Scalability Issue:</strong> The vectors are sparse (mostly zeros) and high-dimensional (one dimension per word in the vocabulary), which can be computationally expensive for large vocabularies. For example, a vocabulary of 100,000 words results in 100,000-dimensional vectors, requiring significant memory and processing power.</li>
+            </ul>
+            <p>One-hot encoding is a foundational technique that illustrates the basic concept of converting text to numbers, but its limitations make it impractical for modern NLP tasks that require understanding meaning and context. More advanced methods, like word embeddings, were developed to address these shortcomings by capturing semantic relationships in a more compact form.</p>
+        </div>
+
+        <!-- Slide 35: Example - One-Hot Encoding -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: One-Hot Encoding</h3>
+                <p><strong>Vocabulary:</strong> {“cat,” “dog,” “bird,” “fish”}</p>
+                <p><strong>Encoding:</strong></p>
+                <ul>
+                    <li>“cat” → [1, 0, 0, 0]</li>
+                    <li>“dog” → [0, 1, 0, 0]</li>
+                    <li>“bird” → [0, 0, 1, 0]</li>
+                    <li>“fish” → [0, 0, 0, 1]</li>
+                </ul>
+                <p><strong>Explanation:</strong> Let’s break down the one-hot encoding process:</p>
+                <ul>
+                    <li><strong>Vocabulary Size:</strong> There are 4 words, so each word is represented by a 4-dimensional vector.</li>
+                    <li><strong>Assignment:</strong> “cat” is assigned the first position, “dog” the second, “bird” the third, and “fish” the fourth. Each word’s vector has a “1” in its assigned position and “0”s elsewhere.</li>
+                    <li><strong>Sentence Representation:</strong> To represent a sentence like “cat dog,” you might sum the vectors: [1, 0, 0, 0] + [0, 1, 0, 0] = [1, 1, 0, 0], indicating both “cat” and “dog” are present. However, this still ignores the order of words.</li>
+                    <li><strong>Limitation in Action:</strong> The vectors for “cat” and “dog” are orthogonal (their dot product is 0), meaning there’s no mathematical similarity between them, even though they’re semantically related (both are animals).</li>
+                </ul>
+                <p>One-hot encoding is straightforward and works for simple tasks, but its inability to capture semantic relationships makes it ineffective for tasks like analogy solving (e.g., “king is to queen as man is to woman”) or sentiment analysis, where understanding word similarity is crucial.</p>
+            </div>
+        </div>
+
+        <!-- Slide 36: Word Embeddings - Introduction -->
+        <div class="slide">
+            <h3>Word Embeddings: Introduction</h3>
+            <p><span class="highlight">Word Embeddings</span> are dense vector representations of words in a continuous vector space, where the position of each word’s vector encodes its meaning and relationships to other words. Unlike one-hot encoding, word embeddings are designed to capture semantic similarity.</p>
+            <ul>
+                <li><strong>Goal:</strong> The primary goal of word embeddings is to represent words in a way that similar words have similar vectors. For example, “cat” and “dog” should have vectors that are close together in the vector space, reflecting their shared meaning as pets, while “cat” and “table” should be farther apart.</li>
+                <li><strong>Properties:</strong> Word embeddings are typically low-dimensional (e.g., 300 dimensions compared to one-hot encoding’s vocabulary-sized dimensions) and dense (most values are non-zero). This makes them more efficient and capable of capturing semantic relationships through vector operations, such as cosine similarity.</li>
+                <li><strong>Models:</strong> Popular word embedding models include Word2Vec (developed by Google), GloVe (Global Vectors, by Stanford), and FastText (by Facebook). These models are trained on large corpora to learn word representations based on their usage in context.</li>
+                <li><strong>Applications:</strong> Word embeddings are used in tasks like text classification (e.g., sentiment analysis), machine translation (to map words across languages), and information retrieval (to match queries with relevant documents based on semantic similarity).</li>
+            </ul>
+            <p>Word embeddings revolutionized NLP by enabling machines to understand word meanings and relationships mathematically. For example, they allow a model to recognize that “king” and “queen” are related in a way that “king” and “apple” are not, which is critical for tasks requiring semantic understanding, such as answering questions or generating coherent text.</p>
+        </div>
+
+        <!-- Slide 37: Word2Vec Model -->
+        <div class="slide">
+            <h3>Word2Vec Model</h3>
+            <p><span class="highlight">Word2Vec</span>, developed by Google researchers in 2013, is one of the most influential word embedding models. It learns to represent words as dense vectors by training a shallow neural network on a large corpus of text, capturing semantic relationships based on word context.</p>
+            <ul>
+                <li><strong>Methods:</strong>
+                    <ul>
+                        <li><strong>CBOW (Continuous Bag of Words):</strong> Predicts a target word given its surrounding context words. For example, given the context “the cat ___ on the mat,” CBOW predicts “sleeps” by learning the patterns of surrounding words.</li>
+                        <li><strong>Skip-Gram:</strong> The reverse of CBOW—it predicts context words given a target word. For example, given “sleeps,” Skip-Gram predicts “the,” “cat,” “on,” “the,” “mat.” Skip-Gram is often better at capturing rare words and their relationships.</li>
+                    </ul>
+                </li>
+                <li><strong>Output:</strong> Each word is represented as a vector, typically 100 to 300 dimensions, where the values are learned during training. For example, “cat” might be [0.2, -0.4, 0.7, …], and “dog” might be [0.3, -0.5, 0.6, …], with similar values reflecting their semantic similarity.</li>
+                <li><strong>Training Process:</strong> Word2Vec uses a large corpus (e.g., Wikipedia articles) and optimizes the vectors to maximize the likelihood of predicting context words (Skip-Gram) or target words (CBOW). It employs techniques like negative sampling to make training efficient.</li>
+                <li><strong>Capabilities:</strong> Word2Vec can capture complex relationships, such as analogies. For example, the vector arithmetic “king” - “man” + “woman” ≈ “queen” shows that it learns gender relationships, a result of training on patterns in the data.</li>
+            </ul>
+            <p>Word2Vec marked a significant advancement in NLP by providing a way to represent words with semantic meaning, enabling better performance in tasks like text classification, clustering, and even early chatbots. Its ability to capture relationships like synonyms (e.g., “big” and “large”) and analogies made it a cornerstone of modern NLP.</p>
+        </div>
+
+        <!-- Slide 38: Example - Word2Vec -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Word2Vec</h3>
+                <p><strong>Concept:</strong> “king” - “man” + “woman” ≈ “queen”</p>
+                <p><strong>Explanation:</strong> Word2Vec captures semantic relationships through vector arithmetic, which allows it to perform tasks like analogy solving:</p>
+                <ul>
+                    <li><strong>Vectors:</strong> Imagine “king” is represented as [0.5, 0.2, …], “man” as [0.1, 0.3, …], “woman” as [0.2, 0.4, …], and “queen” as [0.6, 0.3, …]. These are simplified for illustration—actual vectors might be 300-dimensional.</li>
+                    <li><strong>Arithmetic:</strong> Subtracting “man” from “king” removes the “maleness” aspect, leaving a vector representing royalty: [0.5, 0.2] - [0.1, 0.3] = [0.4, -0.1]. Adding “woman” introduces “femaleness”: [0.4, -0.1] + [0.2, 0.4] = [0.6, 0.3], which is close to the vector for “queen.”</li>
+                    <li><strong>Interpretation:</strong> This arithmetic shows that Word2Vec has learned the relationship between gender and royalty, a pattern it picked up from the training data (e.g., sentences where “king” and “queen” appear in similar contexts but with gender-specific pronouns).</li>
+                    <li><strong>Other Examples:</strong> Similar analogies include “doctor” - “man” + “woman” ≈ “nurse” (though this can reflect biases in the training data) or “Paris” - “France” + “Italy” ≈ “Rome,” showing geographic relationships.</li>
+                </ul
+                <p>Word2Vec embeddings enable machines to perform semantic tasks by leveraging the geometric relationships between word vectors. This capability opened the door for more advanced NLP models that build on these ideas to understand context and meaning at a deeper level.</p>
+            </div>
+        </div>
+
+        <!-- Slide 39: GloVe (Global Vectors) -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>GloVe (Global Vectors)</h3>
+                <p><span class="highlight">GloVe</span>, which stands for Global Vectors for Word Representation, was developed by Stanford researchers in 2014. Unlike Word2Vec, which focuses on local context windows to predict words, GloVe leverages global word co-occurrence statistics across an entire corpus to create word embeddings, making it particularly effective for capturing broader semantic relationships.</p>
+                <ul>
+                    <li><strong>Process:</strong> GloVe starts by constructing a co-occurrence matrix, where each entry represents how often two words appear together in the corpus (within a specified context window, e.g., 5 words apart). For example, if "cat" and "dog" frequently appear near each other in sentences, their co-occurrence count will be high. GloVe then uses matrix factorization techniques to reduce this high-dimensional matrix into lower-dimensional word vectors (e.g., 300 dimensions), optimizing the vectors so that their dot product approximates the logarithm of the co-occurrence probability.</li>
+                    <li><strong>Advantage:</strong> By using global statistics, GloVe captures relationships that might be missed by Word2Vec’s local context approach. For instance, if "cat" and "kitten" rarely appear in the same sentence but frequently co-occur with similar words like "pet" or "meow," GloVe can still infer their similarity based on these global patterns.</li>
+                    <li><strong>Use:</strong> GloVe embeddings are widely used in tasks requiring semantic understanding, such as analogy solving (e.g., "man is to kitchen as woman is to bedroom"), text classification (e.g., categorizing news articles by topic), and sentiment analysis (e.g., identifying positive or negative reviews). They’re also used in downstream applications like question answering, where understanding word relationships improves accuracy.</li>
+                    <li><strong>Comparison to Word2Vec:</strong> While Word2Vec excels at capturing local syntactic patterns (e.g., “the cat sits” vs. “a dog runs”), GloVe’s global approach makes it better at capturing semantic relationships across the entire corpus, such as synonyms or related concepts (e.g., “car” and “automobile”). In practice, the choice between GloVe and Word2Vec depends on the task—GloVe might perform better for semantic tasks, while Word2Vec might be better for syntactic ones.</li>
+                </ul>
+                <p>GloVe’s ability to leverage global co-occurrence statistics makes it a powerful tool for creating word embeddings that reflect broad semantic relationships. Its embeddings are often pre-trained on large corpora like Wikipedia or Common Crawl and can be fine-tuned for specific tasks, making it a versatile choice for many NLP applications.</p>
+            </div>
+        </div>
+
+        <!-- Slide 40: FastText -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>FastText</h3>
+                <p><span class="highlight">FastText</span>, developed by Facebook in 2016, is an extension of the Word2Vec model that incorporates subword information to create word embeddings. This makes it particularly effective for handling rare words, misspellings, and morphologically rich languages where word forms vary significantly.</p>
+                <ul>
+                    <li><strong>Process:</strong> FastText breaks each word into smaller subword units called character n-grams (e.g., for the word “playing,” it might use 3-grams like “pla,” “lay,” “ayi,” “yin,” “ing”). It then learns embeddings for these subword units and represents each word as the sum of its subword embeddings. For example, the embedding for “playing” is the sum of the embeddings for “pla,” “lay,” etc., plus a vector for the whole word.</li>
+                    <li><strong>Advantage:</strong> By using subword information, FastText can generate embeddings for words that weren’t seen during training (out-of-vocabulary words). For instance, if “unhappiness” wasn’t in the training data but “happy” and “un-” were, FastText can infer its meaning by combining the embeddings of “un-” and “happy.” This also helps with misspellings (e.g., “happpy” can be understood as similar to “happy”).</li>
+                    <li><strong>Use:</strong> FastText is particularly useful for multilingual applications, especially in languages with complex morphology like Arabic, German, or Finnish, where words have many forms (e.g., Arabic verbs can have hundreds of forms depending on tense, person, and number). It’s also used in text classification tasks, such as spam detection, where rare or misspelled words are common.</li>
+                    <li><strong>Comparison to Word2Vec:</strong> Unlike Word2Vec, which treats each word as a single unit, FastText’s subword approach allows it to handle rare words and morphological variations better. For example, Word2Vec might struggle with the word “unhappiness” if it wasn’t in the training data, but FastText can infer its meaning from “un-” and “happiness.” However, FastText can be slower to train due to the additional subword processing.</li>
+                </ul>
+                <p>FastText’s subword approach makes it a robust choice for NLP tasks involving diverse or noisy text, such as social media data or languages with rich morphology. Its ability to handle out-of-vocabulary words and misspellings has made it a popular choice for real-world applications where text data is often imperfect.</p>
+            </div>
+        </div>
+
+        <!-- Slide 41: Contextual Embeddings - Introduction -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Contextual Embeddings: Introduction</h3>
+                <p><span class="highlight">Contextual Embeddings</span> are a more advanced type of word representation that generate different vectors for a word depending on its context within a sentence. Unlike static embeddings like Word2Vec or GloVe, which assign a fixed vector to each word regardless of its usage, contextual embeddings adapt to the surrounding words, capturing nuanced meanings.</p>
+                <ul>
+                    <li><strong>Problem with Static Embeddings:</strong> Static embeddings like Word2Vec assign the same vector to a word in all contexts. For example, the word “bank” in “river bank” (meaning the side of a river) and “bank account” (meaning a financial institution) has the same vector, even though the meanings are different. This limitation makes static embeddings less effective for tasks requiring context awareness, such as disambiguating word senses.</li>
+                    <li><strong>Solution:</strong> Contextual embeddings, such as those produced by models like ELMo, BERT, and GPT, generate a unique vector for each word based on the entire sentence. For instance, “bank” in “river bank” might have a vector close to “stream,” while “bank” in “bank account” might be closer to “money.”</li>
+                    <li><strong>Mechanism:</strong> Contextual embeddings are typically generated using deep neural networks, such as bidirectional LSTMs (in ELMo) or Transformers (in BERT), which process the entire sentence and learn how each word interacts with its neighbors. This allows the embeddings to capture syntactic and semantic context.</li>
+                    <li><strong>Applications:</strong> Contextual embeddings are used in tasks requiring deep language understanding, such as question answering (e.g., understanding “What is the capital of France?”), sentiment analysis (e.g., distinguishing “The movie isn’t good” from “The movie is good”), and machine translation (e.g., translating ambiguous words correctly based on context).</li>
+                </ul>
+                <p>Contextual embeddings represent a major leap forward in NLP, enabling machines to understand the nuanced meanings of words in different contexts. This has led to significant improvements in performance across a wide range of tasks, making models like BERT and GPT the backbone of modern NLP systems.</p>
+            </div>
+        </div>
+
+        <!-- Slide 42: ELMo (Embeddings from Language Models) -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>ELMo (Embeddings from Language Models)</h3>
+                <p><span class="highlight">ELMo</span>, which stands for Embeddings from Language Models, was introduced in 2018 by researchers at the Allen Institute for AI. It was one of the first models to generate contextual embeddings, significantly improving the performance of NLP tasks by capturing the context of words within a sentence.</p>
+                <ul>
+                    <li><strong>Process:</strong> ELMo uses a deep, bidirectional LSTM (Long Short-Term Memory) network to process a sentence in both directions—left-to-right and right-to-left. For each word, ELMo generates an embedding by combining the hidden states of the LSTM layers, which capture the word’s context from both preceding and following words. For example, in “I deposited money in the bank,” ELMo looks at “I deposited money” and “in the bank” to create a unique embedding for “bank.”</li>
+                    <li><strong>Output:</strong> Unlike static embeddings, ELMo produces different embeddings for the same word in different contexts. For instance, “bank” in “river bank” will have a different vector than “bank” in “bank account,” reflecting the distinct meanings. The embeddings are typically 1024-dimensional, combining multiple layers of the LSTM for richer representations.</li>
+                    <li><strong>Use:</strong> ELMo embeddings are used in tasks requiring context awareness, such as question answering (e.g., understanding “What does bank mean here?”), sentiment analysis (e.g., capturing the negation in “not good”), and named entity recognition (e.g., disambiguating “Washington” as a person or place). ELMo is often fine-tuned on specific tasks to improve performance.</li>
+                    <li><strong>Advantages:</strong> ELMo’s bidirectional approach captures more context than unidirectional models like earlier LSTMs. It also combines embeddings from multiple layers of the network, allowing it to represent both syntactic (e.g., word order) and semantic (e.g., word meaning) information.</li>
+                </ul>
+                <p>ELMo was a groundbreaking model that paved the way for contextual embeddings, showing that understanding a word’s meaning requires looking at its entire context, not just its isolated form. Its success inspired later models like BERT, which further improved on the idea of contextual understanding using Transformer architectures.</p>
+            </div>
+        </div>
+
+        <!-- Slide 43: BERT (Bidirectional Encoder Representations from Transformers) -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>BERT (Bidirectional Encoder Representations from Transformers)</h3>
+                <p><span class="highlight">BERT</span>, which stands for Bidirectional Encoder Representations from Transformers, was introduced by Google in 2018 and marked a major milestone in NLP. BERT’s innovative use of the Transformer architecture and bidirectional context made it one of the most powerful models for understanding language, achieving state-of-the-art results across many tasks.</p>
+                <ul>
+                    <li><strong>Architecture:</strong> BERT is based on the Transformer model, which uses self-attention mechanisms to weigh the importance of different words in a sentence. Unlike ELMo’s LSTM-based approach, BERT processes the entire sentence at once, looking at both left and right context simultaneously (bidirectional). This allows BERT to capture complex relationships between words, such as long-distance dependencies.</li>
+                    <li><strong>Training:</strong> BERT is pre-trained on a large corpus (e.g., Wikipedia and BookCorpus) using two tasks:
+                        <ul>
+                            <li><strong>Masked Language Model (MLM):</strong> Randomly masks 15% of the words in a sentence, and the model predicts them based on the surrounding context. For example, in “The cat ___ on the mat,” if “sleeps” is masked, BERT predicts “sleeps” by looking at both “The cat” and “on the mat.”</li>
+                            <li><strong>Next Sentence Prediction (NSP):</strong> Predicts whether two sentences are consecutive, helping BERT understand sentence relationships. For example, given “I love cats. They are fluffy,” BERT learns that the second sentence logically follows the first.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Use:</strong> BERT is fine-tuned for specific tasks, such as text classification (e.g., spam detection), named entity recognition (e.g., identifying “Elon Musk” as a Person), sentiment analysis (e.g., understanding “The movie isn’t good”), and question answering (e.g., answering “What is the capital of France?”). BERT’s contextual embeddings make it highly effective for these tasks.</li>
+                    <li><strong>Impact:</strong> BERT achieved unprecedented performance on benchmarks like GLUE (General Language Understanding Evaluation), surpassing previous models by large margins. Its ability to understand context made it a game-changer for NLP, influencing the development of later models like RoBERTa and GPT.</li>
+                </ul>
+                <p>BERT’s bidirectional approach and Transformer architecture allow it to understand language at a deeper level than previous models, capturing the nuances of word meanings and sentence structures. It has become a foundational model in NLP, used in applications ranging from search engines to chatbots, and its pre-training and fine-tuning paradigm has become a standard practice in the field.</p>
+            </div>
+        </div>
+
+        <!-- Slide 44: Example - BERT Contextual Embeddings -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: BERT Contextual Embeddings</h3>
+                <p><strong>Input 1:</strong> “I deposited money in the bank.”</p>
+                <p><strong>Input 2:</strong> “The fish swam near the bank.”</p>
+                <p><strong>Output:</strong> BERT generates different embeddings for “bank” based on its context.</p>
+                <p><strong>Explanation:</strong> Let’s explore how BERT creates contextual embeddings for “bank” in these sentences:</p>
+                <ul>
+                    <li><strong>Input 1 Context:</strong> In “I deposited money in the bank,” the surrounding words “deposited” and “money” suggest a financial context. BERT processes the entire sentence, using self-attention to weigh the importance of “money” and “deposited” in relation to “bank.” The resulting embedding for “bank” will be closer to financial terms like “account” or “loan.”</li>
+                    <li><strong>Input 2 Context:</strong> In “The fish swam near the bank,” the words “fish” and “swam” indicate a natural context (a riverbank). BERT’s attention mechanism focuses on “fish” and “swam,” producing an embedding for “bank” that’s closer to words like “river” or “stream.”</li>
+                    <li><strong>Embedding Comparison:</strong> If we visualize the embeddings in a vector space, the “bank” vector from Input 1 might be [0.8, -0.2, …], while the “bank” vector from Input 2 might be [-0.3, 0.5, …]. These vectors are different, reflecting the distinct meanings of “bank” in each sentence.</li>
+                    <li><strong>Implication:</strong> BERT’s contextual embeddings enable it to handle polysemy (words with multiple meanings) effectively, which is crucial for tasks like machine translation (translating “bank” to “banco” in Spanish for financial contexts or “orilla” for river contexts) or question answering (disambiguating “bank” in a user query).</li>
+                </ul>
+                <p>BERT’s ability to generate context-specific embeddings makes it far more powerful than static embeddings like Word2Vec, as it can adapt to the meaning of a word based on its usage. This flexibility has made BERT a cornerstone of modern NLP, enabling more accurate and context-aware language understanding.</p>
+            </div>
+        </div>
+
+        <!-- Slide 45: Case Study 3 - BERT in Sentiment Analysis -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 3: BERT in Sentiment Analysis - Yelp</h3>
+                <p>Yelp, a platform for user reviews of businesses, adopted BERT to enhance its sentiment analysis capabilities, aiming to better understand the nuanced opinions expressed in restaurant reviews. Sentiment analysis on reviews is challenging due to mixed sentiments, negation, and context-dependent meanings, which BERT’s contextual embeddings are well-suited to handle.</p>
+                <p><strong>Details:</strong> Yelp processed reviews like “The food was great, but the service was awful.” Traditional models struggled with this sentence, often misclassifying it as entirely positive due to the word “great.” BERT, however, analyzed the entire sentence, using its bidirectional context to understand that “great” applies to “food” (positive) while “awful” applies to “service” (negative). It correctly identified the review as having mixed sentiment, with a focus on poor service as the dominant issue.</p>
+                <p><strong>Implementation:</strong> Yelp fine-tuned a BERT model on a dataset of labeled reviews, where each review was annotated with sentiment labels (positive, negative, neutral) and aspect-specific sentiments (e.g., food: positive, service: negative). The fine-tuned BERT model was integrated into Yelp’s review analysis pipeline, processing millions of reviews to categorize them and extract insights for business owners.</p>
+                <p><strong>Impact:</strong> BERT improved the accuracy of sentiment classification by 25% compared to previous models, enabling Yelp to provide more actionable insights to restaurant owners (e.g., “Focus on improving service”). It also enhanced user experience by better filtering reviews for sentiment-based searches (e.g., “show me restaurants with great food but poor service”). This case demonstrates how BERT’s contextual understanding can tackle complex language tasks, making it a valuable tool for real-world applications.</p>
+            </div>
+        </div>
+
+        <!-- Slide 46: Semantic Analysis - Word Sense Disambiguation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Semantic Analysis: Word Sense Disambiguation</h3>
+                <p><span class="highlight">Word Sense Disambiguation (WSD)</span> is a semantic analysis task in NLP that determines the correct meaning of a word with multiple senses (polysemy) based on its context. This is a critical step in understanding language, as many words have different meanings depending on how they’re used.</p>
+                <ul>
+                    <li><strong>Example:</strong> The word “bat” can mean a flying animal (“I saw a bat flying at night”) or a piece of sports equipment (“He swung the bat during the game”). WSD identifies the intended sense by analyzing the surrounding words.</li>
+                    <li><strong>Methods:</strong>
+                        <ul>
+                            <li><strong>Knowledge-Based:</strong> Uses lexical resources like WordNet, a database of word senses and their relationships. For example, WordNet lists “bat” as having senses like “bat (animal)” and “bat (sports equipment),” and WSD algorithms match the context to the correct sense using rules or similarity measures.</li>
+                            <li><strong>Supervised Learning:</strong> Trains a model on labeled data, where each instance of a word is annotated with its sense (e.g., “bat” in “I saw a bat flying” is labeled as “animal”). Modern approaches use contextual embeddings like BERT, which can infer the sense directly from the sentence context.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Challenges:</strong> WSD is challenging due to subtle context differences. For example, in “The bank charges high fees,” “bank” clearly refers to a financial institution, but in “The bank was muddy after the rain,” it’s less clear without context (it could mean a riverbank). Additionally, some senses are domain-specific (e.g., “chip” in tech as a microchip vs. in cooking as a potato chip).</li>
+                    <li><strong>Applications:</strong> WSD is used in machine translation (to choose the correct translation of an ambiguous word), information retrieval (to match queries with relevant documents), and question answering (to understand the user’s intent accurately).</li>
+                </ul>
+                <p>WSD is a key component of semantic analysis, allowing machines to move beyond surface-level word matching and understand the intended meaning of text. Without WSD, an NLP system might mistranslate “bat” in “He swung the bat” as an animal in another language, leading to errors. Modern models like BERT have significantly improved WSD by leveraging contextual embeddings to disambiguate word senses more accurately.</p>
+            </div>
+        </div>
+
+        <!-- Slide 47: Example - Word Sense Disambiguation -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Word Sense Disambiguation</h3>
+                <p><strong>Input 1:</strong> “The bat flew over the field at dusk.”</p>
+                <p><strong>Input 2:</strong> “She swung the bat and hit a home run.”</p>
+                <p><strong>Output:</strong> “bat” in Input 1 → animal sense; “bat” in Input 2 → sports equipment sense.</p>
+                <p><strong>Explanation:</strong> Let’s break down how WSD determines the correct sense of “bat” in each sentence:</p>
+                <ul>
+                    <li><strong>Input 1 Context:</strong> The words “flew,” “field,” and “dusk” suggest a natural setting. “Flew” is a verb typically associated with birds or flying animals, and “dusk” is a time when bats are active. A WSD system (e.g., using BERT) would assign the “animal” sense to “bat,” as this aligns with the context. In WordNet, this might correspond to the sense “bat: nocturnal mouselike mammal.”</li>
+                    <li><strong>Input 2 Context:</strong> The words “swung,” “hit,” and “home run” indicate a sports context, specifically baseball. “Swung” is an action associated with using a bat in sports, and “home run” confirms this setting. The WSD system would assign the “sports equipment” sense to “bat,” corresponding to the WordNet sense “bat: a club used for hitting a ball in various games.”</li>
+                    <li><strong>Implementation:</strong> A BERT-based WSD model would generate contextual embeddings for “bat” in each sentence, comparing them to embeddings of known senses in a database. The embedding for “bat” in Input 1 would be closer to “animal” senses, while in Input 2, it would align with “sports equipment” senses.</li>
+                    <li><strong>Impact:</strong> Correctly disambiguating “bat” ensures accurate processing in downstream tasks. For example, in machine translation, “bat” in Input 1 might be translated to “murciélago” (Spanish for the animal), while in Input 2, it would be “bate” (Spanish for the baseball bat).</li>
+                </ul>
+                <p>WSD enables machines to understand the intended meaning of ambiguous words, which is essential for accurate language processing. Without WSD, an NLP system might misinterpret sentences, leading to errors in applications like translation or information retrieval.</p>
+            </div>
+        </div>
+
+        <!-- Slide 48: Semantic Role Labeling (SRL) -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Semantic Role Labeling (SRL)</h3>
+                <p><span class="highlight">Semantic Role Labeling (SRL)</span> is a semantic analysis task in NLP that identifies the roles that words or phrases play in a sentence with respect to the main verb. It answers the question “who did what to whom, where, when, and how?” by assigning labels to sentence components based on their semantic roles.</p>
+                <ul>
+                    <li><strong>Roles:</strong> Common semantic roles include:
+                        <ul>
+                            <li><strong>Agent:</strong> The doer of the action (e.g., “Alice” in “Alice wrote a letter”).</li>
+                            <li><strong>Patient:</strong> The entity affected by the action (e.g., “letter” in “Alice wrote a letter”).</li>
+                            <li><strong>Theme:</strong> The entity moved or described (e.g., “book” in “She gave a book”).</li>
+                            <li><strong>Location:</strong> Where the action takes place (e.g., “park” in “They met in the park”).</li>
+                            <li><strong>Time:</strong> When the action occurs (e.g., “yesterday” in “They met yesterday”).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Purpose:</strong> SRL helps machines understand the meaning behind a sentence by identifying the relationships between the verb and its arguments. For example, in “The company fired the employee,” SRL identifies “company” as the Agent (doer), “fired” as the action, and “employee” as the Patient (receiver), clarifying who is doing what to whom.</li>
+                    <li><strong>Methods:</strong> Early SRL systems used rule-based approaches, but modern systems rely on neural models, such as BERT fine-tuned for SRL. These models learn to predict roles by training on annotated datasets like PropBank, where sentences are labeled with semantic roles (e.g., “Agent,” “Patient”).</li>
+                    <li><strong>Applications:</strong> SRL is used in question answering (e.g., answering “Who fired the employee?” with “The company”), information extraction (e.g., extracting events from news articles), and dialogue systems (e.g., understanding user requests like “Book a flight for me” by identifying “me” as the Beneficiary).</li>
+                </ul>
+                <p>SRL goes beyond syntactic analysis by focusing on the meaning of a sentence, not just its grammatical structure. It allows machines to extract structured information from text, which is crucial for tasks requiring a deep understanding of events and relationships, such as building knowledge graphs or answering complex questions.</p>
+            </div>
+        </div>
+
+        <!-- Slide 49: Example - Semantic Role Labeling -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Semantic Role Labeling</h3>
+                <p><strong>Input:</strong> “Alice gave Bob a book in the library yesterday.”</p>
+                <p><strong>Output:</strong></p>
+                <ul>
+                    <li>Verb: “gave”</li>
+                    <li>Agent: “Alice” (the doer of the action)</li>
+                    <li>Recipient: “Bob” (the entity receiving the book)</li>
+                    <li>Theme: “a book” (the entity being given)</li>
+                    <li>Location: “in the library” (where the action took place)</li>
+                    <li>Time: “yesterday” (when the action occurred)</li>
+                </ul>
+                <p><strong>Explanation:</strong> Let’s break down how SRL identifies the roles in this sentence:</p>
+                <ul>
+                    <li><strong>Verb Identification:</strong> The main verb “gave” is the action that drives the sentence, indicating a transfer event (something is being given).</li>
+                    <li><strong>Agent:</strong> “Alice” is the subject performing the action of giving, making her the Agent—the entity responsible for the action.</li>
+                    <li><strong>Recipient:</strong> “Bob” is the indirect object receiving the book, making him the Recipient—the entity to whom the Theme is given.</li>
+                    <li><strong>Theme:</strong> “a book” is the direct object being transferred, making it the Theme—the entity that is acted upon or moved.</li>
+                    <li><strong>Location and Time:</strong> “in the library” specifies where the giving took place, and “yesterday” specifies when, adding contextual details to the event.</li>
+                </ul>
+                <p>SRL provides a structured representation of the sentence’s meaning, which is useful for tasks like question answering (e.g., answering “Who gave Bob a book?” with “Alice”) or event extraction (e.g., extracting the event “Alice gave a book” from a news article). By understanding these roles, machines can better interpret the relationships and events described in text, moving closer to human-like language understanding.</p>
+            </div>
+        </div>
+
+        <!-- Slide 50: Coreference Resolution -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Coreference Resolution</h3>
+                <p><span class="highlight">Coreference Resolution</span> is an NLP task that identifies when different words or phrases in a text refer to the same entity. This is crucial for understanding the coherence of a text, as humans often use pronouns or alternative references to avoid repetition.</p>
+                <ul>
+                    <li><strong>Example:</strong> In the sentences “Alice went to the store. She bought apples,” coreference resolution determines that “She” refers to “Alice.” Similarly, in “Google released a new product. It is innovative,” “It” refers to “new product.”</li>
+                    <li><strong>Methods:</strong>
+                        <ul>
+                            <li><strong>Rule-Based:</strong> Uses hand-crafted rules, such as matching pronouns to the nearest preceding noun of the same gender and number (e.g., “She” matches “Alice” as a singular female noun). These methods are simple but often fail in complex sentences.</li>
+                            <li><strong>Neural:</strong> Modern approaches use neural models like SpanBERT, a variant of BERT optimized for coreference resolution. These models learn to identify coreference chains by training on annotated datasets like CoNLL-2012, where entities and their references are labeled.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Challenges:</strong> Coreference resolution is challenging due to ambiguity. For example, in “John and Bob went to the park. He smiled,” it’s unclear whether “He” refers to John or Bob without additional context. Other challenges include long-distance references (e.g., referring to an entity mentioned several sentences earlier) and implicit references (e.g., “The team won. They were thrilled,” where “team” and “they” refer to the same group).</li>
+                    <li><strong>Applications:</strong> Coreference resolution is used in summarization (to avoid redundancy by linking references to the same entity), question answering (to understand who or what a pronoun refers to), and dialogue systems (to maintain coherence in conversations).</li>
+                </ul>
+                <p>Coreference resolution is essential for understanding the flow of information in a text, as it ensures that machines can track entities across sentences. Without it, a system might treat “Alice” and “She” as different entities, leading to misunderstandings in tasks like summarization or question answering.</p>
+            </div>
+        </div>
+
+        <!-- Slide 51: Example - Coreference Resolution -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Coreference Resolution</h3>
+                <p><strong>Input:</strong> “Google released a new product. It is innovative. The company announced it at a conference.”</p>
+                <p><strong>Output:</strong> “It” refers to “new product”; “The company” refers to “Google”; “it” refers to “new product.”</p>
+                <p><strong>Explanation:</strong> Let’s break down how coreference resolution identifies these relationships:</p>
+                <ul>
+                    <li><strong>First Sentence:</strong> “Google released a new product” introduces two entities: “Google” (an Organization) and “new product” (a Product).</li>
+                    <li><strong>Second Sentence:</strong> “It is innovative” contains the pronoun “It.” Coreference resolution determines that “It” refers to “new product” because “new product” is the closest preceding noun that matches in number (singular) and is a likely subject of “innovative” (products are often described this way, unlike companies).</li>
+                    <li><strong>Third Sentence:</strong> “The company announced it at a conference” introduces “The company” and another “it.” The system identifies “The company” as referring to “Google,” since “Google” is the only company mentioned earlier, and “it” as referring to “new product,” continuing the reference from the previous sentence.</li>
+                    <li><strong>Implementation:</strong> A neural model like SpanBERT would process the text, generating embeddings for each span of text (e.g., “Google,” “new product,” “It”) and computing scores to determine which spans refer to the same entity. It would create a coreference chain: “new product” → “It” → “it.”</li>
+                </ul>
+                <p>Coreference resolution ensures that machines understand the relationships between references, which is critical for tasks like summarization (e.g., summarizing this as “Google released an innovative product announced at a conference”) or question answering (e.g., answering “What did Google announce?” with “a new product”).</p>
+            </div>
+        </div>
+
+        <!-- Slide 52: Case Study 4 - Coreference Resolution in Chatbots -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 4: Coreference Resolution in Chatbots - Microsoft XiaoIce</h3>
+                <p>Microsoft XiaoIce, a conversational AI chatbot, implemented coreference resolution to improve its ability to maintain coherent conversations with users, particularly in multi-turn dialogues where users often refer to entities using pronouns or alternative phrases.</p>
+                <p><strong>Details:</strong> In a conversation, a user said, “I bought a new phone. It’s really fast.” XiaoIce used coreference resolution to determine that “It” refers to “new phone,” allowing the chatbot to respond appropriately: “That’s great! What brand is your phone?” The system identified “new phone” as the antecedent of “It” by analyzing the context and ensuring the response was relevant to the user’s previous statement.</p>
+                <p><strong>Implementation:</strong> XiaoIce employed a BERT-based coreference resolution model, trained on conversational datasets where entities and their references were annotated. The model processed the dialogue turn by turn, maintaining a memory of entities (e.g., “new phone”) and linking pronouns like “It” to their antecedents. It also handled more complex cases, such as “The phone I bought yesterday broke. I need to return it,” linking “it” to “phone” despite the intervening sentence.</p>
+                <p><strong>Impact:</strong> Coreference resolution increased user engagement by 20%, as XiaoIce could maintain coherent conversations, avoiding misunderstandings like treating “It” as a new entity. This improvement made the chatbot feel more natural and responsive, enhancing its ability to handle real-world conversations where users frequently use pronouns to refer to previously mentioned entities.</p>
+            </div>
+        </div>
+
+        <!-- Slide 53: Pragmatic Analysis - Intent Detection -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Pragmatic Analysis: Intent Detection</h3>
+                <p><span class="highlight">Intent Detection</span> is a pragmatic analysis task in NLP that identifies the user’s underlying goal or intention in a given sentence or utterance. This is a crucial step in understanding language beyond its literal meaning, focusing on what the user wants to achieve.</p>
+                <ul>
+                    <li><strong>Examples:</strong> In “What’s the weather like today?” the intent is a Question (seeking information), while in “Turn off the lights,” the intent is a Command (requesting an action). In a chatbot context, “Can you book me a flight to Paris?” has the intent of a Request (asking for a service).</li>
+                    <li><strong>Methods:</strong> Intent detection is typically treated as a classification task, where a model predicts the intent from a predefined set of categories (e.g., Question, Command, Statement). Modern approaches use fine-tuned BERT models, which process the entire sentence and classify the intent based on its contextual embeddings. For example, BERT can distinguish “What time is it?” (Question) from “It’s time to go” (Statement).</li>
+                    <li><strong>Challenges:</strong> Intent detection can be challenging due to ambiguity or indirect speech. For instance, “It’s cold in here” might be a Statement or an implicit Request (e.g., to turn on the heater). Cultural differences also play a role—some languages use indirect expressions more frequently, requiring the model to infer intent from context.</li>
+                    <li><strong>Applications:</strong> Intent detection powers virtual assistants like Siri or Alexa, enabling them to respond appropriately to user requests (e.g., answering a question, setting a reminder). It’s also used in customer service chatbots (e.g., identifying a user’s intent to cancel an order) and dialogue systems (e.g., determining whether a user is asking for information or making a complaint).</li>
+                </ul>
+                <p>Intent detection allows machines to understand the purpose behind a user’s language, which is essential for interactive applications. By identifying whether a user is asking a question, making a request, or expressing a sentiment, intent detection ensures that the system can respond in a way that aligns with the user’s goals, enhancing the overall user experience.</p>
+            </div>
+        </div>
+
+        <!-- Slide 54: Example - Intent Detection -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Intent Detection</h3>
+                <p><strong>Input 1:</strong> “Can you play some music?”</p>
+                <p><strong>Input 2:</strong> “What’s the capital of France?”</p>
+                <p><strong>Output:</strong> Input 1 → Intent: Command, Action: Play music; Input 2 → Intent: Question, Action: Provide information</p>
+                <p><strong>Explanation:</strong> Let’s break down how intent detection works for these inputs:</p>
+                <ul>
+                    <li><strong>Input 1 Analysis:</strong> “Can you play some music?” starts with “Can you,” a common phrase for requests, and “play” is a verb indicating an action. A BERT-based model would classify this as a Command intent, with the action “play music.” The system might respond by playing a song, fulfilling the user’s request.</li>
+                    <li><strong>Input 2 Analysis:</strong> “What’s the capital of France?” begins with “What,” a question word, and the structure suggests the user is seeking information. The model classifies this as a Question intent, with the action “provide information.” The system would respond with “The capital of France is Paris.”</li>
+                    <li><strong>Implementation:</strong> A fine-tuned BERT model processes each sentence, generating contextual embeddings that capture the sentence structure and key phrases (e.g., “Can you” or “What’s”). It then classifies the intent using a softmax layer trained on labeled data (e.g., “Command,” “Question”).</li>
+                    <li><strong>Edge Case:</strong> If the input were “Is it okay if we play music?” the intent might still be a Command, but the indirect phrasing (“Is it okay”) could confuse simpler models. BERT’s contextual understanding helps it correctly identify the intent by focusing on “play music” as the main action.</li>
+                </ul>
+                <p>Intent detection ensures that machines can respond appropriately to user inputs, whether by performing an action (like playing music) or providing information (like answering a question). This capability is fundamental to interactive systems, making them more intuitive and user-friendly.</p>
+            </div>
+        </div>
+
+        <!-- Slide 55: Pragmatic Analysis - Dialogue Management -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Pragmatic Analysis: Dialogue Management</h3>
+                <p><span class="highlight">Dialogue Management</span> is a pragmatic analysis task in NLP that oversees the flow of a conversation in a dialogue system, ensuring that the system responds coherently and maintains context across multiple turns. It’s a critical component of conversational AI, such as chatbots and virtual assistants.</p>
+                <ul>
+                    <li><strong>Components:</strong>
+                        <ul>
+                            <li><strong>State Tracking:</strong> Keeps track of the conversation state, including the user’s intent, entities mentioned (e.g., “flight to Paris”), and dialogue history. For example, if a user says “Book a flight to Paris” and then “Make it for tomorrow,” the system tracks that the user is still talking about the flight.</li>
+                            <li><strong>Response Generation:</strong> Decides how to respond based on the current state, either by performing an action (e.g., booking a flight) or asking for clarification (e.g., “What time would you like to travel?”).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Methods:</strong> Early dialogue systems used finite-state machines, where the conversation follows a predefined script (e.g., “Ask for destination → Ask for date → Confirm booking”). Modern systems use reinforcement learning, where the system learns optimal responses by maximizing a reward function (e.g., user satisfaction), or neural models like Transformers for end-to-end dialogue management.</li>
+                    <li><strong>Challenges:</strong> Dialogue management faces challenges like handling interruptions (e.g., user changes topic mid-conversation), maintaining context over long dialogues (e.g., remembering a user’s earlier request), and dealing with ambiguous or incomplete inputs (e.g., “Change it” without specifying what “it” refers to).</li>
+                    <li><strong>Applications:</strong> Dialogue management is used in virtual assistants (e.g., Alexa booking a flight), customer service chatbots (e.g., handling a return request), and educational tools (e.g., guiding a student through a lesson).</li>
+                </ul>
+                <p>Dialogue management ensures that conversational systems can engage in natural, coherent interactions, maintaining context and responding appropriately to user inputs. It’s a complex task that requires integrating intent detection, coreference resolution, and response generation to create a seamless user experience.</p>
+            </div>
+        </div>
+
+        <!-- Slide 56: Example - Dialogue Management -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Example: Dialogue Management</h3>
+                <p><strong>User Turn 1:</strong> “Book a flight to Paris.”</p>
+                <p><strong>System Response 1:</strong> “What date would you like to travel?”</p>
+                <p><strong>User Turn 2:</strong> “Tomorrow.”</p>
+                <p><strong>System Response 2:</strong> “I’ve found flights to Paris tomorrow. Should I book one?”</p>
+                <p><strong>Explanation:</strong> Let’s break down how dialogue management handles this multi-turn conversation:</p>
+                <ul>
+                    <li><strong>Turn 1 - Intent Detection:</strong> The system detects the intent as a Command (book a flight) and identifies key entities: “flight” and “Paris” (destination). The dialogue state is updated to reflect that the user wants to book a flight to Paris.</li>
+                    <li><strong>Response 1 - State Tracking:</strong> The system recognizes that more information is needed to complete the booking (e.g., the travel date). It updates the dialogue state to “waiting for date” and asks a follow-up question: “What date would you like to travel?”</li>
+                    <li><strong>Turn 2 - Context Maintenance:</strong> The user responds with “Tomorrow,” which the system interprets as the travel date. Coreference resolution isn’t needed here, but the system maintains the context that this is still about booking a flight to Paris.</li>
+                    <li><strong>Response 2 - Action and Confirmation:</strong> The system updates the dialogue state with the date (“tomorrow”) and searches for flights. It then generates a response to confirm the action: “I’ve found flights to Paris tomorrow. Should I book one?” This ensures the user has a chance to confirm or modify the request.</li>
+                </ul>
+                <p>Dialogue management ensures that the conversation flows naturally, with the system maintaining context (the flight to Paris) and asking relevant follow-up questions (about the date). This process mimics human conversation, where we keep track of the topic and seek clarification as needed, making the interaction more intuitive for the user.</p>
+            </div>
+        </div>
+
+        <!-- Slide 57: Challenges in Language Understanding -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Challenges in Language Understanding</h3>
+                <p>Understanding language is a complex task for machines, as human language is inherently ambiguous, context-dependent, and nuanced. Despite advances in NLP, several challenges remain that make it difficult for machines to fully grasp language as humans do.</p>
+                <ul>
+                    <li><strong>Polysemy:</strong> Words with multiple meanings (polysemy) pose a challenge. For example, “light” can mean illumination (“The light is bright”), weight (“The box is light”), or color (“Her hair is light”). Machines must disambiguate these meanings based on context, which requires sophisticated models like BERT to analyze surrounding words.</li>
+                    <li><strong>Negation:</strong> Understanding negation is tricky, as it can reverse the meaning of a sentence. For example, “The movie isn’t good” means the opposite of “The movie is good,” but simpler models might miss the “isn’t” and classify both as positive. Contextual embeddings help, but negation can still be challenging in complex sentences (e.g., “I don’t think it’s not good” – double negation).</li>
+                    <li><strong>Long-Distance Dependencies:</strong> Some sentences have relationships between words that are far apart, such as “The dog that chased the cat yesterday in the park barked.” The subject “dog” is linked to the verb “barked,” but the intervening phrase “that chased the cat yesterday in the park” makes it hard for simpler models to connect them. Transformers like BERT handle this better by processing the entire sentence at once.</li>
+                    <li><strong>Implicit Knowledge:</strong> Humans often rely on implicit knowledge that machines lack. For example, in “I left my umbrella at home because it’s sunny,” a human understands that “sunny” implies no need for an umbrella, but a machine might not make this connection without commonsense reasoning capabilities.</li>
+                </ul>
+                <p>These challenges highlight the gap between human and machine language understanding. While modern models like BERT have made significant progress in handling polysemy, negation, and dependencies, implicit knowledge and commonsense reasoning remain areas of active research, as machines still struggle to fully replicate the intuitive understanding humans bring to language.</p>
+            </div>
+        </div>
+
+        <!-- Slide 58: Future of NLP Understanding -->
+        <div class="slide">
+            <div class="example-box">
+                <h3>Future of NLP Understanding</h3>
+                <p>NLP is a rapidly evolving field, and ongoing research is addressing the challenges of language understanding, aiming to make machines more human-like in their ability to process and interpret language. Several trends and advancements are shaping the future of NLP understanding.</p>
+                <ul>
+                    <li><strong>Better Contextual Models:</strong> Future models will improve on BERT and GPT by handling even longer contexts more effectively. For example, models like Longformer and BigBird extend the Transformer architecture to process documents with thousands of words, enabling better understanding of long-distance dependencies in texts like legal documents or novels.</li>
+                    <li><strong>Multimodal Understanding:</strong> NLP is moving toward multimodal systems that combine text with other data types, such as images and speech. For example, a model might analyze a news article’s text (“A dog chased a cat”) alongside an image of the scene, using both to understand the event more fully. Models like CLIP and DALL-E are early examples of this trend.</li>
+                    <li><strong>Commonsense Reasoning:</strong> Teaching machines commonsense knowledge is a major focus. For example, humans know that “If it’s raining, you’ll get wet unless you have an umbrella,” but machines struggle with such implicit knowledge. Projects like Google’s CommonsenseQA dataset and models like COMET aim to imbue machines with this reasoning ability, improving their understanding of cause-and-effect relationships.</li>
+                    <li><strong>Ethical and Fair Models:</strong> Future NLP systems will prioritize reducing bias and ensuring fairness. For example, current models might exhibit gender bias (e.g., associating “doctor” with men), reflecting biases in training data. Research is focusing on debiasing techniques, such as reweighting training data or using fairness constraints during model training, to create more equitable systems.</li>
+                </ul>
+                <p>The future of NLP understanding promises more robust, context-aware, and ethical systems that can handle the full complexity of human language. As these advancements unfold, NLP will become increasingly integral to applications like education, healthcare, and social interaction, bridging the gap between human and machine communication.</p>
+            </div>
+        </div>
+
+        <!-- Slide 59: Case Study 5 - Commonsense Reasoning -->
+        <div class="slide">
+            <div class="case-study-box">
+                <h3>Case Study 5: Commonsense Reasoning - Google Research</h3>
+                <p>Google Research has been at the forefront of developing NLP models with commonsense reasoning capabilities, aiming to address the challenge of implicit knowledge in language understanding. Commonsense reasoning involves understanding everyday facts and relationships that humans take for granted but machines often miss.</p>
+                <p><strong>Details:</strong> Google developed a model to improve commonsense reasoning, focusing on answering questions that require implicit knowledge. For example, the question “If I leave my car windows open and it rains, what happens?” requires understanding that rain enters open windows, leading to a wet interior. The model, trained on datasets like CommonsenseQA and augmented with knowledge graphs (e.g., ConceptNet, which encodes relationships like “rain causes wet”), correctly answered: “Your car will get wet inside.”</p>
+                <p><strong>Implementation:</strong> The model combined BERT-style contextual embeddings with a commonsense knowledge base, using a Transformer architecture to reason over both the input question and related knowledge (e.g., “rain → wet”). It employed techniques like knowledge-augmented attention, where the model attends to relevant commonsense facts while processing the question, ensuring that the answer aligns with real-world understanding.</p>
+                <p><strong>Impact:</strong> The model improved performance on commonsense reasoning benchmarks by 30%, enabling more accurate question answering in applications like Google Assistant. For example, users asking “Will I need a jacket today?” could receive answers based on weather forecasts and commonsense knowledge (e.g., “It’s 10°C, so you might need a jacket”). This case highlights how commonsense reasoning can enhance NLP systems, making them more intuitive and helpful in real-world scenarios.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Wrap-Up (Slides 60-62) -->
+        <div class="slide">
+            <h2>Part 3: Wrap-Up</h2>
+            <h3>Key Takeaways</h3>
+            <p>Let’s summarize the main points from today’s session:</p>
+            <ul>
+                <li><strong>Foundations of NLP:</strong> We explored core NLP processes like text preprocessing (normalization, stemming, lemmatization, stop words removal, noise removal), syntactic parsing (dependency parsing), and techniques like N-grams, Bag of Words, and TF-IDF. These techniques prepare text for analysis by cleaning and structuring it, addressing challenges like language variability and over-processing.</li>
+                <li><strong>How Machines Understand Language:</strong> Machines convert text to numbers using methods like one-hot encoding, word embeddings (Word2Vec, GloVe, FastText), and contextual embeddings (ELMo, BERT). They extract meaning through semantic analysis (word sense disambiguation, semantic role labeling, coreference resolution) and pragmatic analysis (intent detection, dialogue management), enabling them to understand context and user intent.</li>
+                <li><strong>Challenges and Future:</strong> Language understanding faces challenges like polysemy, negation, and the need for commonsense reasoning. Future advancements will focus on better contextual models, multimodal understanding, commonsense reasoning, and ethical considerations, bringing us closer to human-like language comprehension.</li>
+            </ul>
+            <p>These concepts form the technical backbone of NLP, enabling machines to process and understand human language systematically. By mastering these foundations, we can build more advanced systems that tackle complex language tasks with greater accuracy and nuance.</p>
+        </div>
+
+        <!-- Slide 61: Homework Assignment -->
+        <div class="slide">
+            <h3>Homework Assignment</h3>
+            <p><strong>Assignment:</strong> Pick a short paragraph (e.g., from a news article, blog post, or book) and identify 5 key words. For each word, guess how a machine might interpret its meaning using word embeddings or contextual analysis. Consider the following:</p>
+            <ul>
+                <li>What other words might the machine associate with each key word based on embeddings? For example, if a key word is “dog,” a machine might associate it with “cat,” “pet,” or “bark” using Word2Vec.</li>
+                <li>How might the context of the paragraph affect the interpretation? For example, if the paragraph is about finance, the word “bank” might be interpreted differently than in a paragraph about nature.</li>
+                <li>Write a brief explanation (1-2 sentences per word) of your guesses, focusing on how embeddings or contextual models like BERT might analyze the word.</li>
+            </ul>
+            <p>This assignment will help you think about how machines process language at a deeper level, applying the concepts of embeddings and context we discussed today. It’s a chance to reflect on the nuances of language understanding and how NLP models interpret meaning in different scenarios.</p>
+        </div>
+
+        <!-- Slide 62: Final Thoughts -->
+        <div class="slide">
+            <h3>Final Thoughts</h3>
+            <p>Today, we’ve taken a deep dive into the technical foundations of NLP and explored how machines understand language, from basic preprocessing to advanced contextual models. We’ve seen how techniques like stemming, lemmatization, and syntactic parsing prepare text for analysis, and how word embeddings, BERT, and semantic analysis enable machines to extract meaning and intent.</p>
+            <p>We’ve also discussed the challenges that remain, such as handling polysemy and commonsense reasoning, and looked at the future of NLP, where multimodal and ethical models will play a larger role. These concepts are crucial for building NLP systems that can interact with humans naturally and effectively, whether in chatbots, search engines, or translation tools.</p>
+            <p>In our next session, we’ll explore Large Language Models (LLMs) and their applications, building on the foundations we’ve covered today. Great job, everyone, and I look forward to seeing your insights in the homework assignment!</p>
+        </div>
+    </div>
+</body>
+</html>
