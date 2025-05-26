@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Concepts MCQ Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #3498db;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            color: #34495e;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #2c3e50;
+            transition: background 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+        }
+
+        .option.selected {
+            border: 2px solid #3498db;
+            background: #e3f2fd;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .answer-slide {
+            text-align: left;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+        }
+
+        .answer-slide h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .answer-slide p {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .result-message {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .correct {
+            color: #2ecc71;
+        }
+
+        .wrong {
+            color: #e74c3c;
+        }
+
+        .score-slide {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+            transition: width 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 20px;
+                height: 90vh;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .question-text { font-size: 1.2em; }
+            .option { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="progress-bar" id="progress-bar"></div>
+
+        <!-- Slide 1: Name Input -->
+        <div class="slide active" id="name-slide">
+            <h1>Welcome to the AI Concepts Quiz!</h1>
+            <h2>Please Enter Your Name</h2>
+            <input type="text" id="student-name" class="input-field" placeholder="Your Name" required>
+            <button class="btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="slide" id="q1-slide">
+            <h1>Question 1</h1>
+            <div class="question-text">What is Artificial Intelligence (AI)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q1')">Creating systems that perform tasks requiring human intelligence.</div>
+                <div class="option" onclick="selectOption(this, 'q1')">Generating images from text prompts.</div>
+                <div class="option" onclick="selectOption(this, 'q1')">Translating text between languages.</div>
+                <div class="option" onclick="selectOption(this, 'q1')">Sorting data into clusters.</div>
+                <div class="option" onclick="selectOption(this, 'q1')">Converting speech to text.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(1, 'Creating systems that perform tasks requiring human intelligence.')">Submit</button>
+        </div>
+
+        <!-- Answer 1 -->
+        <div class="slide" id="a1-slide">
+            <h1>Question 1 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result1" class="result-message"></div>
+                <h3>Correct Answer: Creating systems that perform tasks requiring human intelligence.</h3>
+                <p><strong>Explanation:</strong> AI mimics human intelligence, e.g., robot vacuums navigating obstacles. Other options are specific AI tasks (image generation, translation, clustering, speech recognition).</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(1)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(2)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="slide" id="q2-slide">
+            <h1>Question 2</h1>
+            <div class="question-text">What is Machine Learning (ML)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q2')">Systems learning from data to predict without explicit programming.</div>
+                <div class="option" onclick="selectOption(this, 'q2')">A neural network for image recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q2')">Processing human speech into text.</div>
+                <div class="option" onclick="selectOption(this, 'q2')">Generating images from noise.</div>
+                <div class="option" onclick="selectOption(this, 'q2')">Ethical decision-making in AI.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(2, 'Systems learning from data to predict without explicit programming.')">Submit</button>
+        </div>
+
+        <!-- Answer 2 -->
+        <div class="slide" id="a2-slide">
+            <h1>Question 2 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result2" class="result-message"></div>
+                <h3>Correct Answer: Systems learning from data to predict without explicit programming.</h3>
+                <p><strong>Explanation:</strong> ML learns from data, e.g., spam filters detecting spam. Other options describe specific techniques (neural networks, speech processing, image generation) or AI ethics.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(2)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(3)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="slide" id="q3-slide">
+            <h1>Question 3</h1>
+            <div class="question-text">What is Supervised Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q3')">ML using labeled data to make predictions.</div>
+                <div class="option" onclick="selectOption(this, 'q3')">Learning without any data labels.</div>
+                <div class="option" onclick="selectOption(this, 'q3')">Learning via rewards and penalties.</div>
+                <div class="option" onclick="selectOption(this, 'q3')">Generating new content from prompts.</div>
+                <div class="option" onclick="selectOption(this, 'q3')">Breaking text into tokens.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(3, 'ML using labeled data to make predictions.')">Submit</button>
+        </div>
+
+        <!-- Answer 3 -->
+        <div class="slide" id="a3-slide">
+            <h1>Question 3 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result3" class="result-message"></div>
+                <h3>Correct Answer: ML using labeled data to make predictions.</h3>
+                <p><strong>Explanation:</strong> Supervised learning uses labeled data, e.g., predicting house prices. Other options refer to unsupervised learning, reinforcement learning, generative AI, or tokenization.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(3)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(4)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="slide" id="q4-slide">
+            <h1>Question 4</h1>
+            <div class="question-text">What is Unsupervised Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q4')">ML identifying patterns in unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q4')">Learning with labeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q4')">Learning through rewards.</div>
+                <div class="option" onclick="selectOption(this, 'q4')">Generating text from prompts.</div>
+                <div class="option" onclick="selectOption(this, 'q4')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(4, 'ML identifying patterns in unlabeled data.')">Submit</button>
+        </div>
+
+        <!-- Answer 4 -->
+        <div class="slide" id="a4-slide">
+            <h1>Question 4 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result4" class="result-message"></div>
+                <h3>Correct Answer: ML identifying patterns in unlabeled data.</h3>
+                <p><strong>Explanation:</strong> Unsupervised learning finds patterns, e.g., grouping customers. Other options describe supervised learning, reinforcement learning, generative AI, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(4)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(5)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="slide" id="q5-slide">
+            <h1>Question 5</h1>
+            <div class="question-text">What is Reinforcement Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q5')">ML learning via rewards and penalties.</div>
+                <div class="option" onclick="selectOption(this, 'q5')">Learning with labeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q5')">Finding patterns in unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q5')">Generating images from text.</div>
+                <div class="option" onclick="selectOption(this, 'q5')">Summarizing text.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(5, 'ML learning via rewards and penalties.')">Submit</button>
+        </div>
+
+        <!-- Answer 5 -->
+        <div class="slide" id="a5-slide">
+            <h1>Question 5 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result5" class="result-message"></div>
+                <h3>Correct Answer: ML learning via rewards and penalties.</h3>
+                <p><strong>Explanation:</strong> Reinforcement learning uses rewards, e.g., game AI winning chess. Other options refer to supervised learning, unsupervised learning, generative AI, or NLP tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(5)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(6)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="slide" id="q6-slide">
+            <h1>Question 6</h1>
+            <div class="question-text">What are Neural Networks?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q6')">Systems mimicking biological neurons to process data.</div>
+                <div class="option" onclick="selectOption(this, 'q6')">Rules for sorting data.</div>
+                <div class="option" onclick="selectOption(this, 'q6')">Methods for text summarization.</div>
+                <div class="option" onclick="selectOption(this, 'q6')">Techniques for ethical AI.</div>
+                <div class="option" onclick="selectOption(this, 'q6')">Models for speech recognition.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(6, 'Systems mimicking biological neurons to process data.')">Submit</button>
+        </div>
+
+        <!-- Answer 6 -->
+        <div class="slide" id="a6-slide">
+            <h1>Question 6 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result6" class="result-message"></div>
+                <h3>Correct Answer: Systems mimicking biological neurons to process data.</h3>
+                <p><strong>Explanation:</strong> Neural networks process data like neurons, e.g., for image recognition. Other options describe algorithms, NLP tasks, ethics, or specific applications.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(6)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(7)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="slide" id="q7-slide">
+            <h1>Question 7</h1>
+            <div class="question-text">What is Deep Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q7')">ML using neural networks with many layers.</div>
+                <div class="option" onclick="selectOption(this, 'q7')">Learning without data.</div>
+                <div class="option" onclick="selectOption(this, 'q7')">Generating text prompts.</div>
+                <div class="option" onclick="selectOption(this, 'q7')">Recognizing entities in text.</div>
+                <div class="option" onclick="selectOption(this, 'q7')">Translating speech.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(7, 'ML using neural networks with many layers.')">Submit</button>
+        </div>
+
+        <!-- Answer 7 -->
+        <div class="slide" id="a7-slide">
+            <h1>Question 7 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result7" class="result-message"></div>
+                <h3>Correct Answer: ML using neural networks with many layers.</h3>
+                <p><strong>Explanation:</strong> Deep learning uses multi-layered neural networks, e.g., for face recognition. Other options describe unrelated concepts or specific NLP tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(7)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(8)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="slide" id="q8-slide">
+            <h1>Question 8</h1>
+            <div class="question-text">What is Training Data?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q8')">Dataset used to teach an ML model.</div>
+                <div class="option" onclick="selectOption(this, 'q8')">Data for testing model performance.</div>
+                <div class="option" onclick="selectOption(this, 'q8')">Data for generating images.</div>
+                <div class="option" onclick="selectOption(this, 'q8')">Data for speech recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q8')">Data for ethical analysis.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(8, 'Dataset used to teach an ML model.')">Submit</button>
+        </div>
+
+        <!-- Answer 8 -->
+        <div class="slide" id="a8-slide">
+            <h1>Question 8 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result8" class="result-message"></div>
+                <h3>Correct Answer: Dataset used to teach an ML model.</h3>
+                <p><strong>Explanation:</strong> Training data teaches models, e.g., labeled cat/dog photos. Other options refer to testing data, generative AI, speech tasks, or ethics.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(8)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(9)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="slide" id="q9-slide">
+            <h1>Question 9</h1>
+            <div class="question-text">What is Testing Data?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q9')">Dataset to evaluate model performance.</div>
+                <div class="option" onclick="selectOption(this, 'q9')">Data to train models.</div>
+                <div class="option" onclick="selectOption(this, 'q9')">Data for generating text.</div>
+                <div class="option" onclick="selectOption(this, 'q9')">Data for clustering customers.</div>
+                <div class="option" onclick="selectOption(this, 'q9')">Data for sentiment analysis.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(9, 'Dataset to evaluate model performance.')">Submit</button>
+        </div>
+
+        <!-- Answer 9 -->
+        <div class="slide" id="a9-slide">
+            <h1>Question 9 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result9" class="result-message"></div>
+                <h3>Correct Answer: Dataset to evaluate model performance.</h3>
+                <p><strong>Explanation:</strong> Testing data assesses models, e.g., new cat/dog images. Other options describe training data, generative AI, unsupervised learning, or NLP tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(9)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(10)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="slide" id="q10-slide">
+            <h1>Question 10</h1>
+            <div class="question-text">What is Overfitting?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q10')">Model learning training data too specifically, failing to generalize.</div>
+                <div class="option" onclick="selectOption(this, 'q10')">Model too simple for data.</div>
+                <div class="option" onclick="selectOption(this, 'q10')">Model generating false facts.</div>
+                <div class="option" onclick="selectOption(this, 'q10')">Model processing multiple data types.</div>
+                <div class="option" onclick="selectOption(this, 'q10')">Model translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(10, 'Model learning training data too specifically, failing to generalize.')">Submit</button>
+        </div>
+
+        <!-- Answer 10 -->
+        <div class="slide" id="a10-slide">
+            <h1>Question 10 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result10" class="result-message"></div>
+                <h3>Correct Answer: Model learning training data too specifically, failing to generalize.</h3>
+                <p><strong>Explanation:</strong> Overfitting memorizes data, e.g., failing new exam questions. Other options describe underfitting, hallucinations, multimodal AI, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(10)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(11)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="slide" id="q11-slide">
+            <h1>Question 11</h1>
+            <div class="question-text">What is Underfitting?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q11')">Model too simple to capture data patterns.</div>
+                <div class="option" onclick="selectOption(this, 'q11')">Model memorizing training data.</div>
+                <div class="option" onclick="selectOption(this, 'q11')">Model generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q11')">Model recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q11')">Model analyzing sentiment.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(11, 'Model too simple to capture data patterns.')">Submit</button>
+        </div>
+
+        <!-- Answer 11 -->
+        <div class="slide" id="a11-slide">
+            <h1>Question 11 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result11" class="result-message"></div>
+                <h3>Correct Answer: Model too simple to capture data patterns.</h3>
+                <p><strong>Explanation:</strong> Underfitting fails to learn, e.g., using a line for curved data. Other options describe overfitting, generative AI, speech recognition, or sentiment analysis.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(11)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(12)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="slide" id="q12-slide">
+            <h1>Question 12</h1>
+            <div class="question-text">What is a Model in ML?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q12')">Mathematical representation for predictions.</div>
+                <div class="option" onclick="selectOption(this, 'q12')">A dataset for training.</div>
+                <div class="option" onclick="selectOption(this, 'q12')">A method for generating images.</div>
+                <div class="option" onclick="selectOption(this, 'q12')">A technique for text summarization.</div>
+                <div class="option" onclick="selectOption(this, 'q12')">A system for ethical AI.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(12, 'Mathematical representation for predictions.')">Submit</button>
+        </div>
+
+        <!-- Answer 12 -->
+        <div class="slide" id="a12-slide">
+            <h1>Question 12 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result12" class="result-message"></div>
+                <h3>Correct Answer: Mathematical representation for predictions.</h3>
+                <p><strong>Explanation:</strong> A model predicts, e.g., weather forecasting. Other options describe datasets, generative AI, NLP tasks, or ethics.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(12)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(13)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="slide" id="q13-slide">
+            <h1>Question 13</h1>
+            <div class="question-text">What is an Algorithm?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q13')">Rules for solving problems.</div>
+                <div class="option" onclick="selectOption(this, 'q13')">A neural network model.</div>
+                <div class="option" onclick="selectOption(this, 'q13')">A dataset for training.</div>
+                <div class="option" onclick="selectOption(this, 'q13')">A method for generating text.</div>
+                <div class="option" onclick="selectOption(this, 'q13')">A technique for speech recognition.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(13, 'Rules for solving problems.')">Submit</button>
+        </div>
+
+        <!-- Answer 13 -->
+        <div class="slide" id="a13-slide">
+            <h1>Question 13 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result13" class="result-message"></div>
+                <h3>Correct Answer: Rules for solving problems.</h3>
+                <p><strong>Explanation:</strong> Algorithms are instructions, e.g., sorting numbers. Other options describe models, datasets, generative AI, or speech tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(13)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(14)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="slide" id="q14-slide">
+            <h1>Question 14</h1>
+            <div class="question-text">What is Bias in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q14')">Unfair discrimination from data or design.</div>
+                <div class="option" onclick="selectOption(this, 'q14')">A neural network layer.</div>
+                <div class="option" onclick="selectOption(this, 'q14')">A method for image generation.</div>
+                <div class="option" onclick="selectOption(this, 'q14')">A technique for text classification.</div>
+                <div class="option" onclick="selectOption(this, 'q14')">A model evaluation metric.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(14, 'Unfair discrimination from data or design.')">Submit</button>
+        </div>
+
+        <!-- Answer 14 -->
+        <div class="slide" id="a14-slide">
+            <h1>Question 14 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result14" class="result-message"></div>
+                <h3>Correct Answer: Unfair discrimination from data or design.</h3>
+                <p><strong>Explanation:</strong> Bias causes unfair outcomes, e.g., biased hiring algorithms. Other options describe neural networks, generative AI, NLP, or metrics.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(14)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(15)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="slide" id="q15-slide">
+            <h1>Question 15</h1>
+            <div class="question-text">What is Ethics in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q15')">Guidelines for responsible AI development.</div>
+                <div class="option" onclick="selectOption(this, 'q15')">A neural network architecture.</div>
+                <div class="option" onclick="selectOption(this, 'q15')">A method for data clustering.</div>
+                <div class="option" onclick="selectOption(this, 'q15')">A technique for speech synthesis.</div>
+                <div class="option" onclick="selectOption(this, 'q15')">A model training dataset.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(15, 'Guidelines for responsible AI development.')">Submit</button>
+        </div>
+
+        <!-- Answer 15 -->
+        <div class="slide" id="a15-slide">
+            <h1>Question 15 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result15" class="result-message"></div>
+                <h3>Correct Answer: Guidelines for responsible AI development.</h3>
+                <p><strong>Explanation:</strong> AI ethics ensures responsible use, e.g., fair facial recognition. Other options describe architectures, clustering, speech tasks, or datasets.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(15)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(16)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="slide" id="q16-slide">
+            <h1>Question 16</h1>
+            <div class="question-text">What is Generative AI (GenAI)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q16')">AI creating new content like text or images.</div>
+                <div class="option" onclick="selectOption(this, 'q16')">AI translating languages.</div>
+                <div class="option" onclick="selectOption(this, 'q16')">AI clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q16')">AI recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q16')">AI reducing model bias.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(16, 'AI creating new content like text or images.')">Submit</button>
+        </div>
+
+        <!-- Answer 16 -->
+        <div class="slide" id="a16-slide">
+            <h1>Question 16 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result16" class="result-message"></div>
+                <h3>Correct Answer: AI creating new content like text or images.</h3>
+                <p><strong>Explanation:</strong> Generative AI produces content, e.g., ChatGPT writing stories. Other options describe translation, clustering, speech recognition, or bias mitigation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(16)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(17)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="slide" id="q17-slide">
+            <h1>Question 17</h1>
+            <div class="question-text">What is a Prompt in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q17')">Input text guiding AI output.</div>
+                <div class="option" onclick="selectOption(this, 'q17')">A neural network layer.</div>
+                <div class="option" onclick="selectOption(this, 'q17')">A dataset for training.</div>
+                <div class="option" onclick="selectOption(this, 'q17')">A method for speech recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q17')">A technique for data clustering.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(17, 'Input text guiding AI output.')">Submit</button>
+        </div>
+
+        <!-- Answer 17 -->
+        <div class="slide" id="a17-slide">
+            <h1>Question 17 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result17" class="result-message"></div>
+                <h3>Correct Answer: Input text guiding AI output.</h3>
+                <p><strong>Explanation:</strong> Prompts guide AI, e.g., "write a poem." Other options describe neural networks, datasets, speech tasks, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(17)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(18)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="slide" id="q18-slide">
+            <h1>Question 18</h1>
+            <div class="question-text">What is Prompt Engineering?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q18')">Designing prompts to improve AI output.</div>
+                <div class="option" onclick="selectOption(this, 'q18')">Training neural networks.</div>
+                <div class="option" onclick="selectOption(this, 'q18')">Reducing dataset size.</div>
+                <div class="option" onclick="selectOption(this, 'q18')">Eliminating AI bias.</div>
+                <div class="option" onclick="selectOption(this, 'q18')">Converting text to speech.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(18, 'Designing prompts to improve AI output.')">Submit</button>
+        </div>
+
+        <!-- Answer 18 -->
+        <div class="slide" id="a18-slide">
+            <h1>Question 18 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result18" class="result-message"></div>
+                <h3>Correct Answer: Designing prompts to improve AI output.</h3>
+                <p><strong>Explanation:</strong> Prompt engineering optimizes inputs, e.g., detailed math solutions. Other options describe training, data reduction, bias mitigation, or speech tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(18)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(19)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="slide" id="q19-slide">
+            <h1>Question 19</h1>
+            <div class="question-text">What is Creativity in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q19')">Generating novel and valuable content.</div>
+                <div class="option" onclick="selectOption(this, 'q19')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q19')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q19')">Translating languages.</div>
+                <div class="option" onclick="selectOption(this, 'q19')">Reducing model bias.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(19, 'Generating novel and valuable content.')">Submit</button>
+        </div>
+
+        <!-- Answer 19 -->
+        <div class="slide" id="a19-slide">
+            <h1>Question 19 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result19" class="result-message"></div>
+                <h3>Correct Answer: Generating novel and valuable content.</h3>
+                <p><strong>Explanation:</strong> AI creativity produces novel outputs, e.g., original music. Other options describe clustering, speech recognition, translation, or bias reduction.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(19)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(20)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="slide" id="q20-slide">
+            <h1>Question 20</h1>
+            <div class="question-text">What are Diffusion Models?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q20')">Models generating images by removing noise.</div>
+                <div class="option" onclick="selectOption(this, 'q20')">Models for text classification.</div>
+                <div class="option" onclick="selectOption(this, 'q20')">Models for speech recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q20')">Models for data clustering.</div>
+                <div class="option" onclick="selectOption(this, 'q20')">Models for ethical AI.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(20, 'Models generating images by removing noise.')">Submit</button>
+        </div>
+
+        <!-- Answer 20 -->
+        <div class="slide" id="a20-slide">
+            <h1>Question 20 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result20" class="result-message"></div>
+                <h3>Correct Answer: Models generating images by removing noise.</h3>
+                <p><strong>Explanation:</strong> Diffusion models create images, e.g., Stable Diffusion art. Other options describe NLP, speech, clustering, or ethics tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(20)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(21)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 21 -->
+        <div class="slide" id="q21-slide">
+            <h1>Question 21</h1>
+            <div class="question-text">What are GANs (Generative Adversarial Networks)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q21')">Two neural networks competing to generate realistic data.</div>
+                <div class="option" onclick="selectOption(this, 'q21')">Networks for text summarization.</div>
+                <div class="option" onclick="selectOption(this, 'q21')">Networks for speech synthesis.</div>
+                <div class="option" onclick="selectOption(this, 'q21')">Networks for data clustering.</div>
+                <div class="option" onclick="selectOption(this, 'q21')">Networks for bias reduction.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(21, 'Two neural networks competing to generate realistic data.')">Submit</button>
+        </div>
+
+        <!-- Answer 21 -->
+        <div class="slide" id="a21-slide">
+            <h1>Question 21 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result21" class="result-message"></div>
+                <h3>Correct Answer: Two neural networks competing to generate realistic data.</h3>
+                <p><strong>Explanation:</strong> GANs generate realistic data, e.g., fake faces. Other options describe NLP, speech, clustering, or bias tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(21)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(22)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 22 -->
+        <div class="slide" id="q22-slide">
+            <h1>Question 22</h1>
+            <div class="question-text">What is Sampling in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q22')">Generating outputs using probability distributions.</div>
+                <div class="option" onclick="selectOption(this, 'q22')">Training models with data.</div>
+                <div class="option" onclick="selectOption(this, 'q22')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q22')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q22')">Translating text.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(22, 'Generating outputs using probability distributions.')">Submit</button>
+        </div>
+
+        <!-- Answer 22 -->
+        <div class="slide" id="a22-slide">
+            <h1>Question 22 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result22" class="result-message"></div>
+                <h3>Correct Answer: Generating outputs using probability distributions.</h3>
+                <p><strong>Explanation:</strong> Sampling generates outputs, e.g., choosing words in sentences. Other options describe training, clustering, speech, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(22)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(23)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 23 -->
+        <div class="slide" id="q23-slide">
+            <h1>Question 23</h1>
+            <div class="question-text">What is Fine-tuning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q23')">Adapting pre-trained models for specific tasks.</div>
+                <div class="option" onclick="selectOption(this, 'q23')">Training models from scratch.</div>
+                <div class="option" onclick="selectOption(this, 'q23')">Generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q23')">Recognizing entities in text.</div>
+                <div class="option" onclick="selectOption(this, 'q23')">Reducing model bias.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(23, 'Adapting pre-trained models for specific tasks.')">Submit</button>
+        </div>
+
+        <!-- Answer 23 -->
+        <div class="slide" id="a23-slide">
+            <h1>Question 23 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result23" class="result-message"></div>
+                <h3>Correct Answer: Adapting pre-trained models for specific tasks.</h3>
+                <p><strong>Explanation:</strong> Fine-tuning customizes models, e.g., for medical reports. Other options describe full training, generative AI, NLP, or bias reduction.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(23)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(24)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 24 -->
+        <div class="slide" id="q24-slide">
+            <h1>Question 24</h1>
+            <div class="question-text">What is Zero-shot Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q24')">Performing tasks without specific training.</div>
+                <div class="option" onclick="selectOption(this, 'q24')">Training with few examples.</div>
+                <div class="option" onclick="selectOption(this, 'q24')">Generating images from text.</div>
+                <div class="option" onclick="selectOption(this, 'q24')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q24')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(24, 'Performing tasks without specific training.')">Submit</button>
+        </div>
+
+        <!-- Answer 24 -->
+        <div class="slide" id="a24-slide">
+            <h1>Question 24 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result24" class="result-message"></div>
+                <h3>Correct Answer: Performing tasks without specific training.</h3>
+                <p><strong>Explanation:</strong> Zero-shot learning handles untrained tasks, e.g., translating new languages. Other options describe few-shot learning, generative AI, clustering, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(24)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(25)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 25 -->
+        <div class="slide" id="q25-slide">
+            <h1>Question 25</h1>
+            <div class="question-text">What is Few-shot Learning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q25')">Learning tasks with few examples.</div>
+                <div class="option" onclick="selectOption(this, 'q25')">Learning without any examples.</div>
+                <div class="option" onclick="selectOption(this, 'q25')">Generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q25')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q25')">Clustering data.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(25, 'Learning tasks with few examples.')">Submit</button>
+        </div>
+
+        <!-- Answer 25 -->
+        <div class="slide" id="a25-slide">
+            <h1>Question 25 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result25" class="result-message"></div>
+                <h3>Correct Answer: Learning tasks with few examples.</h3>
+                <p><strong>Explanation:</strong> Few-shot learning uses few examples, e.g., learning poetry from 3 poems. Other options describe zero-shot learning, generative AI, speech, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(25)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(26)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="slide" id="q26-slide">
+            <h1>Question 26</h1>
+            <div class="question-text">What is Natural Language Processing (NLP)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q26')">AI understanding and generating human language.</div>
+                <div class="option" onclick="selectOption(this, 'q26')">AI generating images from noise.</div>
+                <div class="option" onclick="selectOption(this, 'q26')">AI learning from rewards.</div>
+                <div class="option" onclick="selectOption(this, 'q26')">AI predicting numerical data.</div>
+                <div class="option" onclick="selectOption(this, 'q26')">AI reducing overfitting.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(26, 'AI understanding and generating human language.')">Submit</button>
+        </div>
+
+        <!-- Answer 26 -->
+        <div class="slide" id="a26-slide">
+            <h1>Question 26 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result26" class="result-message"></div>
+                <h3>Correct Answer: AI understanding and generating human language.</h3>
+                <p><strong>Explanation:</strong> NLP processes language, e.g., Siri understanding commands. Other options describe generative AI, reinforcement learning, supervised learning, or model issues.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(26)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(27)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 27 -->
+        <div class="slide" id="q27-slide">
+            <h1>Question 27</h1>
+            <div class="question-text">What is Tokenization?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q27')">Breaking text into smaller units for processing.</div>
+                <div class="option" onclick="selectOption(this, 'q27')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q27')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q27')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q27')">Reducing model bias.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(27, 'Breaking text into smaller units for processing.')">Submit</button>
+        </div>
+
+        <!-- Answer 27 -->
+        <div class="slide" id="a27-slide">
+            <h1>Question 27 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result27" class="result-message"></div>
+                <h3>Correct Answer: Breaking text into smaller units for processing.</h3>
+                <p><strong>Explanation:</strong> Tokenization splits text, e.g., "Hello world!" into tokens. Other options describe generative AI, clustering, speech, or bias reduction.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(27)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(28)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 28 -->
+        <div class="slide" id="q28-slide">
+            <h1>Question 28</h1>
+            <div class="question-text">What is Part-of-Speech Tagging?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q28')">Identifying grammatical roles of words.</div>
+                <div class="option" onclick="selectOption(this, 'q28')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q28')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q28')">Recognizing entities in text.</div>
+                <div class="option" onclick="selectOption(this, 'q28')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(28, 'Identifying grammatical roles of words.')">Submit</button>
+        </div>
+
+        <!-- Answer 28 -->
+        <div class="slide" id="a28-slide">
+            <h1>Question 28 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result28" class="result-message"></div>
+                <h3>Correct Answer: Identifying grammatical roles of words.</h3>
+                <p><strong>Explanation:</strong> Part-of-speech tagging labels words, e.g., "fox" as a noun. Other options describe generative AI, clustering, NER, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(28)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(29)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 29 -->
+        <div class="slide" id="q29-slide">
+            <h1>Question 29</h1>
+            <div class="question-text">What is Named Entity Recognition (NER)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q29')">Identifying named entities in text.</div>
+                <div class="option" onclick="selectOption(this, 'q29')">Converting speech to text.</div>
+                <div class="option" onclick="selectOption(this, 'q29')">Determining text sentiment.</div>
+                <div class="option" onclick="selectOption(this, 'q29')">Summarizing long texts.</div>
+                <div class="option" onclick="selectOption(this, 'q29')">Breaking text into tokens.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(29, 'Identifying named entities in text.')">Submit</button>
+        </div>
+
+        <!-- Answer 29 -->
+        <div class="slide" id="a29-slide">
+            <h1>Question 29 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result29" class="result-message"></div>
+                <h3>Correct Answer: Identifying named entities in text.</h3>
+                <p><strong>Explanation:</strong> NER identifies entities, e.g., "Apple" as a company. Other options describe speech recognition, sentiment analysis, summarization, or tokenization.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(29)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(30)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 30 -->
+        <div class="slide" id="q30-slide">
+            <h1>Question 30</h1>
+            <div class="question-text">What is Sentiment Analysis?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q30')">Determining emotional tone in text.</div>
+                <div class="option" onclick="selectOption(this, 'q30')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q30')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q30')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q30')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(30, 'Determining emotional tone in text.')">Submit</button>
+        </div>
+
+        <!-- Answer 30 -->
+        <div class="slide" id="a30-slide">
+            <h1>Question 30 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result30" class="result-message"></div>
+                <h3>Correct Answer: Determining emotional tone in text.</h3>
+                <p><strong>Explanation:</strong> Sentiment analysis detects tone, e.g., customer review satisfaction. Other options describe generative AI, clustering, speech, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(30)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(31)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 31 -->
+        <div class="slide" id="q31-slide">
+            <h1>Question 31</h1>
+            <div class="question-text">What is Text Classification?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q31')">Categorizing text into predefined classes.</div>
+                <div class="option" onclick="selectOption(this, 'q31')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q31')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q31')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q31')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(31, 'Categorizing text into predefined classes.')">Submit</button>
+        </div>
+
+        <!-- Answer 31 -->
+        <div class="slide" id="a31-slide">
+            <h1>Question 31 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result31" class="result-message"></div>
+                <h3>Correct Answer: Categorizing text into predefined classes.</h3>
+                <p><strong>Explanation:</strong> Text classification sorts text, e.g., emails into folders. Other options describe generative AI, clustering, speech, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(31)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(32)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 32 -->
+        <div class="slide" id="q32-slide">
+            <h1>Question 32</h1>
+            <div class="question-text">What is Machine Translation?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q32')">Translating text between languages.</div>
+                <div class="option" onclick="selectOption(this, 'q32')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q32')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q32')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q32')">Summarizing text.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(32, 'Translating text between languages.')">Submit</button>
+        </div>
+
+        <!-- Answer 32 -->
+        <div class="slide" id="a32-slide">
+            <h1>Question 32 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result32" class="result-message"></div>
+                <h3>Correct Answer: Translating text between languages.</h3>
+                <p><strong>Explanation:</strong> Machine translation converts text, e.g., "Hello" to "Hola." Other options describe generative AI, clustering, speech, or summarization.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(32)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(33)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 33 -->
+        <div class="slide" id="q33-slide">
+            <h1>Question 33</h1>
+            <div class="question-text">What is Text Summarization?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q33')">Creating shorter versions of texts.</div>
+                <div class="option" onclick="selectOption(this, 'q33')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q33')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q33')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q33')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(33, 'Creating shorter versions of texts.')">Submit</button>
+        </div>
+
+        <!-- Answer 33 -->
+        <div class="slide" id="a33-slide">
+            <h1>Question 33 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result33" class="result-message"></div>
+                <h3>Correct Answer: Creating shorter versions of texts.</h3>
+                <p><strong>Explanation:</strong> Text summarization condenses texts, e.g., summarizing papers. Other options describe generative AI, clustering, speech, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(33)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(34)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 34 -->
+        <div class="slide" id="q34-slide">
+            <h1>Question 34</h1>
+            <div class="question-text">What is Speech Recognition?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q34')">Converting spoken language to text.</div>
+                <div class="option" onclick="selectOption(this, 'q34')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q34')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q34')">Translating languages.</div>
+                <div class="option" onclick="selectOption(this, 'q34')">Summarizing text.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(34, 'Converting spoken language to text.')">Submit</button>
+        </div>
+
+        <!-- Answer 34 -->
+        <div class="slide" id="a34-slide">
+            <h1>Question 34 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result34" class="result-message"></div>
+                <h3>Correct Answer: Converting spoken language to text.</h3>
+                <p><strong>Explanation:</strong> Speech recognition transcribes speech, e.g., Siri processing commands. Other options describe generative AI, clustering, translation, or summarization.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(34)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(35)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 35 -->
+        <div class="slide" id="q35-slide">
+            <h1>Question 35</h1>
+            <div class="question-text">What is Text-to-Speech (TTS)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q35')">Converting text to spoken audio.</div>
+                <div class="option" onclick="selectOption(this, 'q35')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q35')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q35')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q35')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(35, 'Converting text to spoken audio.')">Submit</button>
+        </div>
+
+        <!-- Answer 35 -->
+        <div class="slide" id="a35-slide">
+            <h1>Question 35 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result35" class="result-message"></div>
+                <h3>Correct Answer: Converting text to spoken audio.</h3>
+                <p><strong>Explanation:</strong> TTS converts text to speech, e.g., GPS reading directions. Other options describe generative AI, clustering, speech recognition, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(35)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(36)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 36 -->
+        <div class="slide" id="q36-slide">
+            <h1>Question 36</h1>
+            <div class="question-text">What is a Large Language Model (LLM)?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q36')">Neural networks trained on vast text for language tasks.</div>
+                <div class="option" onclick="selectOption(this, 'q36')">Models for image generation.</div>
+                <div class="option" onclick="selectOption(this, 'q36')">Models for speech recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q36')">Models for data clustering.</div>
+                <div class="option" onclick="selectOption(this, 'q36')">Models for ethical AI.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(36, 'Neural networks trained on vast text for language tasks.')">Submit</button>
+        </div>
+
+        <!-- Answer 36 -->
+        <div class="slide" id="a36-slide">
+            <h1>Question 36 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result36" class="result-message"></div>
+                <h3>Correct Answer: Neural networks trained on vast text for language tasks.</h3>
+                <p><strong>Explanation:</strong> LLMs process language, e.g., GPT-4 answering questions. Other options describe generative AI, speech, clustering, or ethics.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(36)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(37)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 37 -->
+        <div class="slide" id="q37-slide">
+            <h1>Question 37</h1>
+            <div class="question-text">What is Transformer Architecture?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q37')">Neural network using attention for sequence processing.</div>
+                <div class="option" onclick="selectOption(this, 'q37')">Architecture for image generation.</div>
+                <div class="option" onclick="selectOption(this, 'q37')">Architecture for speech synthesis.</div>
+                <div class="option" onclick="selectOption(this, 'q37')">Architecture for data clustering.</div>
+                <div class="option" onclick="selectOption(this, 'q37')">Architecture for bias reduction.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(37, 'Neural network using attention for sequence processing.')">Submit</button>
+        </div>
+
+        <!-- Answer 37 -->
+        <div class="slide" id="a37-slide">
+            <h1>Question 37 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result37" class="result-message"></div>
+                <h3>Correct Answer: Neural network using attention for sequence processing.</h3>
+                <p><strong>Explanation:</strong> Transformers use attention, e.g., ChatGPT understanding context. Other options describe generative AI, speech, clustering, or bias tasks.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(37)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(38)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 38 -->
+        <div class="slide" id="q38-slide">
+            <h1>Question 38</h1>
+            <div class="question-text">What is an Attention Mechanism?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q38')">Focusing on relevant input parts for predictions.</div>
+                <div class="option" onclick="selectOption(this, 'q38')">Generating new text.</div>
+                <div class="option" onclick="selectOption(this, 'q38')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q38')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q38')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(38, 'Focusing on relevant input parts for predictions.')">Submit</button>
+        </div>
+
+        <!-- Answer 38 -->
+        <div class="slide" id="a38-slide">
+            <h1>Question 38 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result38" class="result-message"></div>
+                <h3>Correct Answer: Focusing on relevant input parts for predictions.</h3>
+                <p><strong>Explanation:</strong> Attention focuses on key inputs, e.g., translating "cat" to "gato." Other options describe generative AI, clustering, speech, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(38)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(39)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 39 -->
+        <div class="slide" id="q39-slide">
+            <h1>Question 39</h1>
+            <div class="question-text">What is Pre-training?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q39')">Initial training on large text datasets.</div>
+                <div class="option" onclick="selectOption(this, 'q39')">Fine-tuning for specific tasks.</div>
+                <div class="option" onclick="selectOption(this, 'q39')">Generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q39')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q39')">Clustering data.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(39, 'Initial training on large text datasets.')">Submit</button>
+        </div>
+
+        <!-- Answer 39 -->
+        <div class="slide" id="a39-slide">
+            <h1>Question 39 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result39" class="result-message"></div>
+                <h3>Correct Answer: Initial training on large text datasets.</h3>
+                <p><strong>Explanation:</strong> Pre-training teaches models on large datasets, e.g., GPT on web texts. Other options describe fine-tuning, generative AI, speech, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(39)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(40)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 40 -->
+        <div class="slide" id="q40-slide">
+            <h1>Question 40</h1>
+            <div class="question-text">What is a Context Window?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q40')">Maximum text a model can consider at once.</div>
+                <div class="option" onclick="selectOption(this, 'q40')">A method for generating images.</div>
+                <div class="option" onclick="selectOption(this, 'q40')">A technique for speech recognition.</div>
+                <div class="option" onclick="selectOption(this, 'q40')">A dataset for training models.</div>
+                <div class="option" onclick="selectOption(this, 'q40')">A way to reduce model bias.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(40, 'Maximum text a model can consider at once.')">Submit</button>
+        </div>
+
+        <!-- Answer 40 -->
+        <div class="slide" id="a40-slide">
+            <h1>Question 40 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result40" class="result-message"></div>
+                <h3>Correct Answer: Maximum text a model can consider at once.</h3>
+                <p><strong>Explanation:</strong> Context window limits text processing, e.g., forgetting long conversations. Other options describe generative AI, speech, datasets, or bias reduction.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(40)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(41)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 41 -->
+        <div class="slide" id="q41-slide">
+            <h1>Question 41</h1>
+            <div class="question-text">What is a Token?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q41')">Basic text units processed by models.</div>
+                <div class="option" onclick="selectOption(this, 'q41')">A neural network layer.</div>
+                <div class="option" onclick="selectOption(this, 'q41')">A method for image generation.</div>
+                <div class="option" onclick="selectOption(this, 'q41')">A technique for clustering data.</div>
+                <div class="option" onclick="selectOption(this, 'q41')">A way to translate languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(41, 'Basic text units processed by models.')">Submit</button>
+        </div>
+
+        <!-- Answer 41 -->
+        <div class="slide" id="a41-slide">
+            <h1>Question 41 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result41" class="result-message"></div>
+                <h3>Correct Answer: Basic text units processed by models.</h3>
+                <p><strong>Explanation:</strong> Tokens are text units, e.g., "Hello" in "Hello world." Other options describe neural networks, generative AI, clustering, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(41)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(42)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 42 -->
+        <div class="slide" id="q42-slide">
+            <h1>Question 42</h1>
+            <div class="question-text">What is Inference in AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q42')">Using trained models to make predictions.</div>
+                <div class="option" onclick="selectOption(this, 'q42')">Training models with data.</div>
+                <div class="option" onclick="selectOption(this, 'q42')">Generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q42')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q42')">Clustering unlabeled data.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(42, 'Using trained models to make predictions.')">Submit</button>
+        </div>
+
+        <!-- Answer 42 -->
+        <div class="slide" id="a42-slide">
+            <h1>Question 42 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result42" class="result-message"></div>
+                <h3>Correct Answer: Using trained models to make predictions.</h3>
+                <p><strong>Explanation:</strong> Inference uses models, e.g., ChatGPT answering questions. Other options describe training, generative AI, speech, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(42)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(43)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 43 -->
+        <div class="slide" id="q43-slide">
+            <h1>Question 43</h1>
+            <div class="question-text">What is Hallucination in LLMs?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q43')">Generating false but plausible information.</div>
+                <div class="option" onclick="selectOption(this, 'q43')">Overfitting training data.</div>
+                <div class="option" onclick="selectOption(this, 'q43')">Processing multiple data types.</div>
+                <div class="option" onclick="selectOption(this, 'q43')">Translating languages.</div>
+                <div class="option" onclick="selectOption(this, 'q43')">Clustering text data.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(43, 'Generating false but plausible information.')">Submit</button>
+        </div>
+
+        <!-- Answer 43 -->
+        <div class="slide" id="a43-slide">
+            <h1>Question 43 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result43" class="result-message"></div>
+                <h3>Correct Answer: Generating false but plausible information.</h3>
+                <p><strong>Explanation:</strong> Hallucinations produce false facts, e.g., fake historical events. Other options describe overfitting, multimodal AI, translation, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(43)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(44)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 44 -->
+        <div class="slide" id="q44-slide">
+            <h1>Question 44</h1>
+            <div class="question-text">What is Chain-of-Thought Reasoning?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q44')">Breaking problems into step-by-step reasoning.</div>
+                <div class="option" onclick="selectOption(this, 'q44')">Generating new content.</div>
+                <div class="option" onclick="selectOption(this, 'q44')">Recognizing speech.</div>
+                <div class="option" onclick="selectOption(this, 'q44')">Clustering unlabeled data.</div>
+                <div class="option" onclick="selectOption(this, 'q44')">Translating languages.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(44, 'Breaking problems into step-by-step reasoning.')">Submit</button>
+        </div>
+
+        <!-- Answer 44 -->
+        <div class="slide" id="a44-slide">
+            <h1>Question 44 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result44" class="result-message"></div>
+                <h3>Correct Answer: Breaking problems into step-by-step reasoning.</h3>
+                <p><strong>Explanation:</strong> Chain-of-thought reasoning solves problems step-by-step, e.g., math calculations. Other options describe generative AI, speech, clustering, or translation.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(44)">Try Again</button>
+                <button class="btn" onclick="nextQuestion(45)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 45 -->
+        <div class="slide" id="q45-slide">
+            <h1>Question 45</h1>
+            <div class="question-text">What is Multimodal AI?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q45')">AI processing multiple data types like text and images.</div>
+                <div class="option" onclick="selectOption(this, 'q45')">AI generating false information.</div>
+                <div class="option" onclick="selectOption(this, 'q45')">AI overfitting training data.</div>
+                <div class="option" onclick="selectOption(this, 'q45')">AI translating languages.</div>
+                <div class="option" onclick="selectOption(this, 'q45')">AI clustering text data.</div>
+            </div>
+            <button class="btn" onclick="submitAnswer(45, 'AI processing multiple data types like text and images.')">Submit</button>
+        </div>
+
+        <!-- Answer 45 -->
+        <div class="slide" id="a45-slide">
+            <h1>Question 45 - Answer</h1>
+            <div class="answer-slide">
+                <div id="result45" class="result-message"></div>
+                <h3>Correct Answer: AI processing multiple data types like text and images.</h3>
+                <p><strong>Explanation:</strong> Multimodal AI handles multiple data types, e.g., GPT-4 analyzing photos. Other options describe hallucinations, overfitting, translation, or clustering.</p>
+            </div>
+            <div class="navigation">
+                <button class="btn" onclick="goBack(45)">Try Again</button>
+                <button class="btn" onclick="showScore()">See Your Score</button>
+            </div>
+        </div>
+
+        <!-- Score Slide -->
+        <div class="slide" id="score-slide">
+            <h1>Quiz Complete!</h1>
+            <div class="score-slide">
+                <h2 id="student-score"></h2>
+                <p>Great job completing the AI Concepts Quiz!</p>
+                <p>Keep exploring AI to deepen your understanding.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let score = 0;
+        let studentName = '';
+        let answers = {};
+        const slides = document.querySelectorAll('.slide');
+        const totalQuestions = 45;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / (totalQuestions * 2 + 2)) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function startQuiz() {
+            studentName = document.getElementById('student-name').value.trim();
+            if (!studentName) {
+                alert('Please enter your name!');
+                return;
+            }
+            showSlide(1);
+        }
+
+        function selectOption(element, questionId) {
+            const options = document.querySelectorAll(`#${questionId}-slide .option`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function submitAnswer(questionNum, correctAnswer) {
+            const selectedOption = document.querySelector(`#q${questionNum}-slide .option.selected`);
+            if (!selectedOption) {
+                alert('Please select an answer!');
+                return;
+            }
+            const isCorrect = selectedOption.textContent === correctAnswer;
+            if (isCorrect && !answers[questionNum]) {
+                score++;
+            }
+            answers[questionNum] = isCorrect;
+            document.getElementById(`result${questionNum}`).textContent = isCorrect ? 'Correct' : 'Wrong';
+            document.getElementById(`result${questionNum}`).className = `result-message ${isCorrect ? 'correct' : 'wrong'}`;
+            showSlide(currentSlide + 1);
+        }
+
+        function goBack(questionNum) {
+            const questionSlide = document.getElementById(`q${questionNum}-slide`);
+            const options = questionSlide.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            showSlide(currentSlide - 1);
+        }
+
+        function nextQuestion(questionNum) {
+            showSlide(currentSlide + 1);
+        }
+
+        function showScore() {
+            const scoreSlide = document.getElementById('student-score');
+            scoreSlide.innerHTML = `${studentName}, you scored ${score} out of ${totalQuestions}!`;
+            showSlide(slides.length - 1);
+        }
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
