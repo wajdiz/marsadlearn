@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Foundations Quiz</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4A00E0;
+            text-align: center;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 5px solid #4A00E0;
+            background-color: #f0f4ff;
+            border-radius: 5px;
+        }
+        .question p {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        .feedback {
+            display: none;
+            margin-top: 10px;
+        }
+        .wrong {
+            color: #ff4b5c;
+            font-style: italic;
+        }
+        .correct {
+            color: #28a745;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4A00E0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #8E2DE2;
+        }
+        #score {
+            text-align: center;
+            font-size: 24px;
+            color: #4A00E0;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NLP Foundations Quiz: Week 2</h1>
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" id="q1">
+                <p><strong>Explanation:</strong> Normalization in text preprocessing standardizes text to ensure consistency, such as converting to lowercase or removing punctuation, which reduces noise and aids tasks like text classification.</p>
+                <p><strong>Question:</strong> Why is normalization an essential step in text preprocessing for NLP tasks like text classification?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> A. It increases the vocabulary size to improve model complexity.</label>
+                    <label><input type="radio" name="q1" value="B"> B. It standardizes text to reduce variability, ensuring consistent processing.</label>
+                    <label><input type="radio" name="q1" value="C"> C. It removes all content words to focus on stop words.</label>
+                    <label><input type="radio" name="q1" value="D"> D. It converts text directly into numerical vectors for machine learning.</label>
+                    <label><input type="radio" name="q1" value="E"> E. It identifies syntactic roles of words in sentences.</label>
+                    <label><input type="radio" name="q1" value="F"> F. It generates contextual embeddings for semantic analysis.</label>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Normalization reduces noise by standardizing text (e.g., “Hello” → “hello”), ensuring consistent processing (Slide 6). A is incorrect as it reduces vocabulary size. C focuses on stop words, not content. D is about embeddings. E relates to parsing. F is about advanced models like BERT.</div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" id="q2">
+                <p><strong>Explanation:</strong> Stemming and lemmatization reduce words to base forms, but stemming is faster and less precise, while lemmatization ensures valid lemmas, affecting their suitability for different tasks.</p>
+                <p><strong>Question:</strong> In what scenario would stemming be preferred over lemmatization for an NLP task?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> A. A chatbot needs to understand user queries with precise word meanings.</label>
+                    <label><input type="radio" name="q2" value="B"> B. A search engine aims to quickly group related terms for efficient retrieval.</label>
+                    <label><input type="radio" name="q2" value="C"> C. A machine translation system requires accurate grammatical forms.</label>
+                    <label><input type="radio" name="q2" value="D"> D. A sentiment analysis model needs to interpret negated phrases like “not good.”</label>
+                    <label><input type="radio" name="q2" value="E"> E. A question-answering system needs to parse sentence structure.</label>
+                    <label><input type="radio" name="q2" value="F"> F. A named entity recognition system identifies specific entities.</label>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Stemming is faster and suitable for search engines where speed matters, grouping terms like “running” to “run” (Slide 12). A and C require precise meanings, favoring lemmatization. D needs semantic analysis. E involves parsing, not stemming. F focuses on entities, not word reduction.</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" id="q3">
+                <p><strong>Explanation:</strong> Part-of-speech (POS) tagging assigns grammatical categories, aiding processes like lemmatization by providing context for word roles.</p>
+                <p><strong>Question:</strong> How does part-of-speech (POS) tagging contribute to lemmatization accuracy?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A"> A. It removes stop words to simplify the text.</label>
+                    <label><input type="radio" name="q3" value="B"> B. It identifies word relationships for dependency parsing.</label>
+                    <label><input type="radio" name="q3" value="C"> C. It determines the grammatical role of words to select the correct lemma.</label>
+                    <label><input type="radio" name="q3" value="D"> D. It converts words into numerical vectors for embeddings.</label>
+                    <label><input type="radio" name="q3" value="E"> E. It extracts named entities like persons or locations.</label>
+                    <label><input type="radio" name="q3" value="F"> F. It predicts the next word in a sequence.</label>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: C. POS tagging identifies roles (e.g., verb vs. noun), ensuring correct lemmas (e.g., “saw” → “see” for verb) (Slide 10, 13). A is preprocessing. B is parsing. D is embeddings. E is NER. F is language modeling.</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" id="q4">
+                <p><strong>Explanation:</strong> Syntactic parsing analyzes sentence structure, with dependency parsing focusing on word relationships, useful for extracting roles in tasks like question answering.</p>
+                <p><strong>Question:</strong> Why might dependency parsing be more suitable than constituency parsing for a question-answering system?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A"> A. It focuses on breaking sentences into noun and verb phrases.</label>
+                    <label><input type="radio" name="q4" value="B"> B. It identifies word-to-word relationships, aiding in extracting specific roles.</label>
+                    <label><input type="radio" name="q4" value="C"> C. It creates a tree-like structure for visual representation.</label>
+                    <label><input type="radio" name="q4" value="D"> D. It simplifies text by removing stop words.</label>
+                    <label><input type="radio" name="q4" value="E"> E. It generates contextual embeddings for words.</label>
+                    <label><input type="radio" name="q4" value="F"> F. It disambiguates word senses based on context.</label>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Dependency parsing maps word relationships (e.g., subject-verb), aiding role extraction for questions (Slide 15, 16). A and C describe constituency parsing. D is preprocessing. E is embeddings. F is WSD.</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" id="q5">
+                <p><strong>Explanation:</strong> Named Entity Recognition (NER) identifies entities like persons or locations, but ambiguous terms can complicate classification.</p>
+                <p><strong>Question:</strong> What challenge does Named Entity Recognition (NER) face when processing the sentence “Washington led the team to victory”?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A"> A. Identifying the verb as the main action.</label>
+                    <label><input type="radio" name="q5" value="B"> B. Disambiguating “Washington” as a person or location.</label>
+                    <label><input type="radio" name="q5" value="C"> C. Assigning POS tags to each word.</label>
+                    <label><input type="radio" name="q5" value="D"> D. Removing stop words like “the.”</label>
+                    <label><input type="radio" name="q5" value="E"> E. Predicting word sequences using N-grams.</label>
+                    <label><input type="radio" name="q5" value="F"> F. Generating word embeddings for similarity.</label>
+                </div>
+                <div class="feedback" id="feedback5"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. NER must decide if “Washington” is a person (e.g., George Washington) or location (e.g., Washington D.C.) (Slide 17). A is parsing. C is POS tagging. D is preprocessing. E is language modeling. F is embeddings.</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" id="q6">
+                <p><strong>Explanation:</strong> N-grams model word sequences, improving language prediction by capturing context compared to single words (unigrams).</p>
+                <p><strong>Question:</strong> How do N-grams improve language modeling compared to unigrams?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A"> A. They capture word order and context by considering sequences of words.</label>
+                    <label><input type="radio" name="q6" value="B"> B. They reduce the vocabulary size for faster processing.</label>
+                    <label><input type="radio" name="q6" value="C"> C. They convert text into numerical vectors directly.</label>
+                    <label><input type="radio" name="q6" value="D"> D. They remove noise like punctuation and special characters.</label>
+                    <label><input type="radio" name="q6" value="E"> E. They identify named entities in text.</label>
+                    <label><input type="radio" name="q6" value="F"> F. They perform syntactic parsing of sentences.</label>
+                </div>
+                <div class="feedback" id="feedback6"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: A. N-grams (e.g., bigrams) capture context by modeling word sequences (e.g., “the cat”) (Slide 20). B increases feature size. C is embeddings. D is preprocessing. E is NER. F is parsing.</div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" id="q7">
+                <p><strong>Explanation:</strong> The Bag of Words (BoW) model represents text as word frequencies, ignoring structure, which can affect tasks requiring context.</p>
+                <p><strong>Question:</strong> Why does the Bag of Words (BoW) model struggle with sentiment analysis of sentences like “The movie isn’t good”?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="A"> A. It captures too much context, leading to overfitting.</label>
+                    <label><input type="radio" name="q7" value="B"> B. It ignores word order, missing negation like “isn’t.”</label>
+                    <label><input type="radio" name="q7" value="C"> C. It generates high-dimensional dense vectors.</label>
+                    <label><input type="radio" name="q7" value="D"> D. It removes content words during preprocessing.</label>
+                    <label><input type="radio" name="q7" value="E"> E. It relies on contextual embeddings.</label>
+                    <label><input type="radio" name="q7" value="F"> F. It performs POS tagging incorrectly.</label>
+                </div>
+                <div class="feedback" id="feedback7"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. BoW ignores order, treating “isn’t good” like “good,” missing negation’s impact (Slide 22). A is incorrect as BoW lacks context. C is wrong; vectors are sparse. D retains content words. E is advanced models. F is POS tagging.</div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" id="q8">
+                <p><strong>Explanation:</strong> TF-IDF weights words by their importance, improving BoW by emphasizing rare, significant terms in document ranking.</p>
+                <p><strong>Question:</strong> How does TF-IDF improve upon the Bag of Words model for document ranking in search engines?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A"> A. It captures word order to understand sentence structure.</label>
+                    <label><input type="radio" name="q8" value="B"> B. It weights words based on their importance relative to the corpus.</label>
+                    <label><input type="radio" name="q8" value="C"> C. It uses contextual embeddings to disambiguate word senses.</label>
+                    <label><input type="radio" name="q8" value="D"> D. It removes all common words to focus on rare ones.</label>
+                    <label><input type="radio" name="q8" value="E"> E. It performs dependency parsing for structure.</label>
+                    <label><input type="radio" name="q8" value="F"> F. It predicts word sequences using N-grams.</label>
+                </div>
+                <div class="feedback" id="feedback8"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. TF-IDF weights words by frequency (TF) and rarity (IDF), emphasizing important terms (Slide 24, 26). A ignores order. C is embeddings. D weights, doesn’t remove, words. E is parsing. F is language modeling.</div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" id="q9">
+                <p><strong>Explanation:</strong> Stop words removal reduces noise but can affect tasks where grammatical structure is vital, like translation.</p>
+                <p><strong>Question:</strong> When might stop words removal negatively impact an NLP task?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A"> A. In keyword extraction, where content words are prioritized.</label>
+                    <label><input type="radio" name="q9" value="B"> B. In machine translation, where grammatical structure is crucial.</label>
+                    <label><input type="radio" name="q9" value="C"> C. In topic modeling, where frequent words are irrelevant.</label>
+                    <label><input type="radio" name="q9" value="D"> D. In text classification, where word frequency is key.</label>
+                    <label><input type="radio" name="q9" value="E"> E. In named entity recognition for entity tagging.</label>
+                    <label><input type="radio" name="q9" value="F"> F. In word sense disambiguation for context analysis.</label>
+                </div>
+                <div class="feedback" id="feedback9"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Stop words like “the” are vital for grammar in translation (Slide 27, 28). A, C, D benefit from content focus. E focuses on entities. F needs context, not stop words.</div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" id="q10">
+                <p><strong>Explanation:</strong> Noise removal cleans text but must be task-specific to preserve relevant information, like URLs in web navigation.</p>
+                <p><strong>Question:</strong> Why is noise removal tailored to the specific NLP task and dataset?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="A"> A. To ensure all text is converted to numerical vectors uniformly.</label>
+                    <label><input type="radio" name="q10" value="B"> B. To avoid removing important information relevant to the task.</label>
+                    <label><input type="radio" name="q10" value="C"> C. To standardize text by applying universal rules.</label>
+                    <label><input type="radio" name="q10" value="D"> D. To increase the dataset size for better model training.</label>
+                    <label><input type="radio" name="q10" value="E"> E. To perform POS tagging accurately.</label>
+                    <label><input type="radio" name="q10" value="F"> F. To generate contextual embeddings.</label>
+                </div>
+                <div class="feedback" id="feedback10"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Noise removal preserves task-relevant data (e.g., URLs in navigation) (Slide 29, 30). A is embeddings. C varies by task. D is unrelated. E is POS tagging. F is advanced models.</div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" id="q11">
+                <p><strong>Explanation:</strong> One-hot encoding converts words to vectors but lacks semantic information, limiting its use in meaning-driven tasks.</p>
+                <p><strong>Question:</strong> What limitation of one-hot encoding makes it unsuitable for semantic NLP tasks?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="A"> A. It generates low-dimensional dense vectors.</label>
+                    <label><input type="radio" name="q11" value="B"> B. It captures word order within sentences.</label>
+                    <label><input type="radio" name="q11" value="C"> C. It fails to represent semantic relationships between words.</label>
+                    <label><input type="radio" name="q11" value="D"> D. It requires extensive preprocessing like lemmatization.</label>
+                    <label><input type="radio" name="q11" value="E"> E. It performs syntactic parsing.</label>
+                    <label><input type="radio" name="q11" value="F"> F. It predicts word sequences.</label>
+                </div>
+                <div class="feedback" id="feedback11"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: C. One-hot encoding treats words as orthogonal, missing similarities (e.g., “cat” vs. “dog”) (Slide 34, 35). A is wrong; vectors are sparse. B ignores order. D is preprocessing. E is parsing. F is language modeling.</div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" id="q12">
+                <p><strong>Explanation:</strong> Word2Vec’s Skip-Gram model predicts context from a target word, enhancing representations for less frequent terms.</p>
+                <p><strong>Question:</strong> How does Word2Vec’s Skip-Gram model capture semantic relationships better than CBOW for rare words?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="A"> A. It predicts context words given a target word, focusing on rare word patterns.</label>
+                    <label><input type="radio" name="q12" value="B"> B. It uses global co-occurrence statistics across the corpus.</label>
+                    <label><input type="radio" name="q12" value="C"> C. It generates contextual embeddings for each word.</label>
+                    <label><input type="radio" name="q12" value="D"> D. It removes stop words to focus on content words.</label>
+                    <label><input type="radio" name="q12" value="E"> E. It performs POS tagging for accuracy.</label>
+                    <label><input type="radio" name="q12" value="F"> F. It disambiguates word senses.</label>
+                </div>
+                <div class="feedback" id="feedback12"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: A. Skip-Gram predicts context for a target, enhancing rare word representations (Slide 37). B is GloVe. C is BERT. D is preprocessing. E is POS tagging. F is WSD.</div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" id="q13">
+                <p><strong>Explanation:</strong> GloVe uses global statistics to capture semantic relationships, making it effective for tasks like analogy solving.</p>
+                <p><strong>Question:</strong> Why is GloVe better suited for semantic tasks like analogy solving compared to Word2Vec?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="A"> A. It uses subword information to handle rare words.</label>
+                    <label><input type="radio" name="q13" value="B"> B. It leverages global co-occurrence statistics to capture broader relationships.</label>
+                    <label><input type="radio" name="q13" value="C"> C. It generates contextual embeddings for each word.</label>
+                    <label><input type="radio" name="q13" value="D"> D. It processes sentences bidirectionally like BERT.</label>
+                    <label><input type="radio" name="q13" value="E"> E. It removes noise from text.</label>
+                    <label><input type="radio" name="q13" value="F"> F. It predicts word sequences.</label>
+                </div>
+                <div class="feedback" id="feedback13"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. GloVe uses global co-occurrence for broader semantic relationships (Slide 39). A is FastText. C and D are BERT. E is preprocessing. F is language modeling.</div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" id="q14">
+                <p><strong>Explanation:</strong> FastText extends Word2Vec by using subword units, improving handling of unseen or rare words.</p>
+                <p><strong>Question:</strong> How does FastText handle out-of-vocabulary words better than Word2Vec?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="A"> A. It uses global co-occurrence matrices for broader context.</label>
+                    <label><input type="radio" name="q14" value="B"> B. It represents words as sums of subword n-gram embeddings.</label>
+                    <label><input type="radio" name="q14" value="C"> C. It processes entire sentences bidirectionally.</label>
+                    <label><input type="radio" name="q14" value="D"> D. It removes noise to focus on meaningful words.</label>
+                    <label><input type="radio" name="q14" value="E"> E. It performs syntactic parsing.</label>
+                    <label><input type="radio" name="q14" value="F"> F. It disambiguates word senses.</label>
+                </div>
+                <div class="feedback" id="feedback14"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. FastText uses subword n-grams to infer unseen words (Slide 40). A is GloVe. C is BERT. D is preprocessing. E is parsing. F is WSD.</div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" id="q15">
+                <p><strong>Explanation:</strong> Contextual embeddings adapt to sentence context, improving tasks like word sense disambiguation over static embeddings.</p>
+                <p><strong>Question:</strong> Why do contextual embeddings like BERT outperform static embeddings like Word2Vec for word sense disambiguation?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="A"> A. They generate fixed vectors for each word regardless of context.</label>
+                    <label><input type="radio" name="q15" value="B"> B. They capture the meaning of a word based on its sentence context.</label>
+                    <label><input type="radio" name="q15" value="C"> C. They use subword information to handle rare words.</label>
+                    <label><input type="radio" name="q15" value="D"> D. They rely on rule-based methods for disambiguation.</label>
+                    <label><input type="radio" name="q15" value="E"> E. They perform POS tagging automatically.</label>
+                    <label><input type="radio" name="q15" value="F"> F. They predict word sequences like N-grams.</label>
+                </div>
+                <div class="feedback" id="feedback15"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. BERT adapts embeddings to context (e.g., “bank” in “river bank” vs. “bank account”) (Slide 41, 44). A is static embeddings. C is FastText. D is older WSD. E is POS tagging. F is language modeling.</div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" id="q16">
+                <p><strong>Explanation:</strong> BERT’s training involves predicting masked words, enhancing its ability to understand bidirectional context.</p>
+                <p><strong>Question:</strong> How does BERT’s Masked Language Model (MLM) training contribute to its ability to understand context?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="A"> A. It predicts the next word in a sequence like Skip-Gram.</label>
+                    <label><input type="radio" name="q16" value="B"> B. It removes stop words to focus on content words.</label>
+                    <label><input type="radio" name="q16" value="C"> C. It predicts masked words using bidirectional context.</label>
+                    <label><input type="radio" name="q16" value="D"> D. It generates one-hot encoded vectors for each word.</label>
+                    <label><input type="radio" name="q16" value="E"> E. It performs syntactic parsing.</label>
+                    <label><input type="radio" name="q16" value="F"> F. It identifies named entities.</label>
+                </div>
+                <div class="feedback" id="feedback16"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: C. MLM predicts masked words using both left and right context (Slide 43). A is Word2Vec. B is preprocessing. D is one-hot encoding. E is parsing. F is NER.</div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" id="q17">
+                <p><strong>Explanation:</strong> Semantic Role Labeling (SRL) identifies roles like Agent, aiding in understanding who performs actions in sentences.</p>
+                <p><strong>Question:</strong> In semantic role labeling (SRL), why is identifying the “Agent” role important for a question-answering system?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="A"> A. It determines the grammatical structure of the sentence.</label>
+                    <label><input type="radio" name="q17" value="B"> B. It identifies the doer of the action to answer “who” questions.</label>
+                    <label><input type="radio" name="q17" value="C"> C. It disambiguates polysemous words like “bank.”</label>
+                    <label><input type="radio" name="q17" value="D"> D. It removes noise to simplify the text.</label>
+                    <label><input type="radio" name="q17" value="E"> E. It generates word embeddings.</label>
+                    <label><input type="radio" name="q17" value="F"> F. It predicts word sequences.</label>
+                </div>
+                <div class="feedback" id="feedback17"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Agent (e.g., “Alice” in “Alice wrote”) answers “who” questions (Slide 48, 49). A is parsing. C is WSD. D is preprocessing. E is embeddings. F is language modeling.</div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" id="q18">
+                <p><strong>Explanation:</strong> Coreference resolution links references to the same entity, ensuring coherent text processing in tasks like summarization.</p>
+                <p><strong>Question:</strong> Why is coreference resolution critical for summarizing a text like “Google released a product. It’s innovative.”?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="A"> A. It identifies the main verb to determine the action.</label>
+                    <label><input type="radio" name="q18" value="B"> B. It links “It” to “product” to avoid redundancy in the summary.</label>
+                    <label><input type="radio" name="q18" value="C"> C. It removes stop words to focus on key terms.</label>
+                    <label><input type="radio" name="q18" value="D"> D. It assigns POS tags to each word.</label>
+                    <label><input type="radio" name="q18" value="E"> E. It generates contextual embeddings.</label>
+                    <label><input type="radio" name="q18" value="F"> F. It predicts word sequences.</label>
+                </div>
+                <div class="feedback" id="feedback18"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Linking “It” to “product” ensures a coherent summary (Slide 50, 51). A is parsing. C is preprocessing. D is POS tagging. E is embeddings. F is language modeling.</div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" id="q19">
+                <p><strong>Explanation:</strong> Intent detection infers user goals, crucial for handling ambiguous inputs in interactive systems like smart homes.</p>
+                <p><strong>Question:</strong> How does intent detection handle ambiguous inputs like “It’s cold in here” in a smart home system?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="A"> A. It uses syntactic analysis to identify word relationships.</label>
+                    <label><input type="radio" name="q19" value="B"> B. It infers the intent as a request based on context.</label>
+                    <label><input type="radio" name="q19" value="C"> C. It generates word embeddings to capture semantics.</label>
+                    <label><input type="radio" name="q19" value="D"> D. It removes noise like special characters.</label>
+                    <label><input type="radio" name="q19" value="E"> E. It performs POS tagging for accuracy.</label>
+                    <label><input type="radio" name="q19" value="F"> F. It disambiguates word senses.</label>
+                </div>
+                <div class="feedback" id="feedback19"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Intent detection infers a request (e.g., turn on heater) from context (Slide 53, 54). A is parsing. C is embeddings. D is preprocessing. E is POS tagging. F is WSD.</div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" id="q20">
+                <p><strong>Explanation:</strong> Implicit knowledge challenges NLP systems, requiring advancements like commonsense reasoning to understand implied meanings.</p>
+                <p><strong>Question:</strong> What future NLP advancement would best address the challenge of implicit knowledge in sentences like “I left my umbrella at home because it’s sunny”?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="A"> A. Better contextual models for long-distance dependencies.</label>
+                    <label><input type="radio" name="q20" value="B"> B. Multimodal systems combining text and images.</label>
+                    <label><input type="radio" name="q20" value="C"> C. Commonsense reasoning to understand cause-and-effect.</label>
+                    <label><input type="radio" name="q20" value="D"> D. Ethical models to reduce bias.</label>
+                    <label><input type="radio" name="q20" value="E"> E. Improved syntactic parsing techniques.</label>
+                    <label><input type="radio" name="q20" value="F"> F. Advanced word embeddings.</label>
+                </div>
+                <div class="feedback" id="feedback20"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: C. Commonsense links “sunny” to no need for an umbrella (Slide 58, 59). A is dependencies. B is multimedia. D is ethics. E is parsing. F is embeddings.</div>
+            </div>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+        <div id="score"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'B', q2: 'B', q3: 'C', q4: 'B', q5: 'B',
+            q6: 'A', q7: 'B', q8: 'B', q9: 'B', q10: 'B',
+            q11: 'C', q12: 'A', q13: 'B', q14: 'B', q15: 'B',
+            q16: 'C', q17: 'B', q18: 'B', q19: 'B', q20: 'C'
+        };
+
+        // Function to update feedback
+        function updateFeedback(questionId, selectedValue) {
+            const feedback = document.getElementById(`feedback${questionId.substring(1)}`);
+            const wrongFeedbackText = document.querySelector(`#${questionId} .wrong-feedback`).textContent;
+            
+            if (selectedValue === correctAnswers[questionId]) {
+                feedback.textContent = "Correct!";
+                feedback.className = "feedback correct";
+            } else {
+                feedback.textContent = wrongFeedbackText;
+                feedback.className = "feedback wrong";
+            }
+            feedback.style.display = 'block';
+        }
+
+        // Real-time feedback on answer change
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const questionId = this.name;
+                const selectedValue = this.value;
+                updateFeedback(questionId, selectedValue);
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            let total = 20;
+
+            for (let i = 1; i <= total; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const feedback = document.getElementById(`feedback${i}`);
+                const wrongFeedbackText = document.querySelector(`#q${i} .wrong-feedback`).textContent;
+
+                if (selected) {
+                    if (selected.value === correctAnswers[`q${i}`]) {
+                        score++;
+                        feedback.textContent = "Correct!";
+                        feedback.className = "feedback correct";
+                    } else {
+                        feedback.textContent = wrongFeedbackText;
+                        feedback.className = "feedback wrong";
+                    }
+                } else {
+                    feedback.textContent = `No answer selected. ${wrongFeedbackText}`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = 'block';
+            }
+
+            const scoreDiv = document.getElementById('score');
+            scoreDiv.style.display = 'block';
+            scoreDiv.innerHTML = `Your Score: ${score} / ${total} (${(score / total * 100).toFixed(1)}%)`;
+
+            // Scroll to score
+            scoreDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

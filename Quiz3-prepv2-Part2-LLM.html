@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Introduction Quiz</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4A00E0;
+            text-align: center;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 5px solid #4A00E0;
+            background-color: #f0f4ff;
+            border-radius: 5px;
+        }
+        .question p {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        .feedback {
+            display: none;
+            margin-top: 10px;
+        }
+        .wrong {
+            color: #ff4b5c;
+            font-style: italic;
+        }
+        .correct {
+            color: #28a745;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4A00E0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #8E2DE2;
+        }
+        #score {
+            text-align: center;
+            font-size: 24px;
+            color: #4A00E0;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LLM Introduction Quiz: Week 3</h1>
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" id="q1">
+                <p><strong>Explanation:</strong> Large Language Models (LLMs) are defined by their ability to process and generate human language, trained on vast amounts of text to perform various language tasks.</p>
+                <p><strong>Question:</strong> What is a key characteristic that defines a Large Language Model (LLM)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> A. It performs mathematical calculations like a calculator.</label>
+                    <label><input type="radio" name="q1" value="B"> B. It understands and generates human language using patterns.</label>
+                    <label><input type="radio" name="q1" value="C"> C. It only answers pre-programmed questions like a simple chatbot.</label>
+                    <label><input type="radio" name="q1" value="D"> D. It searches the internet for existing web pages like a search engine.</label>
+                    <label><input type="radio" name="q1" value="E"> E. It focuses solely on image recognition tasks.</label>
+                    <label><input type="radio" name="q1" value="F"> F. It performs syntactic parsing without understanding meaning.</label>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs are computer programs that understand and generate human language by learning patterns from vast text data (Slide 5). A relates to calculators, not LLMs. C describes simple chatbots. D is about search engines. E is unrelated to language tasks. F focuses on syntax, not LLMs’ broader capabilities.</div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" id="q2">
+                <p><strong>Explanation:</strong> The "large" in LLMs refers to the scale of their training data and the number of parameters they use to process language.</p>
+                <p><strong>Question:</strong> Why are LLMs referred to as "large"?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> A. They require a large physical space to operate.</label>
+                    <label><input type="radio" name="q2" value="B"> B. They are trained on massive text data and have billions of parameters.</label>
+                    <label><input type="radio" name="q2" value="C"> C. They only work on large screens or devices.</label>
+                    <label><input type="radio" name="q2" value="D"> D. They generate extremely long sentences.</label>
+                    <label><input type="radio" name="q2" value="E"> E. They are designed for large corporations only.</label>
+                    <label><input type="radio" name="q2" value="F"> F. They focus on large vocabulary sizes exclusively.</label>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs are called “large” due to their massive training data (e.g., billions of sentences) and billions of parameters (e.g., GPT-3’s 175 billion) (Slide 6). A, C, and E are unrelated to the definition. D is incorrect as sentence length isn’t the focus. F is too narrow.</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" id="q3">
+                <p><strong>Explanation:</strong> LLMs differ from other programs by their ability to learn from text and generate new language, unlike tools with fixed rules or functions.</p>
+                <p><strong>Question:</strong> How do LLMs differ from simple chatbots?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A"> A. They follow strict pre-programmed rules without learning.</label>
+                    <label><input type="radio" name="q3" value="B"> B. They learn from vast text data to answer a wide range of questions.</label>
+                    <label><input type="radio" name="q3" value="C"> C. They perform only mathematical calculations.</label>
+                    <label><input type="radio" name="q3" value="D"> D. They search for existing web pages like a search engine.</label>
+                    <label><input type="radio" name="q3" value="E"> E. They focus on image processing tasks.</label>
+                    <label><input type="radio" name="q3" value="F"> F. They only translate languages without generating text.</label>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs learn from vast text to answer diverse questions, unlike simple chatbots that use fixed rules (Slide 7). A describes simple chatbots. C, D, E, and F are unrelated to LLMs’ language capabilities.</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" id="q4">
+                <p><strong>Explanation:</strong> The magic librarian analogy illustrates how LLMs use their extensive “memory” of text to generate responses based on patterns.</p>
+                <p><strong>Question:</strong> In the magic librarian analogy, what does the librarian’s “memory” represent in an LLM?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A"> A. The LLM’s ability to feel emotions.</label>
+                    <label><input type="radio" name="q4" value="B"> B. The vast amount of text the LLM has been trained on.</label>
+                    <label><input type="radio" name="q4" value="C"> C. The LLM’s physical storage space.</label>
+                    <label><input type="radio" name="q4" value="D"> D. The LLM’s ability to think like a human.</label>
+                    <label><input type="radio" name="q4" value="E"> E. The LLM’s hardware components like GPUs.</label>
+                    <label><input type="radio" name="q4" value="F"> F. The LLM’s pre-programmed rules.</label>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. The librarian’s “memory” represents the billions of sentences the LLM has learned from (Slide 8). A and D are incorrect as LLMs don’t feel or think. C and E relate to hardware, not training data. F applies to simple programs, not LLMs.</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" id="q5">
+                <p><strong>Explanation:</strong> GPT, a famous LLM, is known for its generative capabilities, creating new text for various applications.</p>
+                <p><strong>Question:</strong> What is a primary function of GPT, as described in the lecture?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A"> A. Performing image recognition tasks.</label>
+                    <label><input type="radio" name="q5" value="B"> B. Generating new text like stories or answers to questions.</label>
+                    <label><input type="radio" name="q5" value="C"> C. Searching for existing web pages.</label>
+                    <label><input type="radio" name="q5" value="D"> D. Solving mathematical equations only.</label>
+                    <label><input type="radio" name="q5" value="E"> E. Translating languages without generating new text.</label>
+                    <label><input type="radio" name="q5" value="F"> F. Performing syntactic parsing exclusively.</label>
+                </div>
+                <div class="feedback" id="feedback5"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. GPT generates new text, such as stories or answers, as seen in applications like ChatGPT (Slide 9). A, C, D, E, and F describe unrelated or narrower tasks not central to GPT’s function.</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" id="q6">
+                <p><strong>Explanation:</strong> BERT excels at understanding language context, making it valuable for tasks requiring deep comprehension.</p>
+                <p><strong>Question:</strong> What makes BERT particularly effective for understanding language?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A"> A. It generates long stories like GPT.</label>
+                    <label><input type="radio" name="q6" value="B"> B. It processes sentences bidirectionally to understand context.</label>
+                    <label><input type="radio" name="q6" value="C"> C. It performs mathematical calculations.</label>
+                    <label><input type="radio" name="q6" value="D"> D. It searches for web pages online.</label>
+                    <label><input type="radio" name="q6" value="E"> E. It focuses on image processing.</label>
+                    <label><input type="radio" name="q6" value="F"> F. It only translates languages.</label>
+                </div>
+                <div class="feedback" id="feedback6"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. BERT processes sentences bidirectionally, understanding context by looking at words before and after (Slide 10). A is GPT’s strength. C, D, E, and F are unrelated to BERT’s language understanding focus.</div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" id="q7">
+                <p><strong>Explanation:</strong> LLMs operate by learning patterns in language to predict and generate text, a process that mimics human-like language creation.</p>
+                <p><strong>Question:</strong> What is a fundamental step in how LLMs work?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="A"> A. Performing image analysis to generate text.</label>
+                    <label><input type="radio" name="q7" value="B"> B. Guessing the next word in a sentence based on patterns.</label>
+                    <label><input type="radio" name="q7" value="C"> C. Solving complex mathematical equations.</label>
+                    <label><input type="radio" name="q7" value="D"> D. Searching for pre-existing answers online.</label>
+                    <label><input type="radio" name="q7" value="E"> E. Translating languages without pattern recognition.</label>
+                    <label><input type="radio" name="q7" value="F"> F. Performing syntactic parsing without prediction.</label>
+                </div>
+                <div class="feedback" id="feedback7"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs guess the next word using learned patterns, enabling text generation and understanding (Slide 11). A, C, D, E, and F are unrelated or incorrect for LLMs’ core operation.</div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" id="q8">
+                <p><strong>Explanation:</strong> Transformers are a key component in LLMs, enabling them to focus on important words in a sentence for better language processing.</p>
+                <p><strong>Question:</strong> What role do Transformers play in LLMs like GPT and BERT?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A"> A. They perform image recognition tasks.</label>
+                    <label><input type="radio" name="q8" value="B"> B. They help the model focus on important words in a sentence.</label>
+                    <label><input type="radio" name="q8" value="C"> C. They solve mathematical problems.</label>
+                    <label><input type="radio" name="q8" value="D"> D. They search for web pages online.</label>
+                    <label><input type="radio" name="q8" value="E"> E. They translate languages without context.</label>
+                    <label><input type="radio" name="q8" value="F"> F. They remove noise from text data.</label>
+                </div>
+                <div class="feedback" id="feedback8"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Transformers help LLMs pay attention to key words in a sentence, improving understanding and generation (Slide 12). A, C, D, E, and F are unrelated to Transformers’ role in LLMs.</div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" id="q9">
+                <p><strong>Explanation:</strong> LLMs rely on patterns in text to generate responses, lacking human-like understanding or emotions.</p>
+                <p><strong>Question:</strong> How do LLMs “think” when generating text?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A"> A. They feel emotions like humans do.</label>
+                    <label><input type="radio" name="q9" value="B"> B. They look for patterns in the text they’ve learned from.</label>
+                    <label><input type="radio" name="q9" value="C"> C. They perform mathematical calculations only.</label>
+                    <label><input type="radio" name="q9" value="D"> D. They search for existing web pages.</label>
+                    <label><input type="radio" name="q9" value="E"> E. They understand concepts like humans do.</label>
+                    <label><input type="radio" name="q9" value="F"> F. They rely on pre-programmed rules without learning.</label>
+                </div>
+                <div class="feedback" id="feedback9"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs generate text by identifying patterns in their training data, not by thinking like humans (Slide 13). A and E are incorrect as LLMs lack emotions and true understanding. C, D, and F describe unrelated processes.</div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" id="q10">
+                <p><strong>Explanation:</strong> LLMs’ power stems from their extensive training data, flexibility, and ability to understand context.</p>
+                <p><strong>Question:</strong> What makes LLMs powerful for language tasks?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="A"> A. Their ability to perform image recognition.</label>
+                    <label><input type="radio" name="q10" value="B"> B. Their vast knowledge, flexibility, and context understanding.</label>
+                    <label><input type="radio" name="q10" value="C"> C. Their focus on solving mathematical equations.</label>
+                    <label><input type="radio" name="q10" value="D"> D. Their ability to search for web pages online.</label>
+                    <label><input type="radio" name="q10" value="E"> E. Their pre-programmed responses without learning.</label>
+                    <label><input type="radio" name="q10" value="F"> F. Their reliance on syntactic parsing alone.</label>
+                </div>
+                <div class="feedback" id="feedback10"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs are powerful due to their extensive training data, flexibility across tasks, and context understanding (Slide 15). A, C, D, E, and F describe unrelated or incorrect aspects.</div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" id="q11">
+                <p><strong>Explanation:</strong> LLMs learn from vast amounts of text during training, a process akin to a child learning language but on a massive scale.</p>
+                <p><strong>Question:</strong> What is the first step in training an LLM?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="A"> A. Performing image analysis.</label>
+                    <label><input type="radio" name="q11" value="B"> B. Gathering a huge collection of text to learn from.</label>
+                    <label><input type="radio" name="q11" value="C"> C. Solving mathematical equations.</label>
+                    <label><input type="radio" name="q11" value="D"> D. Searching for web pages online.</label>
+                    <label><input type="radio" name="q11" value="E"> E. Translating languages without text data.</label>
+                    <label><input type="radio" name="q11" value="F"> F. Performing syntactic parsing.</label>
+                </div>
+                <div class="feedback" id="feedback11"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Training begins by gathering vast text data, like books and websites, for the LLM to learn from (Slide 20). A, C, D, E, and F are unrelated to the initial training step.</div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" id="q12">
+                <p><strong>Explanation:</strong> LLMs practice during training by predicting the next word in a sentence, refining their language skills through repetition.</p>
+                <p><strong>Question:</strong> How do LLMs practice during training?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="A"> A. By performing image recognition tasks.</label>
+                    <label><input type="radio" name="q12" value="B"> B. By guessing the next word in a sentence and adjusting based on feedback.</label>
+                    <label><input type="radio" name="q12" value="C"> C. By solving mathematical problems.</label>
+                    <label><input type="radio" name="q12" value="D"> D. By searching for web pages online.</label>
+                    <label><input type="radio" name="q12" value="E"> E. By translating languages without practice.</label>
+                    <label><input type="radio" name="q12" value="F"> F. By following pre-programmed rules.</label>
+                </div>
+                <div class="feedback" id="feedback12"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs practice by predicting the next word and learning from mistakes, similar to a guessing game (Slide 22). A, C, D, E, and F are incorrect for LLMs’ training process.</div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" id="q13">
+                <p><strong>Explanation:</strong> Pre-training equips LLMs with general language knowledge, enabling them to tackle various tasks after further refinement.</p>
+                <p><strong>Question:</strong> What does it mean for an LLM to be “pre-trained”?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="A"> A. It has been trained to perform image recognition.</label>
+                    <label><input type="radio" name="q13" value="B"> B. It has already learned general language patterns from vast text data.</label>
+                    <label><input type="radio" name="q13" value="C"> C. It can only solve mathematical equations.</label>
+                    <label><input type="radio" name="q13" value="D"> D. It searches for web pages online.</label>
+                    <label><input type="radio" name="q13" value="E"> E. It translates languages without prior learning.</label>
+                    <label><input type="radio" name="q13" value="F"> F. It performs syntactic parsing exclusively.</label>
+                </div>
+                <div class="feedback" id="feedback13"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Pre-training means the LLM has learned general language patterns from vast text before specific tasks (Slide 25). A, C, D, E, and F are unrelated to pre-training.</div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" id="q14">
+                <p><strong>Explanation:</strong> Fine-tuning enhances an LLM’s performance for specific tasks by training it on targeted datasets.</p>
+                <p><strong>Question:</strong> What is the purpose of fine-tuning an LLM?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="A"> A. To make the LLM perform image recognition.</label>
+                    <label><input type="radio" name="q14" value="B"> B. To improve its performance for a specific task using targeted data.</label>
+                    <label><input type="radio" name="q14" value="C"> C. To solve mathematical equations.</label>
+                    <label><input type="radio" name="q14" value="D"> D. To search for web pages online.</label>
+                    <label><input type="radio" name="q14" value="E"> E. To translate languages without prior training.</label>
+                    <label><input type="radio" name="q14" value="F"> F. To perform syntactic parsing alone.</label>
+                </div>
+                <div class="feedback" id="feedback14"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Fine-tuning trains the LLM on specific data to enhance performance for tasks like helping teachers or doctors (Slide 26). A, C, D, E, and F are unrelated to fine-tuning.</div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" id="q15">
+                <p><strong>Explanation:</strong> Training LLMs requires significant computational resources, typically involving specialized hardware like GPUs or TPUs.</p>
+                <p><strong>Question:</strong> What type of computers are typically used to train LLMs?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="A"> A. Basic laptops used for everyday tasks.</label>
+                    <label><input type="radio" name="q15" value="B"> B. Super-powerful GPUs or TPUs working together.</label>
+                    <label><input type="radio" name="q15" value="C"> C. Calculators designed for math problems.</label>
+                    <label><input type="radio" name="q15" value="D"> D. Search engine servers for web queries.</label>
+                    <label><input type="radio" name="q15" value="E"> E. Image processing units only.</label>
+                    <label><input type="radio" name="q15" value="F"> F. Pre-programmed rule-based systems.</label>
+                </div>
+                <div class="feedback" id="feedback15"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs are trained on GPUs or TPUs, which are fast computers capable of handling billions of calculations (Slide 28). A, C, D, E, and F are incorrect for LLM training hardware.</div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" id="q16">
+                <p><strong>Explanation:</strong> LLMs can generate creative content like stories and poems, making them useful for artistic and educational purposes.</p>
+                <p><strong>Question:</strong> How can LLMs assist with creative writing?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="A"> A. By performing image recognition.</label>
+                    <label><input type="radio" name="q16" value="B"> B. By writing new stories or poems based on user prompts.</label>
+                    <label><input type="radio" name="q16" value="C"> C. By solving mathematical equations.</label>
+                    <label><input type="radio" name="q16" value="D"> D. By searching for web pages online.</label>
+                    <label><input type="radio" name="q16" value="E"> E. By translating languages without creativity.</label>
+                    <label><input type="radio" name="q16" value="F"> F. By performing syntactic parsing only.</label>
+                </div>
+                <div class="feedback" id="feedback16"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs can write new stories or poems, sparking creativity for users (Slide 35). A, C, D, E, and F are unrelated to creative writing applications.</div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" id="q17">
+                <p><strong>Explanation:</strong> LLMs can answer questions on a wide range of topics, serving as a valuable resource for learning and problem-solving.</p>
+                <p><strong>Question:</strong> What is an example of LLMs answering questions?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="A"> A. Performing image analysis to describe a photo.</label>
+                    <label><input type="radio" name="q17" value="B"> B. Explaining why leaves change color in the fall.</label>
+                    <label><input type="radio" name="q17" value="C"> C. Solving a complex math equation.</label>
+                    <label><input type="radio" name="q17" value="D"> D. Searching for a web page link.</label>
+                    <label><input type="radio" name="q17" value="E"> E. Translating a sentence without explanation.</label>
+                    <label><input type="radio" name="q17" value="F"> F. Performing syntactic parsing.</label>
+                </div>
+                <div class="feedback" id="feedback17"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs can answer questions like why leaves change color, using learned patterns (Slide 38). A, C, D, E, and F are unrelated to this application.</div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" id="q18">
+                <p><strong>Explanation:</strong> LLMs can make mistakes due to their reliance on patterns rather than true understanding, requiring users to verify their responses.</p>
+                <p><strong>Question:</strong> Why might an LLM make a mistake when answering a question?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="A"> A. It feels emotions that interfere with its answers.</label>
+                    <label><input type="radio" name="q18" value="B"> B. It guesses based on patterns and may use incorrect ones.</label>
+                    <label><input type="radio" name="q18" value="C"> C. It solves mathematical equations incorrectly.</label>
+                    <label><input type="radio" name="q18" value="D"> D. It searches for outdated web pages.</label>
+                    <label><input type="radio" name="q18" value="E"> E. It translates languages without patterns.</label>
+                    <label><input type="radio" name="q18" value="F"> F. It performs syntactic parsing incorrectly.</label>
+                </div>
+                <div class="feedback" id="feedback18"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs guess based on patterns and can make mistakes if the pattern is wrong (Slide 50). A is incorrect as LLMs lack emotions. C, D, E, and F are unrelated to this challenge.</div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" id="q19">
+                <p><strong>Explanation:</strong> LLMs can learn biases from their training data, leading to unfair or stereotypical responses.</p>
+                <p><strong>Question:</strong> What is a potential source of unfair ideas in LLMs’ responses?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="A"> A. Their ability to perform image recognition.</label>
+                    <label><input type="radio" name="q19" value="B"> B. Biases present in the text they were trained on.</label>
+                    <label><input type="radio" name="q19" value="C"> C. Their focus on solving mathematical problems.</label>
+                    <label><input type="radio" name="q19" value="D"> D. Their ability to search for web pages online.</label>
+                    <label><input type="radio" name="q19" value="E"> E. Their translation capabilities without bias.</label>
+                    <label><input type="radio" name="q19" value="F"> F. Their syntactic parsing methods.</label>
+                </div>
+                <div class="feedback" id="feedback19"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. LLMs can learn unfair ideas from biases in their training text, such as stereotypes (Slide 52). A, C, D, E, and F are unrelated to this issue.</div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" id="q20">
+                <p><strong>Explanation:</strong> Training LLMs consumes significant energy, posing environmental challenges that need to be addressed.</p>
+                <p><strong>Question:</strong> What is an environmental challenge associated with training LLMs?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="A"> A. Their ability to perform image recognition.</label>
+                    <label><input type="radio" name="q20" value="B"> B. The high energy consumption contributing to carbon emissions.</label>
+                    <label><input type="radio" name="q20" value="C"> C. Their focus on solving mathematical problems.</label>
+                    <label><input type="radio" name="q20" value="D"> D. Their ability to search for web pages online.</label>
+                    <label><input type="radio" name="q20" value="E"> E. Their translation capabilities.</label>
+                    <label><input type="radio" name="q20" value="F"> F. Their syntactic parsing requirements.</label>
+                </div>
+                <div class="feedback" id="feedback20"></div>
+                <div class="wrong-feedback" style="display: none;">Wrong. Correct Answer: B. Training LLMs uses significant energy, leading to carbon emissions that impact the environment (Slide 56). A, C, D, E, and F are unrelated to this environmental challenge.</div>
+            </div>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+        <div id="score"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'B', q2: 'B', q3: 'B', q4: 'B', q5: 'B',
+            q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'B',
+            q11: 'B', q12: 'B', q13: 'B', q14: 'B', q15: 'B',
+            q16: 'B', q17: 'B', q18: 'B', q19: 'B', q20: 'B'
+        };
+
+        // Function to update feedback
+        function updateFeedback(questionId, selectedValue) {
+            const feedback = document.getElementById(`feedback${questionId.substring(1)}`);
+            const wrongFeedbackText = document.querySelector(`#${questionId} .wrong-feedback`).textContent;
+            
+            if (selectedValue === correctAnswers[questionId]) {
+                feedback.textContent = "Correct!";
+                feedback.className = "feedback correct";
+            } else {
+                feedback.textContent = wrongFeedbackText;
+                feedback.className = "feedback wrong";
+            }
+            feedback.style.display = 'block';
+        }
+
+        // Real-time feedback on answer change
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const questionId = this.name;
+                const selectedValue = this.value;
+                updateFeedback(questionId, selectedValue);
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            let total = 20;
+
+            for (let i = 1; i <= total; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const feedback = document.getElementById(`feedback${i}`);
+                const wrongFeedbackText = document.querySelector(`#q${i} .wrong-feedback`).textContent;
+
+                if (selected) {
+                    if (selected.value === correctAnswers[`q${i}`]) {
+                        score++;
+                        feedback.textContent = "Correct!";
+                        feedback.className = "feedback correct";
+                    } else {
+                        feedback.textContent = wrongFeedbackText;
+                        feedback.className = "feedback wrong";
+                    }
+                } else {
+                    feedback.textContent = `No answer selected. ${wrongFeedbackText}`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = 'block';
+            }
+
+            const scoreDiv = document.getElementById('score');
+            scoreDiv.style.display = 'block';
+            scoreDiv.innerHTML = `Your Score: ${score} / ${total} (${(score / total * 100).toFixed(1)}%)`;
+
+            // Scroll to score
+            scoreDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
